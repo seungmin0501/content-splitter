@@ -11,16 +11,21 @@ const exampleBtn = document.getElementById('exampleBtn');
 const darkModeToggle = document.getElementById('darkModeToggle');
 const shareBtn = document.getElementById('shareBtn');
 const loadingMessage = document.getElementById('loadingMessage');
+const languageSelect = document.getElementById('languageSelect');
 
-// 로딩 메시지 배열
-const loadingMessages = [
-    "AI가 콘텐츠를 분석하고 있어요...",
-    "완벽한 SNS 포스트를 만들고 있어요...",
-    "톤앤매너를 조정하는 중...",
-    "해시태그를 최적화하는 중...",
-    "각 플랫폼에 맞게 변환하는 중...",
-    "마지막 손질을 하고 있어요..."
-];
+// 언어 선택 이벤트
+languageSelect.value = currentLang;
+languageSelect.addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+});
+
+// 페이지 로드 시 UI 업데이트
+updateUI();
+
+// 로딩 메시지 배열 (다국어)
+function getLoadingMessages() {
+    return t('loadingMessages');
+}
 
 // 예시 텍스트
 const exampleText = `오늘부터 나는 코딩을 시작했다.
@@ -54,7 +59,7 @@ darkModeToggle.addEventListener('click', () => {
 
 // 예시 보기 버튼
 exampleBtn.addEventListener('click', () => {
-    contentInput.value = exampleText;
+    contentInput.value = getExampleText();
     updateCharCount();
     
     // 스크롤 애니메이션
@@ -83,10 +88,11 @@ hashtagSlider.addEventListener('input', (e) => {
 // 로딩 메시지 랜덤 변경
 function startLoadingAnimation() {
     let messageIndex = 0;
+    const messages = getLoadingMessages();
     
     const interval = setInterval(() => {
-        messageIndex = (messageIndex + 1) % loadingMessages.length;
-        loadingMessage.textContent = loadingMessages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+        loadingMessage.textContent = messages[messageIndex];
     }, 2000);
     
     return interval;
@@ -97,12 +103,12 @@ convertBtn.addEventListener('click', async () => {
     const content = contentInput.value.trim();
     
     if (!content) {
-        alert('콘텐츠를 입력해주세요!');
+        alert(t('alerts.noContent'));
         return;
     }
     
     if (content.length < 50) {
-        alert('최소 50자 이상 입력해주세요. 더 긴 내용을 입력하면 더 좋은 결과를 얻을 수 있어요!');
+        alert(t('alerts.tooShort'));
         return;
     }
     
@@ -111,7 +117,7 @@ convertBtn.addEventListener('click', async () => {
         .map(cb => cb.value);
     
     if (selectedPlatforms.length === 0) {
-        alert('최소 하나의 플랫폼을 선택해주세요!');
+        alert(t('alerts.noPlatform'));
         return;
     }
     
@@ -146,7 +152,7 @@ convertBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error:', error);
         clearInterval(loadingInterval);
-        alert('변환 중 오류가 발생했습니다. 다시 시도해주세요.\n\n오류: ' + error.message);
+        alert(t('alerts.error') + error.message);
         loadingSection.style.display = 'none';
     } finally {
         convertBtn.disabled = false;
@@ -191,10 +197,10 @@ function displayResults(results) {
     resultsContainer.innerHTML = '';
     
     const platformNames = {
-        instagram: '📸 인스타그램',
-        twitter: '🐦 트위터',
-        linkedin: '💼 링크드인',
-        facebook: '👍 페이스북'
+        instagram: t('platforms.instagram'),
+        twitter: t('platforms.twitter'),
+        linkedin: t('platforms.linkedin'),
+        facebook: t('platforms.facebook')
     };
     
     const platformLimits = {
@@ -217,11 +223,11 @@ function displayResults(results) {
         card.innerHTML = `
             <h3>${platformNames[platform] || platform}</h3>
             <div class="char-info" style="color: ${isOverLimit ? '#f44336' : '#4caf50'}">
-                ${charLength.toLocaleString()}자 ${isOverLimit ? '(⚠️ 제한 초과!)' : '/ ' + limit.toLocaleString() + '자'}
+                ${charLength.toLocaleString()} ${t('charInfo')} ${isOverLimit ? t('overLimit') : '/ ' + limit.toLocaleString() + ' ' + t('charInfo')}
             </div>
             <div class="content">${content}</div>
             <button class="copy-btn" data-content="${content.replace(/"/g, '&quot;').replace(/\n/g, '\\n')}">
-                📋 복사하기
+                ${t('copyBtn')}
             </button>
         `;
         
@@ -235,15 +241,15 @@ function displayResults(results) {
             
             try {
                 await navigator.clipboard.writeText(content);
-                e.target.textContent = '✅ 복사됨!';
+                e.target.textContent = t('copiedBtn');
                 e.target.classList.add('copied');
                 
                 setTimeout(() => {
-                    e.target.textContent = '📋 복사하기';
+                    e.target.textContent = t('copyBtn');
                     e.target.classList.remove('copied');
                 }, 2000);
             } catch (err) {
-                alert('복사 실패. 수동으로 복사해주세요.');
+                alert('Copy failed. Please copy manually.');
             }
         });
     });
@@ -257,17 +263,17 @@ shareBtn.addEventListener('click', async () => {
         if (navigator.share) {
             // 모바일 공유 API
             await navigator.share({
-                title: 'ContentSplitter - AI 콘텐츠 변환 도구',
-                text: '긴 글을 SNS 포스트로 자동 변환해보세요!',
+                title: 'ContentSplitter - AI Content Converter',
+                text: t('subtitle'),
                 url: url
             });
         } else {
             // 데스크톱: URL 복사
             await navigator.clipboard.writeText(url);
-            alert('링크가 복사되었습니다! 친구들에게 공유해보세요! 🎉');
+            alert(t('alerts.shareSuccess'));
         }
     } catch (err) {
-        console.log('공유 실패:', err);
+        console.log('Share failed:', err);
     }
 });
 

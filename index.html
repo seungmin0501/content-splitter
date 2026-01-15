@@ -14,9 +14,17 @@
                     <h1>✨ ContentSplitter</h1>
                     <p>긴 글 하나를 여러 SNS 포스트로 자동 변환</p>
                 </div>
-                <button id="darkModeToggle" class="dark-mode-toggle" title="다크모드 토글">
-                    🌙
-                </button>
+                <div class="header-controls">
+                    <select id="languageSelect" class="language-select">
+                        <option value="ko">🇰🇷 한국어</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="es">🇪🇸 Español</option>
+                    </select>
+                    <button id="darkModeToggle" class="dark-mode-toggle" title="다크모드 토글">
+                        🌙
+                    </button>
+                </div>
             </div>
         </header>
 
@@ -112,6 +120,7 @@
         </footer>
     </div>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
