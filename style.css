@@ -4,11 +4,39 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-color: #f5f5f5;
+    --card-bg: white;
+    --text-color: #333;
+    --text-secondary: #555;
+    --border-color: #e0e0e0;
+    --input-bg: white;
+    --result-bg: #f9f9f9;
+    --button-hover: rgba(102, 126, 234, 0.4);
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #404040;
+    --input-bg: #3a3a3a;
+    --result-bg: #252525;
+    --button-hover: rgba(102, 126, 234, 0.6);
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-gradient);
     min-height: 100vh;
     padding: 20px;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .container {
@@ -23,6 +51,14 @@ header {
     padding: 40px 20px;
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 header h1 {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -34,33 +70,93 @@ header p {
     opacity: 0.9;
 }
 
+.dark-mode-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
 main {
-    background: white;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .input-section h2 {
-    color: #333;
-    margin-bottom: 20px;
+    color: var(--text-color);
     font-size: 1.5rem;
+}
+
+.example-btn {
+    padding: 10px 20px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.example-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--button-hover);
+}
+
+.textarea-wrapper {
+    position: relative;
 }
 
 #contentInput {
     width: 100%;
     padding: 20px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 12px;
     font-size: 1rem;
     font-family: inherit;
     resize: vertical;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+    background: var(--input-bg);
+    color: var(--text-color);
 }
 
 #contentInput:focus {
     outline: none;
     border-color: #667eea;
+}
+
+.char-count {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: var(--card-bg);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: 600;
 }
 
 .platform-select {
@@ -70,13 +166,13 @@ main {
 .platform-select label {
     display: block;
     margin-bottom: 15px;
-    color: #555;
+    color: var(--text-secondary);
     font-weight: 600;
 }
 
 .checkboxes {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
@@ -85,14 +181,26 @@ main {
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    padding: 10px 20px;
-    background: #f5f5f5;
+    padding: 12px 20px;
+    background: var(--result-bg);
     border-radius: 8px;
     transition: all 0.3s;
+    color: var(--text-color);
+    border: 2px solid transparent;
 }
 
 .checkboxes label:hover {
-    background: #e8e8e8;
+    background: var(--border-color);
+}
+
+.checkboxes label:has(input[type="checkbox"]:checked) {
+    background: #e8e0ff;
+    border-color: #667eea;
+}
+
+body.dark-mode .checkboxes label:has(input[type="checkbox"]:checked) {
+    background: rgba(102, 126, 234, 0.3);
+    border-color: #667eea;
 }
 
 .checkboxes input[type="checkbox"] {
@@ -108,7 +216,7 @@ main {
 .tone-select label {
     display: block;
     margin-bottom: 15px;
-    color: #555;
+    color: var(--text-secondary);
     font-weight: 600;
 }
 
@@ -124,14 +232,15 @@ main {
     gap: 8px;
     cursor: pointer;
     padding: 12px 20px;
-    background: #f5f5f5;
+    background: var(--result-bg);
     border-radius: 8px;
     transition: all 0.3s;
     border: 2px solid transparent;
+    color: var(--text-color);
 }
 
 .radio-label:hover {
-    background: #e8e8e8;
+    background: var(--border-color);
 }
 
 .radio-label input[type="radio"] {
@@ -149,17 +258,22 @@ main {
     border-color: #667eea;
 }
 
+body.dark-mode .radio-label:has(input[type="radio"]:checked) {
+    background: rgba(102, 126, 234, 0.3);
+    border-color: #667eea;
+}
+
 .options-section {
     margin: 30px 0;
     padding: 20px;
-    background: #f9f9f9;
+    background: var(--result-bg);
     border-radius: 12px;
 }
 
 .options-section label {
     display: block;
     margin-bottom: 15px;
-    color: #555;
+    color: var(--text-secondary);
     font-weight: 600;
 }
 
@@ -167,7 +281,7 @@ main {
     width: 100%;
     height: 8px;
     border-radius: 5px;
-    background: #ddd;
+    background: var(--border-color);
     outline: none;
     margin: 10px 0;
 }
@@ -199,7 +313,7 @@ main {
 .convert-btn {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-gradient);
     color: white;
     border: none;
     border-radius: 12px;
@@ -212,11 +326,16 @@ main {
 
 .convert-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 30px var(--button-hover);
 }
 
 .convert-btn:active {
     transform: translateY(0);
+}
+
+.convert-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .loading-section {
@@ -228,7 +347,7 @@ main {
     width: 50px;
     height: 50px;
     margin: 0 auto 20px;
-    border: 4px solid #f3f3f3;
+    border: 4px solid var(--border-color);
     border-top: 4px solid #667eea;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -239,18 +358,46 @@ main {
     100% { transform: rotate(360deg); }
 }
 
+#loadingMessage {
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
 .results-section {
     margin-top: 40px;
 }
 
-.results-section h2 {
-    color: #333;
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
+}
+
+.results-section h2 {
+    color: var(--text-color);
     font-size: 1.8rem;
 }
 
+.share-btn {
+    padding: 10px 20px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.share-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
 .result-card {
-    background: #f9f9f9;
+    background: var(--result-bg);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 20px;
@@ -267,13 +414,20 @@ main {
 }
 
 .result-card .content {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 15px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
     white-space: pre-wrap;
+    border: 1px solid var(--border-color);
+}
+
+.result-card .char-info {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
 }
 
 .copy-btn {
@@ -308,12 +462,29 @@ footer {
         font-size: 2rem;
     }
     
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
     main {
         padding: 20px;
     }
     
-    .checkboxes {
+    .section-header {
         flex-direction: column;
         gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .checkboxes, .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .results-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
     }
 }
