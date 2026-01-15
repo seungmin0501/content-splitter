@@ -1,0 +1,21 @@
+# 환경 변수 파일 (API 키 포함)
+.env
+server/.env
+
+# Node.js 관련
+node_modules/
+server/node_modules/
+
+# 로그 파일
+*.log
+npm-debug.log*
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 에디터 관련
+.vscode/
+.idea/
+*.swp
+*.swo

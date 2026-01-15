@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContentSplitter - 긴 글을 SNS 포스트로</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ ContentSplitter</h1>
+            <p>긴 글 하나를 여러 SNS 포스트로 자동 변환</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <h2>원본 콘텐츠 입력</h2>
+                <textarea 
+                    id="contentInput" 
+                    placeholder="블로그 포스트, 유튜브 스크립트 등을 여기에 붙여넣으세요...
+
+예시:
+오늘은 AI 도구 개발에 대해 이야기해볼게요. 많은 분들이 코딩을 어려워하시지만, 요즘은 Cursor 같은 도구로 누구나 쉽게 시작할 수 있어요..."
+                    rows="10"
+                ></textarea>
+                
+                <div class="platform-select">
+                    <label>변환할 플랫폼 선택:</label>
+                    <div class="checkboxes">
+                        <label>
+                            <input type="checkbox" value="instagram" checked> 인스타그램
+                        </label>
+                        <label>
+                            <input type="checkbox" value="twitter" checked> 트위터
+                        </label>
+                        <label>
+                            <input type="checkbox" value="linkedin" checked> 링크드인
+                        </label>
+                    </div>
+                </div>
+
+                <div class="tone-select">
+                    <label>톤앤매너 선택:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="tone" value="professional" checked>
+                            <span>🎩 전문적</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="tone" value="friendly">
+                            <span>😊 친근함</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="tone" value="casual">
+                            <span>✌️ 캐주얼</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="tone" value="enthusiastic">
+                            <span>🔥 열정적</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="options-section">
+                    <label>해시태그 개수 (인스타그램):</label>
+                    <input type="range" id="hashtagCount" min="0" max="30" value="10" class="slider">
+                    <span id="hashtagValue">10개</span>
+                </div>
+
+                <button id="convertBtn" class="convert-btn">
+                    🚀 SNS 포스트로 변환하기
+                </button>
+            </div>
+
+            <div id="loadingSection" class="loading-section" style="display: none;">
+                <div class="spinner"></div>
+                <p>AI가 콘텐츠를 분석하고 있어요...</p>
+            </div>
+
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <h2>✅ 변환 완료!</h2>
+                <div id="resultsContainer"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ by 승민 | Day 1 Progress</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
