@@ -62,8 +62,12 @@ convertBtn.addEventListener('click', async () => {
 
 // AI API 호출 함수 (백엔드로 요청)
 async function convertContent(content, platforms, tone, hashtagCount) {
-    // 백엔드 API 호출
-    const response = await fetch('http://localhost:3001/api/convert', {
+    // Vercel Serverless Function으로 요청
+    const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3001/api/convert'  // 로컬 개발
+        : '/api/convert';  // 배포 환경
+    
+    const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
