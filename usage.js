@@ -131,23 +131,12 @@ function updateUsageDisplay() {
     }
 }
 
-// 업그레이드 모달 표시 (임시 비활성화)
+// 업그레이드 모달 표시
 function showUpgradeModal() {
-    // 임시로 알림 메시지만 표시
-    const lang = currentLang || 'ko';
-    
-    let message = '';
-    if (lang === 'ko') {
-        message = '오늘의 무료 변환 횟수를 모두 사용했습니다.\n\n프리미엄 플랜은 곧 출시됩니다! 🚀\n\n내일 다시 방문해주세요!';
-    } else if (lang === 'en') {
-        message = 'You\'ve used all free conversions for today.\n\nPremium plan coming soon! 🚀\n\nPlease come back tomorrow!';
-    } else if (lang === 'ja') {
-        message = '本日の無料変換回数を使い切りました。\n\nプレミアムプランは近日公開！🚀\n\n明日またお越しください！';
-    } else if (lang === 'es') {
-        message = 'Has usado todas las conversiones gratuitas de hoy.\n\n¡Plan Premium próximamente! 🚀\n\n¡Vuelve mañana!';
+    const modal = document.getElementById('upgradeModal');
+    if (modal) {
+        modal.style.display = 'flex';
     }
-    
-    alert(message);
 }
 
 // 모달 닫기

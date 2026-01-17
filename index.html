@@ -123,12 +123,12 @@
         </footer>
     </div>
 
-    <!-- 업그레이드 모달 (임시 비활성화) -->
-    <div id="upgradeModal" class="modal" style="display: none !important;">
+    <!-- 업그레이드 모달 -->
+    <div id="upgradeModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeUpgradeModal()">&times;</span>
             <h2>⭐ ContentSplitter Premium</h2>
-            <p class="modal-subtitle">Coming Soon! 프리미엄 플랜 준비중입니다.</p>
+            <p class="modal-subtitle">무제한으로 콘텐츠를 변환하세요!</p>
             
             <div class="pricing">
                 <div class="price-tag">
@@ -143,9 +143,14 @@
                 <div class="feature">✓ 4가지 톤앤매너</div>
                 <div class="feature">✓ 다국어 지원</div>
                 <div class="feature">✓ 우선 고객 지원</div>
+                <div class="feature">✓ 7일 무료 체험</div>
             </div>
 
-            <p class="modal-note">곧 만나요! Stay tuned 🚀</p>
+            <button class="checkout-btn" onclick="createCheckout()">
+                🚀 7일 무료로 시작하기
+            </button>
+            
+            <p class="modal-note">언제든지 취소 가능합니다</p>
         </div>
     </div>
 
@@ -163,6 +168,7 @@
 
     <script src="translations.js"></script>
     <script src="usage.js"></script>
+    <script src="premium.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
