@@ -324,3 +324,35 @@ document.getElementById('acceptCookies')?.addEventListener('click', () => {
 
 // 페이지 로드 시 쿠키 배너 표시
 setTimeout(showCookieBanner, 1000); // 1초 후 표시
+
+// 모바일에서 자동 스크롤 방지
+document.addEventListener('focusin', (e) => {
+    // 입력창이 아닌 요소에 포커스되었을 때만 스크롤 방지
+    if (e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'INPUT') {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+    }
+});
+
+// 체크박스, 라디오 버튼 클릭 시 스크롤 방지
+document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+    input.addEventListener('click', (e) => {
+        e.target.blur(); // 포커스 제거
+        setTimeout(() => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            window.scrollTo(0, currentScroll);
+        }, 0);
+    });
+});
+
+// 슬라이더 터치 시 스크롤 방지
+const slider = document.getElementById('hashtagCount');
+if (slider) {
+    slider.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+    }, { passive: true });
+    
+    slider.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+    }, { passive: true });
+}
