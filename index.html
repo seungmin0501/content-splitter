@@ -29,6 +29,9 @@
         </header>
 
         <main>
+            <!-- 사용 횟수 표시 -->
+            <div id="usageStatus" style="display: none;"></div>
+            
             <div class="input-section">
                 <div class="section-header">
                     <h2>원본 콘텐츠 입력</h2>
@@ -120,7 +123,34 @@
         </footer>
     </div>
 
+    <!-- 업그레이드 모달 (임시 비활성화) -->
+    <div id="upgradeModal" class="modal" style="display: none !important;">
+        <div class="modal-content">
+            <span class="close" onclick="closeUpgradeModal()">&times;</span>
+            <h2>⭐ ContentSplitter Premium</h2>
+            <p class="modal-subtitle">Coming Soon! 프리미엄 플랜 준비중입니다.</p>
+            
+            <div class="pricing">
+                <div class="price-tag">
+                    <span class="price">$9.99</span>
+                    <span class="period">/월</span>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <div class="feature">✓ 무제한 AI 콘텐츠 변환</div>
+                <div class="feature">✓ 4개 플랫폼 지원</div>
+                <div class="feature">✓ 4가지 톤앤매너</div>
+                <div class="feature">✓ 다국어 지원</div>
+                <div class="feature">✓ 우선 고객 지원</div>
+            </div>
+
+            <p class="modal-note">곧 만나요! Stay tuned 🚀</p>
+        </div>
+    </div>
+
     <script src="translations.js"></script>
+    <script src="usage.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
