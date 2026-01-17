@@ -177,9 +177,7 @@ convertBtn.addEventListener('click', async () => {
 // AI API 호출 함수 (백엔드로 요청)
 async function convertContent(content, platforms, tone, hashtagCount) {
     // Vercel Serverless Function으로 요청
-    const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:3001/api/convert'
-        : '/api/convert';
+    const apiUrl = '/api/convert';
     
     const response = await fetch(apiUrl, {
         method: 'POST',
@@ -344,15 +342,3 @@ document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach
         }, 0);
     });
 });
-
-// 슬라이더 터치 시 스크롤 방지
-const slider = document.getElementById('hashtagCount');
-if (slider) {
-    slider.addEventListener('touchstart', (e) => {
-        e.stopPropagation();
-    }, { passive: true });
-    
-    slider.addEventListener('touchmove', (e) => {
-        e.stopPropagation();
-    }, { passive: true });
-}
