@@ -176,7 +176,6 @@ convertBtn.addEventListener('click', async () => {
 
 // AI API 호출 함수 (백엔드로 요청)
 async function convertContent(content, platforms, tone, hashtagCount) {
-    // Vercel Serverless Function으로 요청
     const apiUrl = '/api/convert';
     
     const response = await fetch(apiUrl, {
@@ -322,23 +321,3 @@ document.getElementById('acceptCookies')?.addEventListener('click', () => {
 
 // 페이지 로드 시 쿠키 배너 표시
 setTimeout(showCookieBanner, 1000); // 1초 후 표시
-
-// 모바일에서 자동 스크롤 방지
-document.addEventListener('focusin', (e) => {
-    // 입력창이 아닌 요소에 포커스되었을 때만 스크롤 방지
-    if (e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'INPUT') {
-        e.preventDefault();
-        window.scrollTo(0, 0);
-    }
-});
-
-// 체크박스, 라디오 버튼 클릭 시 스크롤 방지
-document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-    input.addEventListener('click', (e) => {
-        e.target.blur(); // 포커스 제거
-        setTimeout(() => {
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            window.scrollTo(0, currentScroll);
-        }, 0);
-    });
-});
