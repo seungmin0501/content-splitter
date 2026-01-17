@@ -22,6 +22,9 @@ languageSelect.addEventListener('change', (e) => {
 // 페이지 로드 시 UI 업데이트
 updateUI();
 
+// 사용 횟수 표시 업데이트
+updateUsageDisplay();
+
 // 로딩 메시지 배열 (다국어)
 function getLoadingMessages() {
     return t('loadingMessages');
@@ -100,6 +103,14 @@ function startLoadingAnimation() {
 
 // 버튼 클릭 이벤트
 convertBtn.addEventListener('click', async () => {
+    // 사용 가능 여부 확인
+    const usageStatus = canUseService();
+    
+    if (!usageStatus.allowed) {
+        showUpgradeModal();
+        return;
+    }
+    
     const content = contentInput.value.trim();
     
     if (!content) {
@@ -138,6 +149,10 @@ convertBtn.addEventListener('click', async () => {
     try {
         // AI API 호출
         const results = await convertContent(content, selectedPlatforms, selectedTone, hashtagCount);
+        
+        // 사용 횟수 증가
+        incrementUsage();
+        updateUsageDisplay();
         
         // 결과 표시
         displayResults(results);
@@ -287,3 +302,25 @@ contentInput.addEventListener('keydown', (e) => {
 
 // 초기 글자 수 표시
 updateCharCount();
+
+// 쿠키 동의 배너
+function showCookieBanner() {
+    const banner = document.getElementById('cookieBanner');
+    const cookieConsent = getCookie('cookie_consent');
+    
+    if (!cookieConsent && banner) {
+        banner.classList.add('show');
+    }
+}
+
+// 쿠키 동의 처리
+document.getElementById('acceptCookies')?.addEventListener('click', () => {
+    setCookie('cookie_consent', 'accepted', 365);
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+        banner.style.display = 'none';
+    }
+});
+
+// 페이지 로드 시 쿠키 배너 표시
+setTimeout(showCookieBanner, 1000); // 1초 후 표시

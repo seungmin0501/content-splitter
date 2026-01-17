@@ -67,7 +67,11 @@ const translations = {
     
     // 푸터
     footer: "Made with ❤️ by 승민",
-    version: "v2.0 - 글로벌 베타"
+    version: "v2.0 - 글로벌 베타",
+    
+    // 쿠키 배너
+    cookieMessage: "🍪 이 사이트는 사용 횟수 추적과 사용자 경험 개선을 위해 쿠키를 사용합니다. 개인 식별 정보는 수집하지 않습니다.",
+    cookieAccept: "동의"
   },
   
   en: {
@@ -128,7 +132,10 @@ const translations = {
     },
     
     footer: "Made with ❤️ by Seungmin",
-    version: "v2.0 - Global Beta"
+    version: "v2.0 - Global Beta",
+    
+    cookieMessage: "🍪 This site uses cookies to track usage and improve user experience. We do not collect personally identifiable information.",
+    cookieAccept: "Accept"
   },
   
   ja: {
@@ -189,7 +196,10 @@ const translations = {
     },
     
     footer: "Made with ❤️ by Seungmin",
-    version: "v2.0 - グローバルベータ"
+    version: "v2.0 - グローバルベータ",
+    
+    cookieMessage: "🍪 このサイトは、使用回数の追跡とユーザー体験の改善のためにクッキーを使用します。個人を特定できる情報は収集しません。",
+    cookieAccept: "同意する"
   },
   
   es: {
@@ -250,7 +260,10 @@ const translations = {
     },
     
     footer: "Hecho con ❤️ por Seungmin",
-    version: "v2.0 - Beta Global"
+    version: "v2.0 - Beta Global",
+    
+    cookieMessage: "🍪 Este sitio utiliza cookies para rastrear el uso y mejorar la experiencia del usuario. No recopilamos información de identificación personal.",
+    cookieAccept: "Aceptar"
   }
 };
 
@@ -290,6 +303,16 @@ function updateUI() {
   document.getElementById('convertBtn').textContent = t('convertBtn');
   document.getElementById('shareBtn').textContent = t('shareBtn');
   document.getElementById('versionInfo').textContent = t('version');
+  
+  // 쿠키 배너 텍스트
+  const cookieText = document.getElementById('cookieText');
+  if (cookieText) {
+    cookieText.textContent = t('cookieMessage');
+  }
+  const acceptBtn = document.getElementById('acceptCookies');
+  if (acceptBtn) {
+    acceptBtn.textContent = t('cookieAccept');
+  }
   
   // 플랫폼 라벨
   const platformLabels = document.querySelectorAll('.checkboxes label');
