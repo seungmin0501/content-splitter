@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
           store: {
             data: {
               type: 'stores',
-              id: process.env.LEMON_SQUEEZY_STORE_ID || 'your-store-id'
+              id: '274107'
             }
           },
           variant: {
