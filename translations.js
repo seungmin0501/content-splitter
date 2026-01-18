@@ -268,7 +268,7 @@ const translations = {
 };
 
 // 현재 언어 가져오기
-let currentLang = localStorage.getItem('language') || 'ko';
+let currentLang = localStorage.getItem('language') || 'en';
 
 // 번역 함수
 function t(key) {
