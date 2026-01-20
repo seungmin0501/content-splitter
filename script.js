@@ -232,15 +232,18 @@ function displayResults(results) {
         const card = document.createElement('div');
         card.className = 'result-card';
         
+        const escapedContent = content.replace(/"/g, '&quot;').replace(/\n/g, '\\n').replace(/'/g, "\\'");
+
         card.innerHTML = `
             <h3>${platformNames[platform] || platform}</h3>
             <div class="char-info" style="color: ${isOverLimit ? '#f44336' : '#4caf50'}">
                 ${charLength.toLocaleString()} ${t('charInfo')} ${isOverLimit ? t('overLimit') : '/ ' + limit.toLocaleString() + ' ' + t('charInfo')}
             </div>
             <div class="content">${content}</div>
-            <button class="copy-btn" data-content="${content.replace(/"/g, '&quot;').replace(/\n/g, '\\n')}">
+            <button class="copy-btn" data-content="${escapedContent}">
                 ${t('copyBtn')}
             </button>
+            ${platform === 'instagram' ? '<button class="image-btn" onclick="downloadInstagramImage(\'${platform}\' )">📸 이미지로 다운로드</button>' : ''}
         `;
         
         resultsContainer.appendChild(card);
@@ -321,3 +324,101 @@ document.getElementById('acceptCookies')?.addEventListener('click', () => {
 
 // 페이지 로드 시 쿠키 배너 표시
 setTimeout(showCookieBanner, 1000); // 1초 후 표시
+
+// ==================== 이미지 생성 기능 ====================
+
+// 인스타그램 이미지 생성 함수
+function generateInstagramImage(text, platform) {
+    // Canvas 생성
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    canvas.height = 1200;
+    const ctx = canvas.getContext('2d');
+    
+    // 그라데이션 배경
+    const gradient = ctx.createLinearGradient(0, 0, 1200, 1200);
+    gradient.addColorStop(0, '#667eea');
+    gradient.addColorStop(1, '#764ba2');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 1200, 1200);
+    
+    // 반투명 오버레이
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+    ctx.fillRect(100, 100, 1000, 1000);
+    
+    // 텍스트 설정
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    
+    // 텍스트 줄바꿈 처리
+    const maxWidth = 900;
+    const lineHeight = 60;
+    const lines = wrapText(ctx, text, maxWidth, 50);
+    
+    // 텍스트 그리기
+    const startY = 600 - (lines.length * lineHeight) / 2;
+    lines.forEach((line, index) => {
+        ctx.fillText(line, 600, startY + (index * lineHeight));
+    });
+    
+    // 워터마크
+    ctx.font = '24px Arial';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.fillText('@ContentSplitter', 600, 1100);
+    
+    return canvas;
+}
+
+// 텍스트 줄바꿈 헬퍼 함수
+function wrapText(ctx, text, maxWidth, fontSize) {
+    ctx.font = `${fontSize}px Arial`;
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+    
+    words.forEach(word => {
+        const testLine = currentLine + word + ' ';
+        const metrics = ctx.measureText(testLine);
+        
+        if (metrics.width > maxWidth && currentLine !== '') {
+            lines.push(currentLine.trim());
+            currentLine = word + ' ';
+        } else {
+            currentLine = testLine;
+        }
+    });
+    
+    if (currentLine) {
+        lines.push(currentLine.trim());
+    }
+    
+    return lines;
+}
+
+// 이미지 다운로드 함수
+function downloadImage(canvas, platform) {
+    const link = document.createElement('a');
+    link.download = `${platform}-post.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+// 인스타그램 이미지 다운로드 (클릭 이벤트용)
+function downloadInstagramImage(platform) {
+    // 해당 플랫폼의 텍스트 찾기
+    const resultCards = document.querySelectorAll('.result-card');
+    let instagramText = '';
+    
+    resultCards.forEach(card => {
+        const title = card.querySelector('h3').textContent;
+        if (title.includes('Instagram') || title.includes('인스타그램')) {
+            instagramText = card.querySelector('.content').textContent;
+        }
+    });
+    
+    if (instagramText) {
+        const canvas = generateInstagramImage(instagramText, platform);
+        downloadImage(canvas, platform);
+    }
+}
