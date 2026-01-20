@@ -56,28 +56,32 @@ module.exports = async (req, res) => {
       max_tokens: 2000,
       messages: [{
         role: 'user',
-        content: `다음 콘텐츠를 ${platforms.join(', ')} 플랫폼에 맞게 변환해주세요.
+        content: `Convert the following content for ${platforms.join(', ')} platforms.
 
-톤앤매너: ${toneDesc} 스타일로 작성해주세요.
+Write in ${toneDesc} tone.
 
-각 플랫폼의 특성에 맞게:
-- instagram: 감성적이고 해시태그 ${hashtagCount}개 포함 (최대 2200자)
-- twitter: 간결하고 임팩트 있게 (최대 280자, 필요시 스레드로)
-- linkedin: 전문적이고 인사이트 중심 (최대 3000자)
-- facebook: 친근하고 스토리텔링 중심 (최대 63,206자, 하지만 2000자 이내 추천)
+Platform requirements:
+- instagram: Emotional with ${hashtagCount} hashtags (max 2200 chars)
+- twitter: Concise and impactful (max 280 chars, use thread if needed)
+- linkedin: Professional and insight-focused (max 3000 chars)
+- facebook: Friendly and storytelling (recommended under 2000 chars)
 
-원본 콘텐츠:
+Original content:
 ${content}
 
-응답은 반드시 다음 JSON 형식으로만 작성해주세요:
+IMPORTANT: Respond in the SAME LANGUAGE as the original content.
+If the content is in English, respond in English.
+If the content is in Korean, respond in Korean.
+
+Response format (JSON only):
 {
-  "instagram": "변환된 인스타그램 포스트 (선택된 경우)",
-  "twitter": "변환된 트위터 포스트 (선택된 경우)",
-  "linkedin": "변환된 링크드인 포스트 (선택된 경우)",
-  "facebook": "변환된 페이스북 포스트 (선택된 경우)"
+  "instagram": "converted post (if selected)",
+  "twitter": "converted post (if selected)",
+  "linkedin": "converted post (if selected)",
+  "facebook": "converted post (if selected)"
 }
 
-선택된 플랫폼만 포함하고, JSON만 반환해주세요. 다른 설명은 넣지 마세요.`
+Only include selected platforms. Return JSON only, no explanations.`
       }]
     });
 
