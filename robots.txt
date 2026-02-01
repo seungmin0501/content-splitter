@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://content-splitter.vercel.app/sitemap.xml
