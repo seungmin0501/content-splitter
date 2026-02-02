@@ -842,3 +842,77 @@ footer {
         touch-action: manipulation;
     }
 }
+
+/* SEO 섹션 위에 큰 여백 추가 */
+.seo-section:first-of-type {
+    margin-top: 120px;
+  }
+  
+  /* 글자 부드럽게 */
+  .seo-section h2 {
+    font-weight: 600;
+    color: #4a5568;
+  }
+  
+  .seo-section h3 {
+    font-weight: 500;
+    color: #667eea;
+  }
+  
+  .seo-section p {
+    color: #718096;
+    font-weight: 400;
+  }
+  
+  /* FAQ 접기 기능 */
+  .faq-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+  }
+  
+  .faq-item h3::before {
+    content: '▼';
+    font-size: 14px;
+    transition: transform 0.3s;
+    color: #667eea;
+  }
+  
+  .faq-item.collapsed h3::before {
+    transform: rotate(-90deg);
+  }
+  
+  .faq-answer {
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+  
+  .faq-item.collapsed .faq-answer {
+    max-height: 0;
+    opacity: 0;
+  }
+  
+  .faq-item:hover {
+    border-left-color: #5a67d8;
+    transform: translateX(5px);
+  }
+  
+  /* Use Cases, Benefits 글자 작게 */
+  .use-cases-section,
+  .benefits-section {
+    font-size: 15px;
+  }
+  
+  .benefit-card p,
+  .use-case-item p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
