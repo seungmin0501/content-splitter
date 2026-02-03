@@ -71,7 +71,53 @@ const translations = {
     
     // 쿠키 배너
     cookieMessage: "🍪 이 사이트는 사용 횟수 추적과 사용자 경험 개선을 위해 쿠키를 사용합니다. 개인 식별 정보는 수집하지 않습니다.",
-    cookieAccept: "동의"
+    cookieAccept: "동의",
+    
+    // SEO 섹션
+    seo: {
+      benefitsTitle: "주요 기능",
+      benefits: {
+        aiPowered: {
+          title: "AI 기반 변환",
+          desc: "Claude AI가 콘텐츠를 플랫폼별로 최적화"
+        },
+        multiPlatform: {
+          title: "멀티 플랫폼",
+          desc: "인스타그램, 트위터, 링크드인, 페이스북 지원"
+        },
+        multiLanguage: {
+          title: "다국어 지원",
+          desc: "영어, 한국어, 스페인어, 일본어 지원"
+        },
+        freeStart: {
+          title: "무료로 시작",
+          desc: "매일 3회 무료 변환, 카드 등록 불필요"
+        },
+        multipleTones: {
+          title: "다양한 톤",
+          desc: "전문적, 캐주얼, 스토리텔링 스타일"
+        }
+      },
+      useCasesTitle: "이런 분들께 추천",
+      useCases: {
+        creators: {
+          title: "콘텐츠 크리에이터",
+          desc: "블로그 글을 트위터 스레드, 링크드인 포스트, 인스타그램 캡션으로 변환"
+        },
+        marketers: {
+          title: "디지털 마케터",
+          desc: "일관된 메시지를 유지하며 플랫폼별로 콘텐츠 재활용"
+        },
+        startups: {
+          title: "스타트업 & SaaS",
+          desc: "공지사항과 업데이트를 플랫폼 최적화된 포스트로 변환"
+        },
+        writers: {
+          title: "프리랜스 작가",
+          desc: "클라이언트에게 콘텐츠 재활용 서비스 추가 제공"
+        }
+      }
+    }
   },
   
   en: {
@@ -99,10 +145,10 @@ const translations = {
       enthusiastic: "🔥 Enthusiastic"
     },
     
-    hashtagTitle: "Number of Hashtags (Instagram):",
-    hashtagCount: "tags",
+    hashtagTitle: "Hashtag Count (Instagram):",
+    hashtagCount: "",
     
-    convertBtn: "🚀 Convert to SNS Posts",
+    convertBtn: "🚀 Convert to Social Posts",
     shareBtn: "🔗 Share Results",
     copyBtn: "📋 Copy",
     copiedBtn: "✅ Copied!",
@@ -127,15 +173,61 @@ const translations = {
       noPlatform: "Please select at least one platform!",
       error: "An error occurred during conversion. Please try again.\n\nError: ",
       shareSuccess: "Link copied! Share it with your friends! 🎉",
-      limitReached: "You've used all free conversions for today.\nWould you like to upgrade to Premium?",
+      limitReached: "You've used all your free conversions for today.\nWould you like to upgrade to Premium?",
       usageCount: "Free conversions: {current}/{total} used today"
     },
     
     footer: "Made with ❤️ by Seungmin",
     version: "v2.0 - Global Beta",
     
-    cookieMessage: "🍪 This site uses cookies to track usage and improve user experience. We do not collect personally identifiable information.",
-    cookieAccept: "Accept"
+    cookieMessage: "🍪 This site uses cookies to track usage and improve user experience. We don't collect personal identification information.",
+    cookieAccept: "Accept",
+    
+    // SEO Section
+    seo: {
+      benefitsTitle: "Key Features",
+      benefits: {
+        aiPowered: {
+          title: "AI-Powered",
+          desc: "Claude AI optimizes content for each platform"
+        },
+        multiPlatform: {
+          title: "Multi-Platform",
+          desc: "Instagram, Twitter, LinkedIn, and Facebook support"
+        },
+        multiLanguage: {
+          title: "Multi-Language",
+          desc: "English, Korean, Spanish, and Japanese support"
+        },
+        freeStart: {
+          title: "Free to Start",
+          desc: "3 free conversions daily, no credit card required"
+        },
+        multipleTones: {
+          title: "Multiple Tones",
+          desc: "Professional, Casual, or Storytelling styles"
+        }
+      },
+      useCasesTitle: "Perfect For",
+      useCases: {
+        creators: {
+          title: "Content Creators",
+          desc: "Turn blog posts into Twitter threads, LinkedIn posts, and Instagram captions"
+        },
+        marketers: {
+          title: "Digital Marketers",
+          desc: "Repurpose content across platforms while maintaining consistent messaging"
+        },
+        startups: {
+          title: "Startups & SaaS",
+          desc: "Convert announcements and updates into platform-optimized posts"
+        },
+        writers: {
+          title: "Freelance Writers",
+          desc: "Offer content repurposing as an additional service to clients"
+        }
+      }
+    }
   },
   
   ja: {
@@ -144,15 +236,15 @@ const translations = {
     
     inputTitle: "コンテンツを入力",
     exampleBtn: "💡 例を見る",
-    placeholder: "ブログ記事、YouTubeスクリプトなどをここに貼り付けてください...",
+    placeholder: "ブログ投稿、YouTubeスクリプトなど、長文コンテンツをここに貼り付けてください...",
     charCount: "文字",
     
     platformTitle: "プラットフォームを選択:",
     platforms: {
-      instagram: "📸 Instagram",
-      twitter: "🐦 Twitter",
-      linkedin: "💼 LinkedIn",
-      facebook: "👍 Facebook"
+      instagram: "📸 インスタグラム",
+      twitter: "🐦 ツイッター",
+      linkedin: "💼 リンクトイン",
+      facebook: "👍 フェイスブック"
     },
     
     toneTitle: "トーンを選択:",
@@ -163,7 +255,7 @@ const translations = {
       enthusiastic: "🔥 情熱的"
     },
     
-    hashtagTitle: "ハッシュタグ数 (Instagram):",
+    hashtagTitle: "ハッシュタグ数 (インスタグラム):",
     hashtagCount: "個",
     
     convertBtn: "🚀 SNS投稿に変換",
@@ -174,10 +266,10 @@ const translations = {
     
     loadingMessages: [
       "AIがコンテンツを分析しています...",
-      "完璧なSNS投稿を作成中...",
+      "完璧なSNS投稿を作成しています...",
       "トーンとスタイルを調整中...",
       "ハッシュタグを最適化中...",
-      "各プラットフォーム向けに変換中...",
+      "各プラットフォーム用に変換中...",
       "最後の仕上げをしています..."
     ],
     
@@ -187,19 +279,65 @@ const translations = {
     
     alerts: {
       noContent: "コンテンツを入力してください!",
-      tooShort: "より良い結果を得るために、50文字以上入力してください!",
+      tooShort: "より良い結果を得るために、少なくとも50文字を入力してください!",
       noPlatform: "少なくとも1つのプラットフォームを選択してください!",
       error: "変換中にエラーが発生しました。もう一度お試しください。\n\nエラー: ",
-      shareSuccess: "リンクがコピーされました！友達とシェアしましょう！ 🎉",
-      limitReached: "本日の無料変換回数を使い切りました。\nプレミアムにアップグレードしますか？",
-      usageCount: "無料変換: 本日{current}/{total}回使用"
+      shareSuccess: "リンクがコピーされました! 友達と共有しましょう! 🎉",
+      limitReached: "今日の無料変換回数を使い切りました。\nプレミアムにアップグレードしますか?",
+      usageCount: "無料変換: 今日{current}/{total}回使用"
     },
     
     footer: "Made with ❤️ by Seungmin",
     version: "v2.0 - グローバルベータ",
     
-    cookieMessage: "🍪 このサイトは、使用回数の追跡とユーザー体験の改善のためにクッキーを使用します。個人を特定できる情報は収集しません。",
-    cookieAccept: "同意する"
+    cookieMessage: "🍪 このサイトは使用状況を追跡し、ユーザーエクスペリエンスを向上させるためにCookieを使用します。個人識別情報は収集しません。",
+    cookieAccept: "同意する",
+    
+    // SEO Section
+    seo: {
+      benefitsTitle: "主な機能",
+      benefits: {
+        aiPowered: {
+          title: "AI駆動",
+          desc: "Claude AIが各プラットフォーム向けにコンテンツを最適化"
+        },
+        multiPlatform: {
+          title: "マルチプラットフォーム",
+          desc: "インスタグラム、ツイッター、リンクトイン、フェイスブックをサポート"
+        },
+        multiLanguage: {
+          title: "多言語対応",
+          desc: "英語、韓国語、スペイン語、日本語をサポート"
+        },
+        freeStart: {
+          title: "無料で始める",
+          desc: "毎日3回の無料変換、クレジットカード不要"
+        },
+        multipleTones: {
+          title: "複数のトーン",
+          desc: "プロフェッショナル、カジュアル、ストーリーテリングスタイル"
+        }
+      },
+      useCasesTitle: "こんな方におすすめ",
+      useCases: {
+        creators: {
+          title: "コンテンツクリエイター",
+          desc: "ブログ投稿をツイッタースレッド、リンクトイン投稿、インスタグラムキャプションに変換"
+        },
+        marketers: {
+          title: "デジタルマーケター",
+          desc: "一貫したメッセージを維持しながら、プラットフォーム全体でコンテンツを再利用"
+        },
+        startups: {
+          title: "スタートアップ & SaaS",
+          desc: "お知らせや更新をプラットフォーム最適化された投稿に変換"
+        },
+        writers: {
+          title: "フリーランスライター",
+          desc: "クライアントに追加サービスとしてコンテンツ再利用を提供"
+        }
+      }
+    }
   },
   
   es: {
@@ -208,7 +346,7 @@ const translations = {
     
     inputTitle: "Ingresa tu Contenido",
     exampleBtn: "💡 Ver Ejemplo",
-    placeholder: "Pega aquí tu artículo de blog, guión de YouTube o cualquier contenido largo...",
+    placeholder: "Pega tu artículo de blog, guión de YouTube o cualquier contenido largo aquí...",
     charCount: "caracteres",
     
     platformTitle: "Seleccionar Plataformas:",
@@ -227,22 +365,22 @@ const translations = {
       enthusiastic: "🔥 Entusiasta"
     },
     
-    hashtagTitle: "Número de Hashtags (Instagram):",
-    hashtagCount: "hashtags",
+    hashtagTitle: "Cantidad de Hashtags (Instagram):",
+    hashtagCount: "",
     
-    convertBtn: "🚀 Convertir a Publicaciones",
+    convertBtn: "🚀 Convertir a Publicaciones Sociales",
     shareBtn: "🔗 Compartir Resultados",
     copyBtn: "📋 Copiar",
     copiedBtn: "✅ ¡Copiado!",
     upgradeBtn: "⭐ Actualizar a Premium",
     
     loadingMessages: [
-      "AI está analizando tu contenido...",
-      "Creando publicaciones perfectas...",
+      "La IA está analizando tu contenido...",
+      "Creando publicaciones perfectas para redes sociales...",
       "Ajustando tono y estilo...",
       "Optimizando hashtags...",
       "Convirtiendo para cada plataforma...",
-      "Dando los toques finales..."
+      "Añadiendo toques finales..."
     ],
     
     resultsTitle: "✅ ¡Conversión Completa!",
@@ -263,12 +401,85 @@ const translations = {
     version: "v2.0 - Beta Global",
     
     cookieMessage: "🍪 Este sitio utiliza cookies para rastrear el uso y mejorar la experiencia del usuario. No recopilamos información de identificación personal.",
-    cookieAccept: "Aceptar"
+    cookieAccept: "Aceptar",
+    
+    // SEO Section
+    seo: {
+      benefitsTitle: "Características Clave",
+      benefits: {
+        aiPowered: {
+          title: "Impulsado por IA",
+          desc: "Claude AI optimiza el contenido para cada plataforma"
+        },
+        multiPlatform: {
+          title: "Multi-Plataforma",
+          desc: "Soporte para Instagram, Twitter, LinkedIn y Facebook"
+        },
+        multiLanguage: {
+          title: "Multi-Idioma",
+          desc: "Soporte para inglés, coreano, español y japonés"
+        },
+        freeStart: {
+          title: "Gratis para Empezar",
+          desc: "3 conversiones gratuitas diarias, sin tarjeta de crédito"
+        },
+        multipleTones: {
+          title: "Múltiples Tonos",
+          desc: "Estilos Profesional, Casual o Narrativo"
+        }
+      },
+      useCasesTitle: "Perfecto Para",
+      useCases: {
+        creators: {
+          title: "Creadores de Contenido",
+          desc: "Convierte artículos de blog en hilos de Twitter, publicaciones de LinkedIn y subtítulos de Instagram"
+        },
+        marketers: {
+          title: "Marketers Digitales",
+          desc: "Reutiliza contenido en plataformas manteniendo mensajes consistentes"
+        },
+        startups: {
+          title: "Startups & SaaS",
+          desc: "Convierte anuncios y actualizaciones en publicaciones optimizadas por plataforma"
+        },
+        writers: {
+          title: "Escritores Freelance",
+          desc: "Ofrece la reutilización de contenido como un servicio adicional a los clientes"
+        }
+      }
+    }
   }
 };
 
-// 현재 언어 가져오기
-let currentLang = localStorage.getItem('language') || 'en';
+// 브라우저 언어 감지 함수
+function detectBrowserLanguage() {
+  // 이미 저장된 언어가 있으면 그것을 사용
+  const savedLang = localStorage.getItem('language');
+  if (savedLang) {
+    return savedLang;
+  }
+  
+  // 브라우저 언어 가져오기
+  const browserLang = navigator.language || navigator.userLanguage;
+  
+  // 언어 코드 추출 (예: 'ko-KR' -> 'ko', 'en-US' -> 'en')
+  const langCode = browserLang.split('-')[0].toLowerCase();
+  
+  // 지원하는 언어인지 확인
+  const supportedLanguages = ['ko', 'en', 'ja', 'es'];
+  
+  if (supportedLanguages.includes(langCode)) {
+    return langCode;
+  }
+  
+  // 지원하지 않는 언어면 영어로 기본 설정
+  return 'en';
+}
+
+// 현재 언어 가져오기 (브라우저 언어 자동 감지 적용)
+let currentLang = detectBrowserLanguage();
+// 감지된 언어를 저장 (다음 방문 시 사용)
+localStorage.setItem('language', currentLang);
 
 // 번역 함수
 function t(key) {
@@ -287,6 +498,7 @@ function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('language', lang);
   updateUI();
+  updateSEOContent(); // SEO 콘텐츠도 업데이트
 }
 
 // UI 업데이트 함수
@@ -329,6 +541,63 @@ function updateUI() {
   toneLabels[3].textContent = t('tones.enthusiastic');
 }
 
+// SEO 콘텐츠 업데이트 함수
+function updateSEOContent() {
+  // Benefits Section
+  const benefitsTitle = document.querySelector('.benefits-section h2');
+  if (benefitsTitle) {
+    benefitsTitle.textContent = t('seo.benefitsTitle');
+  }
+  
+  const benefitCards = document.querySelectorAll('.benefit-card');
+  if (benefitCards.length >= 5) {
+    // AI-Powered
+    benefitCards[0].querySelector('h3').textContent = t('seo.benefits.aiPowered.title');
+    benefitCards[0].querySelector('p').textContent = t('seo.benefits.aiPowered.desc');
+    
+    // Multi-Platform
+    benefitCards[1].querySelector('h3').textContent = t('seo.benefits.multiPlatform.title');
+    benefitCards[1].querySelector('p').textContent = t('seo.benefits.multiPlatform.desc');
+    
+    // Multi-Language
+    benefitCards[2].querySelector('h3').textContent = t('seo.benefits.multiLanguage.title');
+    benefitCards[2].querySelector('p').textContent = t('seo.benefits.multiLanguage.desc');
+    
+    // Free to Start
+    benefitCards[3].querySelector('h3').textContent = t('seo.benefits.freeStart.title');
+    benefitCards[3].querySelector('p').textContent = t('seo.benefits.freeStart.desc');
+    
+    // Multiple Tones
+    benefitCards[4].querySelector('h3').textContent = t('seo.benefits.multipleTones.title');
+    benefitCards[4].querySelector('p').textContent = t('seo.benefits.multipleTones.desc');
+  }
+  
+  // Use Cases Section
+  const useCasesTitle = document.querySelector('.use-cases-section h2');
+  if (useCasesTitle) {
+    useCasesTitle.textContent = t('seo.useCasesTitle');
+  }
+  
+  const useCaseCards = document.querySelectorAll('.use-case-card');
+  if (useCaseCards.length >= 4) {
+    // Content Creators
+    useCaseCards[0].querySelector('h3').textContent = t('seo.useCases.creators.title');
+    useCaseCards[0].querySelector('p').textContent = t('seo.useCases.creators.desc');
+    
+    // Digital Marketers
+    useCaseCards[1].querySelector('h3').textContent = t('seo.useCases.marketers.title');
+    useCaseCards[1].querySelector('p').textContent = t('seo.useCases.marketers.desc');
+    
+    // Startups & SaaS
+    useCaseCards[2].querySelector('h3').textContent = t('seo.useCases.startups.title');
+    useCaseCards[2].querySelector('p').textContent = t('seo.useCases.startups.desc');
+    
+    // Freelance Writers
+    useCaseCards[3].querySelector('h3').textContent = t('seo.useCases.writers.title');
+    useCaseCards[3].querySelector('p').textContent = t('seo.useCases.writers.desc');
+  }
+}
+
 // 예시 텍스트 (언어별)
 const exampleTexts = {
   ko: `오늘부터 나는 코딩을 시작했다.
@@ -359,7 +628,7 @@ Cursorというコード補完AIを使って、初めて「自分でも何か作
 
 最も重要なのは完璧さではなく、始めることです。70%の完成度でローンチし、ユーザーのフィードバックを受けながら改善していく—それが本当の成長です。
 
-待たないでください。今日から始めましょう！`,
+待たないでください。今日から始めましょう!`,
 
   es: `Hoy comencé a programar.
 
