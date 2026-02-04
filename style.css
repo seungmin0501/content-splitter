@@ -16,17 +16,6 @@
     --button-hover: rgba(102, 126, 234, 0.4);
 }
 
-body.dark-mode {
-    --bg-color: #1a1a1a;
-    --card-bg: #2d2d2d;
-    --text-color: #e0e0e0;
-    --text-secondary: #b0b0b0;
-    --border-color: #404040;
-    --input-bg: #3a3a3a;
-    --result-bg: #252525;
-    --button-hover: rgba(102, 126, 234, 0.6);
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: var(--primary-gradient);
@@ -34,10 +23,6 @@ body {
     min-height: 100vh;
     padding: 20px;
     transition: all 0.3s ease;
-}
-
-body.dark-mode {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .container {
@@ -97,24 +82,6 @@ header h1 {
 header p {
     font-size: 1.2rem;
     opacity: 0.9;
-}
-
-.dark-mode-toggle {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    font-size: 1.5rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-}
-
-.dark-mode-toggle:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
 }
 
 main {
@@ -470,11 +437,6 @@ main {
     border-color: #667eea;
 }
 
-body.dark-mode .checkboxes label:has(input[type="checkbox"]:checked) {
-    background: rgba(102, 126, 234, 0.3);
-    border-color: #667eea;
-}
-
 .checkboxes input[type="checkbox"] {
     width: 18px;
     height: 18px;
@@ -527,11 +489,6 @@ body.dark-mode .checkboxes label:has(input[type="checkbox"]:checked) {
 
 .radio-label:has(input[type="radio"]:checked) {
     background: #e8e0ff;
-    border-color: #667eea;
-}
-
-body.dark-mode .radio-label:has(input[type="radio"]:checked) {
-    background: rgba(102, 126, 234, 0.3);
     border-color: #667eea;
 }
 
@@ -1176,11 +1133,6 @@ footer {
     }
   }
   
-  .dark-mode .modal-content {
-    background: #2d3748;
-    color: white;
-  }
-  
   .modal-close {
     position: absolute;
     right: 20px;
@@ -1197,10 +1149,6 @@ footer {
     color: #333;
   }
   
-  .dark-mode .modal-close:hover {
-    color: white;
-  }
-  
   .modal-content h2 {
     text-align: center;
     font-size: 32px;
@@ -1213,10 +1161,6 @@ footer {
     color: #718096;
     margin-bottom: 40px;
     font-size: 16px;
-  }
-  
-  .dark-mode .modal-subtitle {
-    color: #a0aec0;
   }
   
   .pricing-cards {
@@ -1250,15 +1194,6 @@ footer {
   
   .pricing-card.featured:hover {
     transform: scale(1.08) translateY(-5px);
-  }
-  
-  .dark-mode .pricing-card {
-    background: #4a5568;
-    border-color: #718096;
-  }
-  
-  .dark-mode .pricing-card.featured {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
   
   .badge {
@@ -1397,10 +1332,6 @@ footer {
     margin-top: 20px;
   }
   
-  .dark-mode .modal-footer {
-    color: #a0aec0;
-  }
-  
   @media (max-width: 768px) {
     .modal-content {
       padding: 30px 20px;
@@ -1442,11 +1373,6 @@ footer {
     animation: slideUp 0.3s;
   }
   
-  .dark-mode .modal-content-wide {
-    background: #2d3748;
-    color: white;
-  }
-  
   .modal-content-wide h2 {
     text-align: center;
     font-size: 32px;
@@ -1459,10 +1385,6 @@ footer {
     color: #718096;
     margin-bottom: 40px;
     font-size: 18px;
-  }
-  
-  .dark-mode .modal-content-wide .modal-subtitle {
-    color: #a0aec0;
   }
   
   /* 2개 카드 컨테이너 */
@@ -1482,11 +1404,6 @@ footer {
     text-align: center;
     transition: all 0.3s;
     position: relative;
-  }
-  
-  .dark-mode .pricing-card-option {
-    background: #4a5568;
-    border-color: #718096;
   }
   
   .pricing-card-option:hover {
@@ -1622,10 +1539,6 @@ footer {
     color: #718096;
     font-size: 14px;
     margin-top: 20px;
-  }
-  
-  .dark-mode .modal-content-wide .modal-note {
-    color: #a0aec0;
   }
   
   /* 반응형 */

@@ -11,7 +11,6 @@ const hashtagSlider = document.getElementById('hashtagCount');
 const hashtagValue = document.getElementById('hashtagValue');
 const charCount = document.getElementById('charCount');
 const exampleBtn = document.getElementById('exampleBtn');
-const darkModeToggle = document.getElementById('darkModeToggle');
 const shareBtn = document.getElementById('shareBtn');
 const loadingMessage = document.getElementById('loadingMessage');
 const languageSelect = document.getElementById('languageSelect');
@@ -58,25 +57,6 @@ Cursor라는 AI 코드 에디터를 사용하면서, 처음으로 "나도 뭔가
 가장 중요한 건 완벽함이 아니라 시작하는 것. 70% 완성도에서 일단 출시하고, 사용자 피드백을 받으면서 개선해나가는 것이 진짜 성장이다.
 
 여러분도 미루지 말고 오늘 바로 시작해보세요!`;
-
-// 다크모드 설정 로드
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    darkModeToggle.textContent = '☀️';
-}
-
-// 다크모드 토글
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    if (document.body.classList.contains('dark-mode')) {
-        darkModeToggle.textContent = '☀️';
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        darkModeToggle.textContent = '🌙';
-        localStorage.setItem('darkMode', 'disabled');
-    }
-});
 
 // 예시 보기 버튼
 exampleBtn.addEventListener('click', () => {
