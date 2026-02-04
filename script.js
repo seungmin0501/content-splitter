@@ -30,6 +30,11 @@ languageSelect.addEventListener('change', (e) => {
     // 글자 수 업데이트
     updateCharCount();
     updateHashtagDisplay();
+
+    // 모달 언어 업데이트 추가!
+    if (window.updateModalLanguage) {
+        window.updateModalLanguage();
+    }
 });
 
 // 페이지 로드 시 UI 업데이트
