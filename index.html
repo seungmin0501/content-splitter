@@ -353,9 +353,65 @@
         </div>
     </div>
 
+    <script src="upgrade.js"></script>
     <script src="translations.js"></script>
     <script src="usage.js"></script>
     <script src="premium.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Upgrade Modal -->
+<div id="upgradeModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>🚀 Upgrade to Premium</h2>
+        <p class="modal-subtitle">You've reached your daily free limit (3 conversions)</p>
+        
+        <div class="pricing-cards">
+            <!-- Monthly Plan -->
+            <div class="pricing-card">
+                <h3>Monthly Plan</h3>
+                <div class="price">
+                    <span class="currency">$</span>
+                    <span class="amount">9.99</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="features">
+                    <li>✅ Unlimited conversions</li>
+                    <li>✅ All platforms & tones</li>
+                    <li>✅ Multi-language support</li>
+                    <li>✅ Priority support</li>
+                </ul>
+                <button class="upgrade-btn-modal" onclick="startCheckout('monthly')">
+                    Choose Monthly
+                </button>
+                <p class="trial-note">7-day free trial</p>
+            </div>
+
+            <!-- Annual Plan -->
+            <div class="pricing-card featured">
+                <div class="badge">BEST VALUE</div>
+                <h3>Annual Plan</h3>
+                <div class="price">
+                    <span class="currency">$</span>
+                    <span class="amount">99</span>
+                    <span class="period">/year</span>
+                </div>
+                <p class="savings">Save $20 (2 months free!)</p>
+                <ul class="features">
+                    <li>✅ Everything in Monthly</li>
+                    <li>✅ 17% discount</li>
+                    <li>✅ Best value for creators</li>
+                    <li>✅ Priority support</li>
+                </ul>
+                <button class="upgrade-btn-modal primary" onclick="startCheckout('annual')">
+                    Choose Annual
+                </button>
+                <p class="trial-note">7-day free trial</p>
+            </div>
+        </div>
+        
+        <p class="modal-footer">Or come back tomorrow for 3 more free conversions!</p>
+    </div>
+</div>
 </body>
 </html>
