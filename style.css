@@ -844,9 +844,9 @@ footer {
     }
 }
 
-/* SEO Content Sections */
-  .seo-section {
-    background: white;
+/* 전체 SEO 섹션 - 연한 보라색 */
+.seo-section {
+    background: #faf5ff;
     padding: 80px 20px;
     margin: 40px auto;
     max-width: 1200px;
@@ -864,45 +864,54 @@ footer {
   
   /* How It Works Section */
   .how-it-works-section {
-    background: white;
+    background: #faf5ff;
   }
   
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    max-width: 1000px;
+    gap: 30px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
   .step-card {
-    text-align: center;
+    background: white;
     padding: 40px 30px;
-    background: #faf5ff;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 2px solid transparent;
   }
   
-  .step-card .step-icon {
-    font-size: 64px;
-    margin-bottom: 24px;
+  .step-card:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+  }
+  
+  .step-icon {
+    font-size: 56px;
     display: block;
+    margin-bottom: 20px;
   }
   
   .step-card h3 {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 20px;
+    margin-bottom: 12px;
     color: #2d3748;
     font-weight: 600;
   }
   
   .step-card p {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.7;
     color: #718096;
   }
   
   /* Benefits Section */
   .benefits-section {
-    background: white;
+    background: #faf5ff;
   }
   
   .benefits-section h2 {
@@ -912,13 +921,13 @@ footer {
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
   }
   
   .benefit-card {
-    background: #faf5ff;
+    background: white;
     padding: 40px 30px;
     border-radius: 16px;
     text-align: center;
@@ -927,8 +936,9 @@ footer {
   }
   
   .benefit-card:hover {
-    background: rgba(255, 255, 255, 0.15);
+    border-color: #667eea;
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
   }
   
   .benefit-icon {
@@ -947,12 +957,12 @@ footer {
   .benefit-card p {
     font-size: 15px;
     line-height: 1.7;
-    color: #718096;;
+    color: #718096;
   }
   
   /* Use Cases Section */
   .use-cases-section {
-    background: white;
+    background: #faf5ff;
   }
   
   .use-cases-grid {
@@ -964,7 +974,7 @@ footer {
   }
   
   .use-case-card {
-    background: #faf5ff;
+    background: white;
     padding: 40px 30px;
     border-radius: 16px;
     text-align: center;
@@ -995,6 +1005,36 @@ footer {
     font-size: 15px;
     line-height: 1.7;
     color: #718096;
+  }
+  
+  /* FAQ Section */
+  .faq-section {
+    background: #faf5ff;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .seo-section {
+      padding: 50px 20px;
+    }
+    
+    .seo-section h2 {
+      font-size: 26px;
+      margin-bottom: 40px;
+    }
+    
+    .steps-grid,
+    .benefits-grid,
+    .use-cases-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  
+    .step-icon,
+    .benefit-icon,
+    .use-case-icon {
+      font-size: 48px;
+    }
   }
   
   /* FAQ Section */
