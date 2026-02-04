@@ -30,6 +30,7 @@ body.dark-mode {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: var(--primary-gradient);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
     transition: all 0.3s ease;
@@ -844,9 +845,13 @@ footer {
 }
 
 /* SEO Content Sections */
-.seo-section {
-    padding: 80px 20px;
-    margin: 0;
+  .seo-section {
+    background: white;
+    padding: 60px 40px;
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   }
   
   .seo-section h2 {
@@ -897,7 +902,14 @@ footer {
   /* Benefits Section */
   .benefits-section {
     background: white;
-    color: inherit;
+  }
+  
+  .benefit-card h3 {
+    color: #2d3748;
+  }
+  
+  .benefit-card p {
+    color: #718096;
   }
   
   .benefits-section h2 {
