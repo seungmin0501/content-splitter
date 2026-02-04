@@ -120,12 +120,10 @@ const seoContent = {
     }
   };
   
-  // 언어 감지
-  let currentLang = (navigator.language || navigator.userLanguage).startsWith('ko') ? 'ko' : 'en';
-  
   // SEO 섹션 생성
   function createSEOSections() {
-    const content = seoContent[currentLang];
+    const lang = window.currentLang || 'en';
+    const content = seoContent[lang];
     
     // How It Works
     const stepsGrid = document.querySelector('.steps-grid');
@@ -190,3 +188,8 @@ const seoContent = {
   
   // 페이지 로드 시 실행
   document.addEventListener('DOMContentLoaded', createSEOSections);
+
+  // 언어 변경 시 SEO 섹션 업데이트
+window.updateSEOLanguage = function() {
+    createSEOSections();
+  };

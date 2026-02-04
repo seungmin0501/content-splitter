@@ -1,3 +1,6 @@
+// 전역 언어 변수
+window.currentLang = (navigator.language || navigator.userLanguage).startsWith('ko') ? 'ko' : 'en';
+
 // DOM 요소들
 const contentInput = document.getElementById('contentInput');
 const convertBtn = document.getElementById('convertBtn');
@@ -14,9 +17,18 @@ const loadingMessage = document.getElementById('loadingMessage');
 const languageSelect = document.getElementById('languageSelect');
 
 // 언어 선택 이벤트
-languageSelect.value = currentLang;
+languageSelect.value = window.currentLang;
 languageSelect.addEventListener('change', (e) => {
+    window.currentLang = e.target.value;
     setLanguage(e.target.value);
+    
+    // SEO 섹션 업데이트
+    if (window.updateSEOLanguage) {
+        window.updateSEOLanguage();
+    }
+    
+    // 글자 수 업데이트
+    updateCharCount();
 });
 
 // 페이지 로드 시 UI 업데이트
@@ -79,14 +91,14 @@ exampleBtn.addEventListener('click', () => {
 function updateCharCount() {
     const count = contentInput.value.length;
     const units = {
-      ko: '자',
-      en: ' chars',
-      es: ' caracteres',
-      ja: '文字'
+        ko: '자',
+        en: ' chars',
+        es: ' caracteres',
+        ja: '文字'
     };
-    const unit = units[currentLang] || ' chars';
+    const unit = units[window.currentLang] || ' chars';
     charCount.textContent = count.toLocaleString() + unit;
-  }
+}
 
 contentInput.addEventListener('input', updateCharCount);
 
