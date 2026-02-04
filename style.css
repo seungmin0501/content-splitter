@@ -878,7 +878,7 @@ footer {
   .step-card {
     text-align: center;
     padding: 40px 30px;
-    background: #f7fafc;
+    background: #faf5ff;
   }
   
   .step-card .step-icon {
@@ -905,19 +905,6 @@ footer {
     background: white;
   }
   
-  .benefit-card h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: #2d3748;
-    font-weight: 600;
-  }
-  
-  .benefit-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #718096;
-  }
-  
   .benefits-section h2 {
     color: #2d3748;
   }
@@ -931,14 +918,12 @@ footer {
   }
   
   .benefit-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: #faf5ff;
     padding: 40px 30px;
     border-radius: 16px;
     text-align: center;
     transition: all 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: #f7fafc;
+    border: 2px solid transparent;
   }
   
   .benefit-card:hover {
@@ -955,14 +940,14 @@ footer {
   .benefit-card h3 {
     font-size: 20px;
     margin-bottom: 12px;
-    color: white;
+    color: #2d3748;
     font-weight: 600;
   }
   
   .benefit-card p {
     font-size: 15px;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.9);
+    color: #718096;;
   }
   
   /* Use Cases Section */
@@ -979,13 +964,12 @@ footer {
   }
   
   .use-case-card {
-    background: #f7fafc;
+    background: #faf5ff;
     padding: 40px 30px;
     border-radius: 16px;
     text-align: center;
     transition: all 0.3s;
     border: 2px solid transparent;
-    background: #f7fafc;
   }
   
   .use-case-card:hover {
@@ -1083,7 +1067,7 @@ footer {
   /* Responsive */
   @media (max-width: 768px) {
     .seo-section {
-        background: #faf5ff;
+        background: #f7fafc;
         padding: 60px 40px;
         margin: 40px auto;
         max-width: 1200px;
