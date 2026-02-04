@@ -22,11 +22,6 @@ languageSelect.addEventListener('change', (e) => {
 // 페이지 로드 시 UI 업데이트
 updateUI();
 
-// SEO 콘텐츠 업데이트 (다국어 지원)
-if (typeof updateSEOContent === 'function') {
-    updateSEOContent();
-}
-
 // 사용 횟수 표시 업데이트
 updateUsageDisplay();
 
