@@ -896,8 +896,8 @@ footer {
   
   /* Benefits Section */
   .benefits-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: white;
+    color: inherit;
   }
   
   .benefits-section h2 {
@@ -1063,8 +1063,12 @@ footer {
   /* Responsive */
   @media (max-width: 768px) {
     .seo-section {
-      padding: 50px 20px;
-    }
+        padding: 80px 20px;
+        margin: 40px 0;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
     
     .seo-section h2 {
       font-size: 26px;
