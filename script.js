@@ -78,9 +78,15 @@ exampleBtn.addEventListener('click', () => {
 // 글자 수 업데이트
 function updateCharCount() {
     const count = contentInput.value.length;
-    const unit = currentLang === 'ko' ? '자' : ' chars';
-    charCount.textContent = `${count.toLocaleString()} ${unit}`;
-}
+    const units = {
+      ko: '자',
+      en: ' chars',
+      es: ' caracteres',
+      ja: '文字'
+    };
+    const unit = units[currentLang] || ' chars';
+    charCount.textContent = count.toLocaleString() + unit;
+  }
 
 contentInput.addEventListener('input', updateCharCount);
 
