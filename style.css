@@ -905,10 +905,15 @@ footer {
   }
   
   .benefit-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
     color: #2d3748;
+    font-weight: 600;
   }
   
   .benefit-card p {
+    font-size: 15px;
+    line-height: 1.7;
     color: #718096;
   }
   
