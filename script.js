@@ -29,6 +29,7 @@ languageSelect.addEventListener('change', (e) => {
     
     // 글자 수 업데이트
     updateCharCount();
+    updateHashtagDisplay();
 });
 
 // 페이지 로드 시 UI 업데이트
@@ -113,6 +114,18 @@ hashtagSlider.addEventListener('input', (e) => {
     const unit = units[window.currentLang] || '';
     hashtagValue.textContent = `${e.target.value}${unit}`;
 });
+
+// 해시태그 표시 업데이트 함수
+function updateHashtagDisplay() {
+    const units = {
+        ko: '개',
+        en: '',
+        es: '',
+        ja: '個'
+    };
+    const unit = units[window.currentLang] || '';
+    hashtagValue.textContent = `${hashtagSlider.value}${unit}`;
+}
 
 // 로딩 메시지 랜덤 변경
 function startLoadingAnimation() {
