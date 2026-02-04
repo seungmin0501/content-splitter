@@ -117,13 +117,137 @@ const seoContent = {
           }
         ]
       }
+    },
+    ja: {
+      howItWorks: {
+        title: "使い方",
+        steps: [
+          { icon: "📋", title: "コンテンツを貼り付け", desc: "ブログ記事や長文コンテンツをコピーします" },
+          { icon: "🎯", title: "設定を選択", desc: "ブランドに合ったプラットフォームとトーンを選択します" },
+          { icon: "✨", title: "結果を取得", desc: "数秒で最適化された投稿を受け取ります。コピーして投稿!" }
+        ]
+      },
+      benefits: {
+        title: "ContentSplitterを使う理由",
+        items: [
+          { icon: "⚡", title: "時間を節約", desc: "30秒でブログ記事を10以上のSNS投稿に変換" },
+          { icon: "🎯", title: "プラットフォーム最適化", desc: "Twitter、LinkedIn、Instagram向けに最適化" },
+          { icon: "🤖", title: "AI駆動の品質", desc: "あなたの声を保つ自然な投稿" },
+          { icon: "🌍", title: "多言語対応", desc: "英語、韓国語、スペイン語、日本語対応" },
+          { icon: "💰", title: "無料で開始", desc: "クレジットカード不要で1日3回無料変換" },
+          { icon: "🎨", title: "複数のトーン", desc: "プロフェッショナル、カジュアル、ストーリーテリングスタイル" }
+        ]
+      },
+      useCases: {
+        title: "こんな方に最適",
+        items: [
+          { icon: "📝", title: "コンテンツクリエイター", desc: "ブログをTwitterスレッド、LinkedIn投稿、Instagramキャプションに変換" },
+          { icon: "📊", title: "デジタルマーケター", desc: "一貫したメッセージを保ちながら複数のプラットフォームでコンテンツを再利用" },
+          { icon: "🚀", title: "スタートアップ & SaaS", desc: "お知らせや更新をプラットフォーム最適化された投稿に変換" },
+          { icon: "✍️", title: "フリーランスライター", desc: "コンテンツ再利用を顧客への追加サービスとして提供" }
+        ]
+      },
+      faq: {
+        title: "よくある質問",
+        items: [
+          {
+            q: "ブログ記事をSNS投稿に変換するには？",
+            a: "ContentSplitterにブログ記事を貼り付け、ターゲットプラットフォーム（Twitter、LinkedIn、Instagram）を選択して変換をクリックします。AIが30秒で各プラットフォームに最適化します。"
+          },
+          {
+            q: "ブログ記事をTwitterスレッドに変換できますか？",
+            a: "はい！ContentSplitterは長文ブログ記事を魅力的なTwitterスレッドに変換し、280文字以内に自動分割しながら流れと読みやすさを維持します。"
+          },
+          {
+            q: "ContentSplitterは無料ですか？",
+            a: "はい！クレジットカード不要で1日3回の無料変換を提供しています。プレミアムユーザー（月額$9.99）は無制限変換と複数トーン、多言語対応などの高度な機能を利用できます。"
+          },
+          {
+            q: "どのプラットフォームに対応していますか？",
+            a: "ContentSplitterはTwitter/Xスレッド、LinkedIn投稿、Instagramキャプションを最適化します。各プラットフォームにカスタムフォーマット、適切なトーン、プラットフォーム固有のベストプラクティスを適用します。"
+          },
+          {
+            q: "AIコンテンツ再利用はどのように機能しますか？",
+            a: "ContentSplitterは高度なAI（Claude）を使用してコンテンツの主要メッセージを理解し、各ソーシャルメディアプラットフォーム向けに書き直します。"
+          },
+          {
+            q: "生成されたSNS投稿を編集できますか？",
+            a: "はい！変換後、コピーする前にすべての生成された投稿を確認して編集できます。"
+          }
+        ]
+      }
+    },
+    es: {
+      howItWorks: {
+        title: "Cómo Funciona",
+        steps: [
+          { icon: "📋", title: "Pega tu Contenido", desc: "Copia tu publicación de blog, artículo o cualquier contenido extenso" },
+          { icon: "🎯", title: "Elige la Configuración", desc: "Selecciona plataformas y tono que coincidan con tu marca" },
+          { icon: "✨", title: "Obtén Resultados", desc: "¡Recibe publicaciones optimizadas en segundos. Copia y publica!" }
+        ]
+      },
+      benefits: {
+        title: "¿Por Qué Usar ContentSplitter?",
+        items: [
+          { icon: "⚡", title: "Ahorra Tiempo", desc: "Convierte una publicación de blog en más de 10 publicaciones de redes sociales en 30 segundos" },
+          { icon: "🎯", title: "Optimización de Plataforma", desc: "Cada publicación adaptada para Twitter, LinkedIn o Instagram" },
+          { icon: "🤖", title: "Calidad Impulsada por IA", desc: "Publicaciones que suenan naturales y mantienen tu voz" },
+          { icon: "🌍", title: "Multi-Idioma", desc: "Soporte para inglés, coreano, español y japonés" },
+          { icon: "💰", title: "Comienza Gratis", desc: "3 conversiones gratuitas diarias, sin tarjeta de crédito requerida" },
+          { icon: "🎨", title: "Múltiples Tonos", desc: "Estilos profesional, casual o narrativo" }
+        ]
+      },
+      useCases: {
+        title: "Perfecto Para",
+        items: [
+          { icon: "📝", title: "Creadores de Contenido", desc: "Convierte publicaciones de blog en hilos de Twitter, publicaciones de LinkedIn y subtítulos de Instagram" },
+          { icon: "📊", title: "Especialistas en Marketing Digital", desc: "Reutiliza contenido en plataformas manteniendo mensajes consistentes" },
+          { icon: "🚀", title: "Startups y SaaS", desc: "Convierte anuncios y actualizaciones en publicaciones optimizadas por plataforma" },
+          { icon: "✍️", title: "Escritores Freelance", desc: "Ofrece la reutilización de contenido como servicio adicional a los clientes" }
+        ]
+      },
+      faq: {
+        title: "Preguntas Frecuentes",
+        items: [
+          {
+            q: "¿Cómo convierto una publicación de blog en publicaciones de redes sociales?",
+            a: "Simplemente pega tu publicación de blog en ContentSplitter, selecciona tus plataformas objetivo (Twitter, LinkedIn, Instagram) y haz clic en Convertir. Nuestra IA optimizará automáticamente tu contenido para cada plataforma en 30 segundos."
+          },
+          {
+            q: "¿Puedo convertir publicaciones de blog en hilos de Twitter?",
+            a: "¡Sí! ContentSplitter convierte publicaciones de blog extensas en hilos atractivos de Twitter, dividiendo automáticamente el contenido en fragmentos del tamaño de tweets (menos de 280 caracteres) mientras mantiene el flujo y la legibilidad."
+          },
+          {
+            q: "¿ContentSplitter es gratuito?",
+            a: "¡Sí! Ofrecemos 3 conversiones gratuitas por día sin necesidad de tarjeta de crédito. Los usuarios premium ($9.99/mes) obtienen conversiones ilimitadas además de funciones avanzadas como múltiples tonos y soporte multiidioma."
+          },
+          {
+            q: "¿Qué plataformas admite ContentSplitter?",
+            a: "ContentSplitter optimiza contenido para hilos de Twitter/X, publicaciones de LinkedIn y subtítulos de Instagram. Cada plataforma obtiene formato personalizado, tono apropiado y mejores prácticas específicas de la plataforma."
+          },
+          {
+            q: "¿Cómo funciona la reutilización de contenido con IA?",
+            a: "ContentSplitter utiliza IA avanzada (Claude) para comprender los mensajes clave de tu contenido y reescribirlos para cada plataforma de redes sociales."
+          },
+          {
+            q: "¿Puedo editar las publicaciones de redes sociales generadas?",
+            a: "¡Sí! Después de la conversión, puedes revisar y editar todas las publicaciones generadas antes de copiarlas."
+          }
+        ]
+      }
     }
   };
   
   // SEO 섹션 생성
   function createSEOSections() {
+    // 전역 currentLang 사용
     const lang = window.currentLang || 'en';
     const content = seoContent[lang];
+    
+    if (!content) {
+      console.warn('SEO content not found for language:', lang);
+      return;
+    }
     
     // How It Works
     const stepsGrid = document.querySelector('.steps-grid');
@@ -188,8 +312,8 @@ const seoContent = {
   
   // 페이지 로드 시 실행
   document.addEventListener('DOMContentLoaded', createSEOSections);
-
+  
   // 언어 변경 시 SEO 섹션 업데이트
-window.updateSEOLanguage = function() {
+  window.updateSEOLanguage = function() {
     createSEOSections();
   };
