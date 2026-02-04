@@ -104,7 +104,14 @@ contentInput.addEventListener('input', updateCharCount);
 
 // 해시태그 슬라이더 업데이트
 hashtagSlider.addEventListener('input', (e) => {
-    hashtagValue.textContent = `${e.target.value}개`;
+    const units = {
+        ko: '개',
+        en: '',
+        es: '',
+        ja: '個'
+    };
+    const unit = units[window.currentLang] || '';
+    hashtagValue.textContent = `${e.target.value}${unit}`;
 });
 
 // 로딩 메시지 랜덤 변경
