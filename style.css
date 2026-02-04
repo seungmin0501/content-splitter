@@ -918,7 +918,7 @@ footer {
   }
   
   .benefits-section h2 {
-    color: white;
+    color: #2d3748;
   }
   
   .benefits-grid {
@@ -1080,7 +1080,7 @@ footer {
   /* Responsive */
   @media (max-width: 768px) {
     .seo-section {
-        padding: 80px 20px;
+        padding: 60px 40px;
         margin: 40px 0;
         background: #f7fafc;
         border-radius: 16px;
