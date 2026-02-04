@@ -847,7 +847,7 @@ footer {
 /* SEO Content Sections */
   .seo-section {
     background: white;
-    padding: 60px 40px;
+    padding: 80px 20px;
     margin: 40px auto;
     max-width: 1200px;
     border-radius: 20px;
@@ -878,6 +878,7 @@ footer {
   .step-card {
     text-align: center;
     padding: 40px 30px;
+    background: #f7fafc;
   }
   
   .step-card .step-icon {
@@ -937,6 +938,7 @@ footer {
     text-align: center;
     transition: all 0.3s;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #f7fafc;
   }
   
   .benefit-card:hover {
@@ -983,6 +985,7 @@ footer {
     text-align: center;
     transition: all 0.3s;
     border: 2px solid transparent;
+    background: #f7fafc;
   }
   
   .use-case-card:hover {
@@ -1080,11 +1083,12 @@ footer {
   /* Responsive */
   @media (max-width: 768px) {
     .seo-section {
+        background: #faf5ff;
         padding: 60px 40px;
-        margin: 40px 0;
-        background: #f7fafc;
-        border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin: 40px auto;
+        max-width: 1200px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       }
     
     .seo-section h2 {
