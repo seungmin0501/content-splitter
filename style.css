@@ -885,9 +885,9 @@ footer {
   }
   
   .step-card:hover {
-    border-color: #667eea;
+    border-color: #fbbf24;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
   }
   
   .step-icon {
@@ -936,9 +936,9 @@ footer {
   }
   
   .benefit-card:hover {
-    border-color: #667eea;
+    border-color: #fbbf24;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
   }
   
   .benefit-icon {
@@ -983,9 +983,9 @@ footer {
   }
   
   .use-case-card:hover {
-    border-color: #667eea;
+    border-color: #fbbf24;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
   }
   
   .use-case-icon {
@@ -1039,7 +1039,7 @@ footer {
   
   /* FAQ Section */
   .faq-section {
-    background: #f7fafc;
+    background: #faf5ff;
   }
   
   .faq-item {
