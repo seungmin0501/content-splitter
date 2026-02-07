@@ -1461,6 +1461,7 @@ footer {
     font-size: 48px;
     font-weight: bold;
     line-height: 1;
+    color: #2d3748;
   }
   
   .pricing-card-option .period {
@@ -1468,6 +1469,11 @@ footer {
     color: #718096;
     margin-top: 15px;
     margin-left: 5px;
+  }
+
+  /* Featured 카드 (Annual) - 흰색으로 */
+  .pricing-card-option.featured .price {
+  color: white !important;
   }
   
   .pricing-card-option.featured .period {
