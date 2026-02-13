@@ -1,6 +1,3 @@
-// 전역 언어 변수
-window.currentLang = (navigator.language || navigator.userLanguage).startsWith('ko') ? 'ko' : 'en';
-
 // DOM 요소들
 const contentInput = document.getElementById('contentInput');
 const convertBtn = document.getElementById('convertBtn');
@@ -18,7 +15,6 @@ const languageSelect = document.getElementById('languageSelect');
 // 언어 선택 이벤트
 languageSelect.value = window.currentLang;
 languageSelect.addEventListener('change', (e) => {
-    window.currentLang = e.target.value;
     setLanguage(e.target.value);
     
     // SEO 섹션 업데이트

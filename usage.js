@@ -133,17 +133,12 @@ function updateUsageDisplay() {
 
 // 업그레이드 모달 표시
 function showUpgradeModal() {
+    if (typeof updateModalLanguage === 'function') {
+        updateModalLanguage();
+    }
     const modal = document.getElementById('upgradeModal');
     if (modal) {
         modal.style.display = 'flex';
-    }
-}
-
-// 모달 닫기
-function closeUpgradeModal() {
-    const modal = document.getElementById('upgradeModal');
-    if (modal) {
-        modal.style.display = 'none';
     }
 }
 

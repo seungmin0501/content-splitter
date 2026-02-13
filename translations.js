@@ -1,7 +1,7 @@
 const translations = {
   ko: {
     // 헤더
-    title: "ContentSplitter",
+    title: "✨ ContentSplitter",
     subtitle: "긴 글 하나를 여러 SNS 포스트로 자동 변환",
     
     // 입력 섹션
@@ -121,7 +121,7 @@ const translations = {
   },
   
   en: {
-    title: "ContentSplitter",
+    title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
     
     inputTitle: "Enter Your Content",
@@ -231,7 +231,7 @@ const translations = {
   },
   
   ja: {
-    title: "ContentSplitter",
+    title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
     
     inputTitle: "コンテンツを入力",
@@ -341,7 +341,7 @@ const translations = {
   },
   
   es: {
-    title: "ContentSplitter",
+    title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
     
     inputTitle: "Ingresa tu Contenido",
@@ -478,6 +478,7 @@ function detectBrowserLanguage() {
 
 // 현재 언어 가져오기 (브라우저 언어 자동 감지 적용)
 let currentLang = detectBrowserLanguage();
+window.currentLang = currentLang;
 // 감지된 언어를 저장 (다음 방문 시 사용)
 localStorage.setItem('language', currentLang);
 
@@ -496,6 +497,7 @@ function t(key) {
 // 언어 변경 함수
 function setLanguage(lang) {
   currentLang = lang;
+  window.currentLang = lang;
   localStorage.setItem('language', lang);
   updateUI();
   updateSEOContent(); // SEO 콘텐츠도 업데이트

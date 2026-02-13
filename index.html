@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContentSplitter - AI Blog to Social Media Converter</title>
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QP3H3PB497"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -543,19 +542,6 @@ function updateModalLanguage() {
   document.getElementById('modalNote').textContent = t.note;
 }
 
-// 모달 열릴 때 언어 업데이트
-const originalShowModal = window.showUpgradeModal;
-window.showUpgradeModal = function() {
-  updateModalLanguage();
-  if (originalShowModal) originalShowModal();
-  document.getElementById('upgradeModal').style.display = 'flex';
-};
-
-// 언어 변경 시 모달 업데이트
-if (window.addEventListener) {
-  window.addEventListener('languageChanged', updateModalLanguage);
-}
-
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', updateModalLanguage);
 </script>
@@ -572,66 +558,10 @@ document.addEventListener('DOMContentLoaded', updateModalLanguage);
         </div>
     </div>
 
-    <!-- Upgrade Modal -->
-<div id="upgradeModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2>🚀 Upgrade to Premium</h2>
-        <p class="modal-subtitle">You've reached your daily free limit (3 conversions)</p>
-        
-        <div class="pricing-cards">
-            <!-- Monthly Plan -->
-            <div class="pricing-card">
-                <h3>Monthly Plan</h3>
-                <div class="price">
-                    <span class="currency">$</span>
-                    <span class="amount">9.99</span>
-                    <span class="period">/month</span>
-                </div>
-                <ul class="features">
-                    <li>✅ Unlimited conversions</li>
-                    <li>✅ All platforms & tones</li>
-                    <li>✅ Multi-language support</li>
-                    <li>✅ Priority support</li>
-                </ul>
-                <button class="upgrade-btn-modal" onclick="startCheckout('monthly')">
-                    Choose Monthly
-                </button>
-                <p class="trial-note">7-day free trial</p>
-            </div>
-
-            <!-- Annual Plan -->
-            <div class="pricing-card featured">
-                <div class="badge">BEST VALUE</div>
-                <h3>Annual Plan</h3>
-                <div class="price">
-                    <span class="currency">$</span>
-                    <span class="amount">99</span>
-                    <span class="period">/year</span>
-                </div>
-                <p class="savings">Save $20 (2 months free!)</p>
-                <ul class="features">
-                    <li>✅ Everything in Monthly</li>
-                    <li>✅ 17% discount</li>
-                    <li>✅ Best value for creators</li>
-                    <li>✅ Priority support</li>
-                </ul>
-                <button class="upgrade-btn-modal primary" onclick="startCheckout('annual')">
-                    Choose Annual
-                </button>
-                <p class="trial-note">7-day free trial</p>
-            </div>
-        </div>
-        
-        <p class="modal-footer">Or come back tomorrow for 3 more free conversions!</p>
-    </div>
-</div>
-
     <script src="seo-content.js"></script>
     <script src="upgrade.js"></script>
     <script src="translations.js"></script>
     <script src="usage.js"></script>
-    <script src="premium.js"></script>
     <script src="script.js"></script>
 
 </body>
