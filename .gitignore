@@ -23,3 +23,10 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# 테스트 산출물
+playwright-report/
+test-results/
+
+# 기타
+NUL
