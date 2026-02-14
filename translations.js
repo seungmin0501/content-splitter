@@ -1,5 +1,8 @@
 const translations = {
   ko: {
+    // Meta
+    metaDescription: "블로그 글 하나를 30초 만에 인스타그램, 트위터, 링크드인, 페이스북에 최적화된 SNS 포스트로 변환. 무료 AI 콘텐츠 변환 도구.",
+
     // 헤더
     title: "✨ ContentSplitter",
     subtitle: "긴 글 하나를 여러 SNS 포스트로 자동 변환",
@@ -76,6 +79,8 @@ const translations = {
   },
   
   en: {
+    metaDescription: "Turn one blog post into 10 platform-optimized social media posts in 30 seconds. Free AI tool for Twitter, LinkedIn, Instagram, and Facebook.",
+
     title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
     
@@ -141,6 +146,8 @@ const translations = {
   },
   
   ja: {
+    metaDescription: "ブログ記事1つを30秒でInstagram、Twitter、LinkedIn、Facebook向けのSNS投稿に変換。無料AIコンテンツ変換ツール。",
+
     title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
     
@@ -206,6 +213,8 @@ const translations = {
   },
   
   es: {
+    metaDescription: "Convierte un artículo de blog en 10 publicaciones optimizadas para redes sociales en 30 segundos. Herramienta gratuita de IA para Twitter, LinkedIn, Instagram y Facebook.",
+
     title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
     
@@ -360,6 +369,17 @@ function updateUI() {
   toneLabels[1].textContent = t('tones.friendly');
   toneLabels[2].textContent = t('tones.casual');
   toneLabels[3].textContent = t('tones.enthusiastic');
+
+  // Meta description 업데이트
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', t('metaDescription'));
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', t('metaDescription'));
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.setAttribute('content', t('metaDescription'));
+
+  // html lang 속성 업데이트
+  document.documentElement.lang = currentLang;
 }
 
 // 예시 텍스트 (언어별)
