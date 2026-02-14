@@ -1,7 +1,8 @@
 const translations = {
   ko: {
     // Meta
-    metaDescription: "블로그 글 하나를 30초 만에 인스타그램, 트위터, 링크드인, 페이스북에 최적화된 SNS 포스트로 변환. 무료 AI 콘텐츠 변환 도구.",
+    metaDescription: "블로그 글을 인스타그램 캡션, 트위터 스레드, 링크드인 포스트, 페이스북 게시글로 30초 만에 자동 변환하는 무료 AI 도구. 해시태그 자동 생성, 톤앤매너 선택, 4개 언어 지원.",
+    pageTitle: "ContentSplitter - AI SNS 포스트 자동 변환 | 블로그를 인스타그램, 트위터, 링크드인으로 무료 변환",
 
     // 헤더
     title: "✨ ContentSplitter",
@@ -79,7 +80,8 @@ const translations = {
   },
   
   en: {
-    metaDescription: "Turn one blog post into 10 platform-optimized social media posts in 30 seconds. Free AI tool for Twitter, LinkedIn, Instagram, and Facebook.",
+    metaDescription: "Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 4 languages.",
+    pageTitle: "ContentSplitter - AI Social Media Post Generator | Blog to Instagram, Twitter, LinkedIn Free Tool",
 
     title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
@@ -146,7 +148,8 @@ const translations = {
   },
   
   ja: {
-    metaDescription: "ブログ記事1つを30秒でInstagram、Twitter、LinkedIn、Facebook向けのSNS投稿に変換。無料AIコンテンツ変換ツール。",
+    metaDescription: "ブログ記事をInstagramキャプション、Twitterスレッド、LinkedIn投稿、Facebook更新に30秒で自動変換する無料AIツール。ハッシュタグ自動生成、トーン選択、4言語対応。",
+    pageTitle: "ContentSplitter - AI SNS投稿ジェネレーター | ブログをInstagram、Twitter、LinkedInに無料変換",
 
     title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
@@ -213,7 +216,8 @@ const translations = {
   },
   
   es: {
-    metaDescription: "Convierte un artículo de blog en 10 publicaciones optimizadas para redes sociales en 30 segundos. Herramienta gratuita de IA para Twitter, LinkedIn, Instagram y Facebook.",
+    metaDescription: "Herramienta gratuita de IA para convertir artículos de blog en publicaciones de Instagram, hilos de Twitter, posts de LinkedIn y actualizaciones de Facebook en 30 segundos. Generación automática de hashtags, múltiples tonos y soporte en 4 idiomas.",
+    pageTitle: "ContentSplitter - Generador de Publicaciones con IA | Blog a Instagram, Twitter, LinkedIn Gratis",
 
     title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
@@ -370,11 +374,16 @@ function updateUI() {
   toneLabels[2].textContent = t('tones.casual');
   toneLabels[3].textContent = t('tones.enthusiastic');
 
-  // Meta description 업데이트
+  // Meta / SEO 업데이트
+  document.title = t('pageTitle');
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute('content', t('metaDescription'));
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', t('pageTitle'));
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) ogDesc.setAttribute('content', t('metaDescription'));
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.setAttribute('content', t('pageTitle'));
   const twDesc = document.querySelector('meta[name="twitter:description"]');
   if (twDesc) twDesc.setAttribute('content', t('metaDescription'));
 
