@@ -28,5 +28,8 @@ Thumbs.db
 playwright-report/
 test-results/
 
+# Claude
+.claude/
+
 # 기타
 NUL
