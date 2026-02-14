@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx serve:*)",
+      "Bash(curl:*)",
+      "Bash(node -c:*)",
+      "Bash(node:*)",
+      "Bash(del \"C:\\\\Users\\\\user\\\\Downloads\\\\content-splitter-fixed\\\\_check.js\")",
+      "Bash(npx vercel:*)",
+      "Bash(npx http-server:*)",
+      "Bash(timeout:*)",
+      "Bash(npm install:*)",
+      "Bash(del \"D:\\\\coding\\\\content-splitter\\\\test-browser.js\")",
+      "Bash(npm uninstall:*)",
+      "Bash(dir:*)",
+      "Bash(test:*)"
+    ]
+  }
+}

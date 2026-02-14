@@ -12,14 +12,21 @@ export default async function handler(req, res) {
     const signature = req.headers['x-signature'];
     const secret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET;
 
-    if (secret && signature) {
-      const hmac = crypto.createHmac('sha256', secret);
-      const digest = hmac.update(JSON.stringify(req.body)).digest('hex');
+    if (!secret) {
+      console.error('Webhook secret not configured');
+      return res.status(500).json({ error: '서버 설정 오류입니다. 관리자에게 문의해주세요.' });
+    }
 
-      if (digest !== signature) {
-        console.error('Invalid webhook signature');
-        return res.status(401).json({ error: 'Invalid signature' });
-      }
+    if (!signature) {
+      return res.status(401).json({ error: '인증 정보가 누락되었습니다.' });
+    }
+
+    const hmac = crypto.createHmac('sha256', secret);
+    const digest = hmac.update(JSON.stringify(req.body)).digest('hex');
+
+    if (digest !== signature) {
+      console.error('Invalid webhook signature');
+      return res.status(401).json({ error: '유효하지 않은 요청입니다.' });
     }
 
     const event = req.body;
@@ -103,6 +110,6 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Webhook error:', error);
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: '요청 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' });
   }
 }

@@ -9,7 +9,7 @@ const anthropic = new Anthropic({
 module.exports = async (req, res) => {
   // CORS 설정
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://content-splitter.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -32,13 +32,40 @@ module.exports = async (req, res) => {
 
     // 입력 검증
     if (!content || !platforms || platforms.length === 0) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         success: false,
-        error: '콘텐츠와 플랫폼을 입력해주세요.' 
+        error: '콘텐츠와 플랫폼을 입력해주세요.'
       });
     }
 
-    console.log(`변환 요청: ${platforms.join(', ')}, 톤: ${tone}, 해시태그: ${hashtagCount}개`);
+    // 콘텐츠 길이 검증
+    if (typeof content !== 'string' || content.length > 10000) {
+      return res.status(400).json({
+        success: false,
+        error: '콘텐츠는 10,000자 이하로 입력해주세요.'
+      });
+    }
+
+    // 플랫폼 화이트리스트 검증
+    const allowedPlatforms = ['instagram', 'twitter', 'linkedin', 'facebook'];
+    if (!Array.isArray(platforms) || platforms.some(p => !allowedPlatforms.includes(p))) {
+      return res.status(400).json({
+        success: false,
+        error: '유효하지 않은 플랫폼입니다.'
+      });
+    }
+
+    // 톤 화이트리스트 검증
+    const allowedTones = ['professional', 'friendly', 'casual', 'enthusiastic'];
+    if (!allowedTones.includes(tone)) {
+      return res.status(400).json({
+        success: false,
+        error: '유효하지 않은 톤입니다.'
+      });
+    }
+
+    // 해시태그 수 검증
+    const safeHashtagCount = Math.max(0, Math.min(30, parseInt(hashtagCount) || 10));
 
     // 톤앤매너 설명
     const toneDescriptions = {
@@ -61,7 +88,7 @@ module.exports = async (req, res) => {
 Write in ${toneDesc} tone.
 
 Platform requirements:
-- instagram: Emotional with ${hashtagCount} hashtags (max 2200 chars)
+- instagram: Emotional with ${safeHashtagCount} hashtags (max 2200 chars)
 - twitter: Concise and impactful (max 280 chars, use thread if needed)
 - linkedin: Professional and insight-focused (max 3000 chars)
 - facebook: Friendly and storytelling (recommended under 2000 chars)
@@ -91,8 +118,6 @@ Only include selected platforms. Return JSON only, no explanations.`
       .map(block => block.text)
       .join('');
 
-    console.log('Claude 응답 받음');
-
     // JSON 파싱
     const cleanedText = responseText
       .replace(/```json\n?/g, '')
@@ -112,8 +137,7 @@ Only include selected platforms. Return JSON only, no explanations.`
     
     res.status(500).json({
       success: false,
-      error: '변환 중 오류가 발생했습니다.',
-      details: error.message
+      error: '변환 중 오류가 발생했습니다.'
     });
   }
 };

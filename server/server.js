@@ -14,7 +14,9 @@ const anthropic = new Anthropic({
 });
 
 // 미들웨어 설정
-app.use(cors()); // CORS 허용
+app.use(cors({
+  origin: 'https://content-splitter.vercel.app'
+}));
 app.use(express.json()); // JSON 파싱
 
 // 상태 확인 엔드포인트
@@ -36,8 +38,6 @@ app.post('/api/convert', async (req, res) => {
         error: '콘텐츠와 플랫폼을 입력해주세요.' 
       });
     }
-
-    console.log(`변환 요청 받음: ${platforms.join(', ')}, 톤: ${tone}, 해시태그: ${hashtagCount}개`);
 
     // 톤앤매너 설명
     const toneDescriptions = {
@@ -84,8 +84,6 @@ ${content}
       .map(block => block.text)
       .join('');
 
-    console.log('Claude 응답 받음:', responseText.substring(0, 100) + '...');
-
     // JSON 파싱 (마크다운 코드 블록 제거)
     const cleanedText = responseText
       .replace(/```json\n?/g, '')
@@ -105,8 +103,7 @@ ${content}
     
     res.status(500).json({
       success: false,
-      error: '변환 중 오류가 발생했습니다.',
-      details: error.message
+      error: '변환 중 오류가 발생했습니다.'
     });
   }
 });
@@ -114,5 +111,4 @@ ${content}
 // 서버 시작
 app.listen(PORT, () => {
   console.log(`🚀 서버가 http://localhost:${PORT} 에서 실행 중입니다!`);
-  console.log(`API 키 설정: ${process.env.ANTHROPIC_API_KEY ? '✅ 완료' : '❌ 없음'}`);
 });

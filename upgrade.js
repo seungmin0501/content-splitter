@@ -52,7 +52,7 @@ function openUpgradeModal() {
 
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('결제 페이지 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
+      alert(t('alerts.checkoutError'));
 
       // 버튼 복구
       if (button) {
@@ -78,27 +78,23 @@ function openUpgradeModal() {
   document.addEventListener('DOMContentLoaded', () => {
     // 업그레이드 모달 관련
     const modal = document.getElementById('upgradeModal');
-    const closeBtn = modal?.querySelector('.modal-close');
-  
+    const closeBtn = modal?.querySelector('.close');
+
     // 모달 닫기 버튼
     closeBtn?.addEventListener('click', closeUpgradeModal);
-  
+
     // 모달 외부 클릭시 닫기
     modal?.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeUpgradeModal();
       }
     });
-  
+
     // 월간 플랜 버튼
-    const monthlyBtn = document.getElementById('upgradeMonthly');
+    const monthlyBtn = document.getElementById('monthlyBtn');
     monthlyBtn?.addEventListener('click', () => startCheckout('monthly'));
-  
+
     // 연간 플랜 버튼
-    const annualBtn = document.getElementById('upgradeAnnual');
+    const annualBtn = document.getElementById('annualBtn');
     annualBtn?.addEventListener('click', () => startCheckout('annual'));
-  
-    // 일반 업그레이드 버튼 (모달 없이 바로)
-    const quickUpgradeBtn = document.getElementById('quickUpgradeBtn');
-    quickUpgradeBtn?.addEventListener('click', () => startCheckout('monthly'));
   });

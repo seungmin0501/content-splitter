@@ -43,17 +43,6 @@ function getLoadingMessages() {
     return t('loadingMessages');
 }
 
-// 예시 텍스트
-const exampleText = `오늘부터 나는 코딩을 시작했다.
-
-사실 한 달 전만 해도 코딩은 나와 전혀 상관없는 일이라고 생각했다. 하지만 AI 도구들이 발전하면서, 이제는 코딩 경험이 전혀 없는 사람도 자신만의 웹사이트나 앱을 만들 수 있게 되었다.
-
-Cursor라는 AI 코드 에디터를 사용하면서, 처음으로 "나도 뭔가 만들 수 있구나"라는 자신감이 생겼다. 단 하루 만에 첫 프로젝트를 완성하는 것이 목표다.
-
-가장 중요한 건 완벽함이 아니라 시작하는 것. 70% 완성도에서 일단 출시하고, 사용자 피드백을 받으면서 개선해나가는 것이 진짜 성장이다.
-
-여러분도 미루지 말고 오늘 바로 시작해보세요!`;
-
 // 예시 보기 버튼
 exampleBtn.addEventListener('click', () => {
     contentInput.value = getExampleText();
@@ -248,36 +237,44 @@ function displayResults(results) {
         const charLength = content.length;
         const limit = platformLimits[platform];
         const isOverLimit = charLength > limit;
-        
+
         const card = document.createElement('div');
         card.className = 'result-card';
-        
-        const escapedContent = content.replace(/"/g, '&quot;').replace(/\n/g, '\\n').replace(/'/g, "\\'");
 
-        card.innerHTML = `
-            <h3>${platformNames[platform] || platform}</h3>
-            <div class="char-info" style="color: ${isOverLimit ? '#f44336' : '#4caf50'}">
-                ${charLength.toLocaleString()} ${t('charInfo')} ${isOverLimit ? t('overLimit') : '/ ' + limit.toLocaleString() + ' ' + t('charInfo')}
-            </div>
-            <div class="content">${content}</div>
-            <button class="copy-btn" data-content="${content.replace(/"/g, '&quot;').replace(/\n/g, '\\n')}">
-                ${t('copyBtn')}
-            </button>
-        `;
-        
+        const h3 = document.createElement('h3');
+        h3.textContent = platformNames[platform] || platform;
+
+        const charInfo = document.createElement('div');
+        charInfo.className = 'char-info';
+        charInfo.style.color = isOverLimit ? '#f44336' : '#4caf50';
+        charInfo.textContent = `${charLength.toLocaleString()} ${t('charInfo')} ${isOverLimit ? t('overLimit') : '/ ' + limit.toLocaleString() + ' ' + t('charInfo')}`;
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'content';
+        contentDiv.textContent = content;
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.dataset.content = content;
+        copyBtn.textContent = t('copyBtn');
+
+        card.appendChild(h3);
+        card.appendChild(charInfo);
+        card.appendChild(contentDiv);
+        card.appendChild(copyBtn);
         resultsContainer.appendChild(card);
     }
     
     // 복사 버튼 이벤트
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            const content = e.target.getAttribute('data-content').replace(/\\n/g, '\n');
-            
+            const content = e.target.dataset.content;
+
             try {
                 await navigator.clipboard.writeText(content);
                 e.target.textContent = t('copiedBtn');
                 e.target.classList.add('copied');
-                
+
                 setTimeout(() => {
                     e.target.textContent = t('copyBtn');
                     e.target.classList.remove('copied');
@@ -307,7 +304,7 @@ shareBtn.addEventListener('click', async () => {
             alert(t('alerts.shareSuccess'));
         }
     } catch (err) {
-        console.log('Share failed:', err);
+        // Share not supported or cancelled
     }
 });
 

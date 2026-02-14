@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "content-splitter-rules": {
+      "command": "node",
+      "args": ["D:\\coding\\content-splitter\\.claude\\mcp-server\\server.js"],
+      "env": {}
+    }
+  }
+}
