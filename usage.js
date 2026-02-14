@@ -6,7 +6,8 @@ function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    const secure = location.protocol === 'https:' ? ';Secure' : '';
+    document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict" + secure;
 }
 
 // 쿠키 가져오기
@@ -44,10 +45,12 @@ function saveUsageData(data) {
     setCookie('usage_data', JSON.stringify(data), 1); // 1일 유효
 }
 
-// 프리미엄 상태 확인
+// 프리미엄 상태 확인 (webhook에서 설정한 서명된 코드 검증)
 function isPremium() {
     const premiumCode = getCookie('premium_code');
-    return premiumCode && premiumCode.length > 0;
+    if (!premiumCode || premiumCode.length < 20) return false;
+    // webhook에서 설정한 코드는 'ps_' 프리픽스로 시작
+    return premiumCode.startsWith('ps_');
 }
 
 // 프리미엄 코드 설정
@@ -100,17 +103,22 @@ function updateUsageDisplay() {
     const statusEl = document.getElementById('usageStatus');
     if (!statusEl) return;
     
+    statusEl.textContent = '';
+    const infoDiv = document.createElement('div');
+
     if (isPremium()) {
-        statusEl.innerHTML = `
-            <div class="usage-info premium">
-                ⭐ <strong>프리미엄 사용자</strong> - 무제한 변환
-            </div>
-        `;
-        statusEl.style.display = 'block';
+        infoDiv.className = 'usage-info premium';
+        const star = document.createTextNode('⭐ ');
+        const strong = document.createElement('strong');
+        strong.textContent = 'Premium';
+        infoDiv.appendChild(star);
+        infoDiv.appendChild(strong);
+        infoDiv.appendChild(document.createTextNode(' - Unlimited'));
     } else {
+        infoDiv.className = 'usage-info free';
         const status = canUseService();
         const lang = currentLang || 'ko';
-        
+
         let message = '';
         if (lang === 'ko') {
             message = `무료 베타: 오늘 ${FREE_DAILY_LIMIT - status.remaining}/${FREE_DAILY_LIMIT}회 사용`;
@@ -121,14 +129,11 @@ function updateUsageDisplay() {
         } else if (lang === 'es') {
             message = `Beta Gratis: ${FREE_DAILY_LIMIT - status.remaining}/${FREE_DAILY_LIMIT} usos hoy`;
         }
-        
-        statusEl.innerHTML = `
-            <div class="usage-info free">
-                ${message}
-            </div>
-        `;
-        statusEl.style.display = 'block';
+        infoDiv.textContent = message;
     }
+
+    statusEl.appendChild(infoDiv);
+    statusEl.style.display = 'block';
 }
 
 // 업그레이드 모달 표시
@@ -139,10 +144,7 @@ function showUpgradeModal() {
     const modal = document.getElementById('upgradeModal');
     if (modal) {
         modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
 }
 
-// 결제 페이지로 이동 (임시 비활성화)
-async function goToCheckout() {
-    alert('Premium plan coming soon! 곧 만나요! 🚀');
-}

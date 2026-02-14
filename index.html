@@ -26,6 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ContentSplitter - AI Social Media Post Generator">
     <meta name="twitter:description" content="Convert blog posts into Instagram captions, Twitter threads, LinkedIn posts in 30 seconds. Free AI-powered content repurposing tool.">
+    <meta name="twitter:image" content="https://content-splitter.vercel.app/og-image.png">
     <link rel="stylesheet" href="style.css">
 
     <title>ContentSplitter - AI Social Media Post Generator | Blog to Instagram, Twitter, LinkedIn Free Tool</title>
@@ -48,12 +49,7 @@
       "price": "0",
       "priceCurrency": "USD"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "127"
-    },
-    "description": "Turn one blog post into 10 platform-optimized social media posts in 30 seconds. Free AI tool for Twitter, LinkedIn, Instagram.",
+    "description": "Free AI tool to convert blog posts into Instagram captions, Twitter threads, LinkedIn posts in 30 seconds.",
     "operatingSystem": "Web",
     "url": "https://content-splitter.vercel.app"
   }
@@ -101,7 +97,8 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="apple-touch-icon" href="/favicon.svg">
+  <!-- apple-touch-icon requires PNG format; SVG not supported on iOS -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 </head>
 <body>
@@ -136,8 +133,9 @@
                 </div>
                 
                 <div class="textarea-wrapper">
-                    <textarea 
-                        id="contentInput" 
+                    <textarea
+                        id="contentInput"
+                        aria-label="원본 콘텐츠 입력"
                         placeholder="블로그 포스트, 유튜브 스크립트 등을 여기에 붙여넣으세요..."
                         rows="10"
                     ></textarea>
@@ -188,7 +186,7 @@
 
                 <div class="options-section">
                     <label>해시태그 개수 (인스타그램):</label>
-                    <input type="range" id="hashtagCount" min="0" max="30" value="10" class="slider">
+                    <input type="range" id="hashtagCount" min="0" max="30" value="10" class="slider" aria-label="해시태그 개수">
                     <span id="hashtagValue">10개</span>
                 </div>
 
@@ -216,42 +214,42 @@
   <div class="container">
     <h2>Frequently Asked Questions</h2>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>1️⃣ How do I convert a blog post to social media posts?</h3>
       <div class="faq-answer">
         <p>Simply paste your blog post into ContentSplitter, select your target platforms (Twitter, LinkedIn, Instagram), and click Convert. Our AI will automatically optimize your content for each platform in 30 seconds.</p>
       </div>
     </div>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>2️⃣ Can I convert blog posts to Twitter threads?</h3>
       <div class="faq-answer">
         <p>Yes! ContentSplitter converts long-form blog posts into engaging Twitter threads, automatically breaking content into tweet-sized chunks (under 280 characters) while maintaining flow and readability.</p>
       </div>
     </div>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>3️⃣ Is ContentSplitter free to use?</h3>
       <div class="faq-answer">
         <p>Yes! We offer 3 free conversions per day with no credit card required. Premium users ($9.99/month) get unlimited conversions plus advanced features like multiple tones and multi-language support.</p>
       </div>
     </div>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>4️⃣ What platforms does ContentSplitter support?</h3>
       <div class="faq-answer">
         <p>ContentSplitter optimizes content for Twitter/X threads, LinkedIn posts, and Instagram captions. Each platform gets custom formatting, appropriate tone, and platform-specific best practices.</p>
       </div>
     </div>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>5️⃣ How does AI content repurposing work?</h3>
       <div class="faq-answer">
         <p>ContentSplitter uses advanced AI (Claude) to understand your content's key messages and rewrite them for each social media platform. It adjusts tone, length, formatting, and adds platform-specific elements like hashtags for Instagram or professional language for LinkedIn.</p>
       </div>
     </div>
     
-    <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
+    <div class="faq-item collapsed" tabindex="0" role="button" aria-expanded="false">
       <h3>6️⃣ Can I edit the generated social media posts?</h3>
       <div class="faq-answer">
         <p>Yes! After conversion, you can review and edit all generated posts before copying them. Each post has a copy button for easy use.</p>
@@ -373,9 +371,9 @@
     </div>
 
     <!-- 업그레이드 모달 -->
-<div id="upgradeModal" class="modal">
+<div id="upgradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content-wide">
-        <span class="close">&times;</span>
+        <button class="close" aria-label="Close">&times;</button>
         <h2 id="modalTitle">⭐ ContentSplitter Premium</h2>
         <p class="modal-subtitle" id="modalSubtitle">무제한으로 콘텐츠를 변환하세요!</p>
         

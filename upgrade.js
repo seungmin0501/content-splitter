@@ -1,24 +1,17 @@
 // upgrade.js - 업그레이드 버튼 처리
 
-// 업그레이드 모달 열기
-function openUpgradeModal() {
-    const modal = document.getElementById('upgradeModal');
-    if (modal) {
-      modal.style.display = 'flex';
-    }
-  }
-  
   // 업그레이드 모달 닫기
   function closeUpgradeModal() {
     const modal = document.getElementById('upgradeModal');
     if (modal) {
       modal.style.display = 'none';
+      document.body.style.overflow = '';
     }
   }
   
   // 결제 페이지로 이동
-  async function startCheckout(plan = 'monthly') {
-    const button = event ? event.target : null;
+  async function startCheckout(plan = 'monthly', e = null) {
+    const button = e ? e.target : null;
     let originalText = '';
 
     try {
@@ -90,11 +83,18 @@ function openUpgradeModal() {
       }
     });
 
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.style.display === 'flex') {
+        closeUpgradeModal();
+      }
+    });
+
     // 월간 플랜 버튼
     const monthlyBtn = document.getElementById('monthlyBtn');
-    monthlyBtn?.addEventListener('click', () => startCheckout('monthly'));
+    monthlyBtn?.addEventListener('click', (e) => startCheckout('monthly', e));
 
     // 연간 플랜 버튼
     const annualBtn = document.getElementById('annualBtn');
-    annualBtn?.addEventListener('click', () => startCheckout('annual'));
+    annualBtn?.addEventListener('click', (e) => startCheckout('annual', e));
   });

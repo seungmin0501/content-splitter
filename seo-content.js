@@ -249,64 +249,96 @@ const seoContent = {
       return;
     }
     
+    // 카드 생성 헬퍼
+    function createCard(className, iconClass, item) {
+      const card = document.createElement('div');
+      card.className = className;
+      const icon = document.createElement('span');
+      icon.className = iconClass;
+      icon.textContent = item.icon;
+      const h3 = document.createElement('h3');
+      h3.textContent = item.title;
+      const p = document.createElement('p');
+      p.textContent = item.desc;
+      card.appendChild(icon);
+      card.appendChild(h3);
+      card.appendChild(p);
+      return card;
+    }
+
     // How It Works
     const stepsGrid = document.querySelector('.steps-grid');
     if (stepsGrid) {
-      stepsGrid.innerHTML = content.howItWorks.steps.map(step => `
-        <div class="step-card">
-          <span class="step-icon">${step.icon}</span>
-          <h3>${step.title}</h3>
-          <p>${step.desc}</p>
-        </div>
-      `).join('');
+      stepsGrid.textContent = '';
+      content.howItWorks.steps.forEach(step => {
+        stepsGrid.appendChild(createCard('step-card', 'step-icon', step));
+      });
     }
-    
+
     const howItWorksTitle = document.querySelector('.how-it-works-section h2');
     if (howItWorksTitle) howItWorksTitle.textContent = content.howItWorks.title;
-  
+
     // Benefits
     const benefitsGrid = document.querySelector('.benefits-grid');
     if (benefitsGrid) {
-      benefitsGrid.innerHTML = content.benefits.items.map(item => `
-        <div class="benefit-card">
-          <span class="benefit-icon">${item.icon}</span>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-        </div>
-      `).join('');
+      benefitsGrid.textContent = '';
+      content.benefits.items.forEach(item => {
+        benefitsGrid.appendChild(createCard('benefit-card', 'benefit-icon', item));
+      });
     }
-    
+
     const benefitsTitle = document.querySelector('.benefits-section h2');
     if (benefitsTitle) benefitsTitle.textContent = content.benefits.title;
-  
+
     // Use Cases
     const useCasesGrid = document.querySelector('.use-cases-grid');
     if (useCasesGrid) {
-      useCasesGrid.innerHTML = content.useCases.items.map(item => `
-        <div class="use-case-card">
-          <span class="use-case-icon">${item.icon}</span>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-        </div>
-      `).join('');
+      useCasesGrid.textContent = '';
+      content.useCases.items.forEach(item => {
+        useCasesGrid.appendChild(createCard('use-case-card', 'use-case-icon', item));
+      });
     }
-    
+
     const useCasesTitle = document.querySelector('.use-cases-section h2');
     if (useCasesTitle) useCasesTitle.textContent = content.useCases.title;
-  
+
     // FAQ
     const faqContainer = document.querySelector('.faq-section .container');
     if (faqContainer) {
-      const faqHTML = content.faq.items.map((item, index) => `
-        <div class="faq-item collapsed" onclick="this.classList.toggle('collapsed')">
-          <h3>${index + 1}️⃣ ${item.q}</h3>
-          <div class="faq-answer">
-            <p>${item.a}</p>
-          </div>
-        </div>
-      `).join('');
-      
-      faqContainer.innerHTML = `<h2>${content.faq.title}</h2>${faqHTML}`;
+      faqContainer.textContent = '';
+      const faqTitle = document.createElement('h2');
+      faqTitle.textContent = content.faq.title;
+      faqContainer.appendChild(faqTitle);
+
+      content.faq.items.forEach((item, index) => {
+        const faqItem = document.createElement('div');
+        faqItem.className = 'faq-item collapsed';
+        faqItem.setAttribute('tabindex', '0');
+        faqItem.setAttribute('role', 'button');
+        faqItem.setAttribute('aria-expanded', 'false');
+        faqItem.addEventListener('click', function() {
+          const isCollapsed = this.classList.toggle('collapsed');
+          this.setAttribute('aria-expanded', String(!isCollapsed));
+        });
+        faqItem.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const isCollapsed = this.classList.toggle('collapsed');
+            this.setAttribute('aria-expanded', String(!isCollapsed));
+          }
+        });
+
+        const h3 = document.createElement('h3');
+        h3.textContent = `${index + 1}️⃣ ${item.q}`;
+        const answerDiv = document.createElement('div');
+        answerDiv.className = 'faq-answer';
+        const p = document.createElement('p');
+        p.textContent = item.a;
+        answerDiv.appendChild(p);
+        faqItem.appendChild(h3);
+        faqItem.appendChild(answerDiv);
+        faqContainer.appendChild(faqItem);
+      });
     }
   }
   

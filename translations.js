@@ -67,7 +67,10 @@ const translations = {
       shareSuccess: "링크가 복사되었습니다! 친구들에게 공유해보세요! 🎉",
       limitReached: "오늘의 무료 변환 횟수를 모두 사용했습니다.\n프리미엄으로 업그레이드하시겠어요?",
       usageCount: "오늘 무료 변환 {current}/{total}회 사용",
-      checkoutError: "결제 페이지 생성 중 오류가 발생했습니다. 다시 시도해주세요."
+      checkoutError: "결제 페이지 생성 중 오류가 발생했습니다. 다시 시도해주세요.",
+      copyFailed: "복사에 실패했습니다. 직접 복사해주세요.",
+      conversionFailed: "변환 실패",
+      tooManyRequests: "요청이 너무 많습니다. 잠시 후 다시 시도해주세요."
     },
     
     // 푸터
@@ -137,7 +140,10 @@ const translations = {
       shareSuccess: "Link copied! Share it with your friends! 🎉",
       limitReached: "You've used all your free conversions for today.\nWould you like to upgrade to Premium?",
       usageCount: "Free conversions: {current}/{total} used today",
-      checkoutError: "An error occurred while creating the checkout page. Please try again."
+      checkoutError: "An error occurred while creating the checkout page. Please try again.",
+      copyFailed: "Copy failed. Please copy manually.",
+      conversionFailed: "Conversion failed",
+      tooManyRequests: "Too many requests. Please try again later."
     },
     
     footer: "Made with ❤️ by Seungmin",
@@ -205,7 +211,10 @@ const translations = {
       shareSuccess: "リンクがコピーされました! 友達と共有しましょう! 🎉",
       limitReached: "今日の無料変換回数を使い切りました。\nプレミアムにアップグレードしますか?",
       usageCount: "無料変換: 今日{current}/{total}回使用",
-      checkoutError: "決済ページの作成中にエラーが発生しました。もう一度お試しください。"
+      checkoutError: "決済ページの作成中にエラーが発生しました。もう一度お試しください。",
+      copyFailed: "コピーに失敗しました。手動でコピーしてください。",
+      conversionFailed: "変換に失敗しました",
+      tooManyRequests: "リクエストが多すぎます。しばらくしてからもう一度お試しください。"
     },
     
     footer: "Made with ❤️ by Seungmin",
@@ -273,7 +282,10 @@ const translations = {
       shareSuccess: "¡Enlace copiado! ¡Compártelo con tus amigos! 🎉",
       limitReached: "Has usado todas las conversiones gratuitas de hoy.\n¿Te gustaría actualizar a Premium?",
       usageCount: "Conversiones gratuitas: {current}/{total} usadas hoy",
-      checkoutError: "Ocurrió un error al crear la página de pago. Por favor, inténtelo de nuevo."
+      checkoutError: "Ocurrió un error al crear la página de pago. Por favor, inténtelo de nuevo.",
+      copyFailed: "Error al copiar. Por favor, copie manualmente.",
+      conversionFailed: "Error en la conversión",
+      tooManyRequests: "Demasiadas solicitudes. Por favor, inténtelo de nuevo más tarde."
     },
     
     footer: "Hecho con ❤️ por Seungmin",
@@ -343,6 +355,8 @@ function updateUI() {
   document.querySelector('.input-section h2').textContent = t('inputTitle');
   document.getElementById('exampleBtn').textContent = t('exampleBtn');
   document.getElementById('contentInput').placeholder = t('placeholder');
+  document.getElementById('contentInput').setAttribute('aria-label', t('inputTitle'));
+  document.getElementById('hashtagCount')?.setAttribute('aria-label', t('hashtagTitle'));
   document.querySelector('.platform-select > label').textContent = t('platformTitle');
   document.querySelector('.tone-select > label').textContent = t('toneTitle');
   document.querySelector('.options-section > label').textContent = t('hashtagTitle');

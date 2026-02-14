@@ -186,7 +186,10 @@ convertBtn.addEventListener('click', async () => {
 // AI API 호출 함수 (백엔드로 요청)
 async function convertContent(content, platforms, tone, hashtagCount) {
     const apiUrl = '/api/convert';
-    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60초 타임아웃
+
+    try {
     const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -197,8 +200,10 @@ async function convertContent(content, platforms, tone, hashtagCount) {
             platforms: platforms,
             tone: tone,
             hashtagCount: hashtagCount
-        })
+        }),
+        signal: controller.signal
     });
+    clearTimeout(timeoutId);
     
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -207,10 +212,17 @@ async function convertContent(content, platforms, tone, hashtagCount) {
     const data = await response.json();
     
     if (!data.success) {
-        throw new Error(data.error || '변환 실패');
+        if (data.error === 'TOO_MANY_REQUESTS') {
+            throw new Error(t('alerts.tooManyRequests'));
+        }
+        throw new Error(data.error || t('alerts.conversionFailed'));
     }
     
     return data.results;
+    } catch (err) {
+        clearTimeout(timeoutId);
+        throw err;
+    }
 }
 
 // 결과 표시 함수
@@ -280,7 +292,7 @@ function displayResults(results) {
                     e.target.classList.remove('copied');
                 }, 2000);
             } catch (err) {
-                alert('Copy failed. Please copy manually.');
+                alert(t('alerts.copyFailed'));
             }
         });
     });
@@ -340,3 +352,18 @@ document.getElementById('acceptCookies')?.addEventListener('click', () => {
 
 // 페이지 로드 시 쿠키 배너 표시
 setTimeout(showCookieBanner, 1000); // 1초 후 표시
+
+// FAQ 키보드 접근성
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const isCollapsed = this.classList.toggle('collapsed');
+        this.setAttribute('aria-expanded', String(!isCollapsed));
+    });
+    item.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const isCollapsed = this.classList.toggle('collapsed');
+            this.setAttribute('aria-expanded', String(!isCollapsed));
+        }
+    });
+});

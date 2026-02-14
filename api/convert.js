@@ -1,12 +1,43 @@
 // Vercel Serverless Function
-const Anthropic = require('@anthropic-ai/sdk');
+import Anthropic from '@anthropic-ai/sdk';
 
 // Anthropic 클라이언트 생성
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-module.exports = async (req, res) => {
+// IP 기반 Rate Limiting (메모리 기반 - serverless 인스턴스별)
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1분
+const RATE_LIMIT_MAX = 5; // 1분당 최대 5회
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now - record.timestamp > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { timestamp: now, count: 1 });
+    return false;
+  }
+
+  record.count++;
+  if (record.count > RATE_LIMIT_MAX) {
+    return true;
+  }
+  return false;
+}
+
+// 오래된 레코드 정리 (메모리 누수 방지)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, record] of rateLimitMap) {
+    if (now - record.timestamp > RATE_LIMIT_WINDOW * 2) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}, RATE_LIMIT_WINDOW * 2);
+
+export default async function handler(req, res) {
   // CORS 설정
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', 'https://content-splitter.vercel.app');
@@ -27,6 +58,15 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Rate Limiting 체크
+  const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+  if (isRateLimited(clientIp)) {
+    return res.status(429).json({
+      success: false,
+      error: 'TOO_MANY_REQUESTS'
+    });
+  }
+
   try {
     const { content, platforms, tone = 'professional', hashtagCount = 10 } = req.body;
 
@@ -34,7 +74,7 @@ module.exports = async (req, res) => {
     if (!content || !platforms || platforms.length === 0) {
       return res.status(400).json({
         success: false,
-        error: '콘텐츠와 플랫폼을 입력해주세요.'
+        error: 'MISSING_INPUT'
       });
     }
 
@@ -42,7 +82,7 @@ module.exports = async (req, res) => {
     if (typeof content !== 'string' || content.length > 10000) {
       return res.status(400).json({
         success: false,
-        error: '콘텐츠는 10,000자 이하로 입력해주세요.'
+        error: 'CONTENT_TOO_LONG'
       });
     }
 
@@ -51,7 +91,7 @@ module.exports = async (req, res) => {
     if (!Array.isArray(platforms) || platforms.some(p => !allowedPlatforms.includes(p))) {
       return res.status(400).json({
         success: false,
-        error: '유효하지 않은 플랫폼입니다.'
+        error: 'INVALID_PLATFORM'
       });
     }
 
@@ -60,7 +100,7 @@ module.exports = async (req, res) => {
     if (!allowedTones.includes(tone)) {
       return res.status(400).json({
         success: false,
-        error: '유효하지 않은 톤입니다.'
+        error: 'INVALID_TONE'
       });
     }
 
@@ -137,7 +177,7 @@ Only include selected platforms. Return JSON only, no explanations.`
     
     res.status(500).json({
       success: false,
-      error: '변환 중 오류가 발생했습니다.'
+      error: 'CONVERSION_FAILED'
     });
   }
-};
+}
