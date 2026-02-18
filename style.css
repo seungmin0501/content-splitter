@@ -98,6 +98,7 @@ header {
     margin-bottom: 24px;
     padding: 32px 40px;
     color: var(--text-light);
+    animation: fadeSlideDown 0.5s ease both;
 }
 
 .header-content {
@@ -162,7 +163,7 @@ main {
     border-radius: 24px;
     padding: 48px;
     box-shadow: var(--shadow-deep);
-    transition: all 0.3s ease;
+    animation: fadeSlideUp 0.5s 0.12s ease both;
 }
 
 /* ============================================
@@ -347,10 +348,26 @@ main {
 }
 
 .checkboxes input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+    border: 2px solid var(--border-light);
+    border-radius: 4px;
+    background: white;
     cursor: pointer;
-    accent-color: var(--accent);
+    transition: background 0.18s, border-color 0.18s;
+    flex-shrink: 0;
+}
+
+.checkboxes label:has(input[type="checkbox"]:checked) input[type="checkbox"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 8L6.5 11.5L13 5' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 11px;
 }
 
 /* ============================================
@@ -398,10 +415,22 @@ main {
 }
 
 .radio-label input[type="radio"] {
-    width: 14px;
-    height: 14px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 2px solid var(--border-light);
+    border-radius: 50%;
+    background: white;
     cursor: pointer;
-    accent-color: var(--accent);
+    transition: border-color 0.18s, box-shadow 0.18s;
+    flex-shrink: 0;
+}
+
+.radio-label:has(input[type="radio"]:checked) input[type="radio"] {
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 4px var(--accent);
 }
 
 .radio-label input[type="radio"]:checked + span {
@@ -1417,4 +1446,52 @@ footer {
     .pricing-card-option .price {
         font-size: 44px;
     }
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardEnter {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rippleAnim {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* ============================================
+   RESULT CARD ENTRANCE
+   ============================================ */
+
+.result-card {
+    opacity: 0; /* default hidden; JS adds card-enter */
+}
+
+.card-enter {
+    animation: cardEnter 0.38s ease both;
+}
+
+/* ============================================
+   BUTTON RIPPLE
+   ============================================ */
+
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.28);
+    transform: scale(0);
+    animation: rippleAnim 0.55s ease-out forwards;
+    pointer-events: none;
 }

@@ -82,7 +82,7 @@ exampleBtn.addEventListener('click', () => {
     contentInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
     
     // 살짝 하이라이트 효과
-    contentInput.style.borderColor = '#667eea';
+    contentInput.style.borderColor = '#c94718';
     setTimeout(() => {
         contentInput.style.borderColor = '';
     }, 1000);
@@ -277,15 +277,18 @@ function displayResults(results) {
         facebook: 63206
     };
     
+    let cardIndex = 0;
     for (const [platform, content] of Object.entries(results)) {
         if (!content) continue;
-        
+
         const charLength = content.length;
         const limit = platformLimits[platform];
         const isOverLimit = charLength > limit;
 
         const card = document.createElement('div');
-        card.className = 'result-card';
+        card.className = 'result-card card-enter';
+        card.style.animationDelay = `${cardIndex * 0.1}s`;
+        cardIndex++;
 
         const h3 = document.createElement('h3');
         h3.textContent = platformNames[platform] || platform;
@@ -356,6 +359,19 @@ contentInput.addEventListener('keydown', (e) => {
 
 // 초기 글자 수 표시
 updateCharCount();
+
+// 변환 버튼 ripple 효과
+convertBtn.addEventListener('mousedown', function(e) {
+    const ripple = document.createElement('span');
+    ripple.className = 'btn-ripple';
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
+    this.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+});
 
 // 쿠키 동의 배너
 function showCookieBanner() {
