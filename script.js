@@ -238,20 +238,20 @@ async function convertContent(content, platforms, tone, hashtagCount) {
         signal: controller.signal
     });
     clearTimeout(timeoutId);
-    
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
+
     const data = await response.json();
-    
+
     if (!data.success) {
+        if (data.error === 'DAILY_LIMIT_REACHED') {
+            showUpgradeModal();
+            throw new Error(t('alerts.limitReached'));
+        }
         if (data.error === 'TOO_MANY_REQUESTS') {
             throw new Error(t('alerts.tooManyRequests'));
         }
         throw new Error(data.error || t('alerts.conversionFailed'));
     }
-    
+
     return data.results;
     } catch (err) {
         clearTimeout(timeoutId);

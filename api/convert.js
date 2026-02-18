@@ -58,15 +58,83 @@ function isRateLimited(ip, limit = RATE_LIMIT_MAX) {
   return record.count > limit;
 }
 
+// ── 서버사이드 일일 사용 제한 ────────────────────────────────────────────────
+// IP 메모리(빠름, cold start 시 초기화) + 서명 쿠키(cold start 후 복원, 위조 불가)
+// 두 가지를 결합해 DB 없이 가능한 강도의 일일 제한을 구현
+const FREE_DAILY_LIMIT = 3;
+const dailyUsageMap = new Map(); // IP → { date, count }
+
+function getTodayUTC() {
+  return new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD'
+}
+
+// 일일 사용 토큰 서명 (PREMIUM_TOKEN_SECRET 재사용)
+function signUsageToken(date, count) {
+  const payload = Buffer.from(JSON.stringify({ date, count })).toString('base64url');
+  const sig = crypto
+    .createHmac('sha256', process.env.PREMIUM_TOKEN_SECRET)
+    .update(payload)
+    .digest('hex');
+  return `${payload}.${sig}`;
+}
+
+// 일일 사용 토큰 검증
+function verifyUsageToken(token) {
+  if (!token || !process.env.PREMIUM_TOKEN_SECRET) return null;
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+  const [payload, sig] = parts;
+  try {
+    const expected = crypto
+      .createHmac('sha256', process.env.PREMIUM_TOKEN_SECRET)
+      .update(payload)
+      .digest('hex');
+    const sigBuf = Buffer.from(sig, 'hex');
+    const expBuf = Buffer.from(expected, 'hex');
+    if (sigBuf.length !== expBuf.length) return null;
+    if (!crypto.timingSafeEqual(sigBuf, expBuf)) return null;
+    return JSON.parse(Buffer.from(payload, 'base64url').toString());
+  } catch {
+    return null;
+  }
+}
+
+// 현재 일일 사용 횟수 조회 (메모리 우선, 쿠키로 복원)
+function getDailyCount(ip, cookieToken) {
+  const today = getTodayUTC();
+  const mem = dailyUsageMap.get(ip);
+  if (mem && mem.date === today) return mem.count;
+  // cold start 후 쿠키로 복원
+  if (cookieToken) {
+    const data = verifyUsageToken(cookieToken);
+    if (data && data.date === today) {
+      dailyUsageMap.set(ip, { date: today, count: data.count });
+      return data.count;
+    }
+  }
+  return 0;
+}
+
+// 일일 사용 횟수 증가 후 새 횟수 반환
+function incrementDailyCount(ip) {
+  const today = getTodayUTC();
+  const mem = dailyUsageMap.get(ip);
+  const newCount = (mem && mem.date === today ? mem.count : 0) + 1;
+  dailyUsageMap.set(ip, { date: today, count: newCount });
+  return newCount;
+}
+
 // 오래된 레코드 정리 (메모리 누수 방지)
 setInterval(() => {
   const now = Date.now();
+  const today = getTodayUTC();
   for (const [ip, record] of rateLimitMap) {
-    if (now - record.timestamp > RATE_LIMIT_WINDOW * 2) {
-      rateLimitMap.delete(ip);
-    }
+    if (now - record.timestamp > RATE_LIMIT_WINDOW * 2) rateLimitMap.delete(ip);
   }
-}, RATE_LIMIT_WINDOW * 2);
+  for (const [ip, record] of dailyUsageMap) {
+    if (record.date !== today) dailyUsageMap.delete(ip);
+  }
+}, 60 * 60 * 1000); // 1시간마다
 
 export default async function handler(req, res) {
   // CORS 설정
@@ -101,6 +169,17 @@ export default async function handler(req, res) {
       success: false,
       error: 'TOO_MANY_REQUESTS'
     });
+  }
+
+  // 서버사이드 일일 한도 체크 (무료 사용자만)
+  if (!isPremium) {
+    const dailyCount = getDailyCount(clientIp, cookies.daily_usage);
+    if (dailyCount >= FREE_DAILY_LIMIT) {
+      return res.status(429).json({
+        success: false,
+        error: 'DAILY_LIMIT_REACHED'
+      });
+    }
   }
 
   try {
@@ -201,6 +280,16 @@ Only include selected platforms. Return JSON only, no explanations.`
       .trim();
 
     const results = JSON.parse(cleanedText);
+
+    // 무료 사용자: 일일 카운트 증가 + 서명된 HttpOnly 쿠키 발급
+    if (!isPremium) {
+      const newCount = incrementDailyCount(clientIp);
+      const usageToken = signUsageToken(getTodayUTC(), newCount);
+      res.setHeader(
+        'Set-Cookie',
+        `daily_usage=${usageToken}; Path=/; Max-Age=86400; SameSite=Strict; Secure; HttpOnly`
+      );
+    }
 
     // 성공 응답
     res.status(200).json({
