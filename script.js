@@ -130,16 +130,22 @@ function updateHashtagDisplay() {
     hashtagValue.textContent = `${hashtagSlider.value}${unit}`;
 }
 
-// 로딩 메시지 랜덤 변경
+// 로딩 메시지 랜덤 변경 (fade transition)
 function startLoadingAnimation() {
     let messageIndex = 0;
     const messages = getLoadingMessages();
-    
+
     const interval = setInterval(() => {
-        messageIndex = (messageIndex + 1) % messages.length;
-        loadingMessage.textContent = messages[messageIndex];
-    }, 2000);
-    
+        // fade out
+        loadingMessage.style.opacity = '0';
+        setTimeout(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            loadingMessage.textContent = messages[messageIndex];
+            // fade in
+            loadingMessage.style.opacity = '1';
+        }, 400);
+    }, 2200);
+
     return interval;
 }
 
@@ -394,6 +400,38 @@ document.getElementById('acceptCookies')?.addEventListener('click', () => {
 
 // 페이지 로드 시 쿠키 배너 표시
 setTimeout(showCookieBanner, 1000); // 1초 후 표시
+
+// 스크롤 리빌 애니메이션 (IntersectionObserver)
+(function initScrollReveal() {
+    const items = document.querySelectorAll('.scroll-reveal');
+    if (!items.length || !('IntersectionObserver' in window)) {
+        // 브라우저 미지원 시 즉시 표시
+        items.forEach(el => el.classList.add('revealed'));
+        return;
+    }
+
+    // 같은 부모 그리드 내 형제끼리 순서에 따라 delay 부여
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            const el = entry.target;
+            const siblings = Array.from(
+                el.parentElement.querySelectorAll('.scroll-reveal:not(.revealed)')
+            );
+            const idx = siblings.indexOf(el);
+            const delay = Math.max(0, idx) * 80; // 80ms 간격
+
+            setTimeout(() => {
+                el.classList.add('revealed');
+            }, delay);
+
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(el => observer.observe(el));
+})();
 
 // FAQ 키보드 접근성
 document.querySelectorAll('.faq-item').forEach(item => {

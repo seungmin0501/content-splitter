@@ -81,6 +81,18 @@ body {
     color: var(--text-dark);
 }
 
+/* Subtle grain texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -598,28 +610,58 @@ main {
 
 .loading-section {
     text-align: center;
-    padding: 60px 20px;
+    padding: 64px 20px;
 }
 
+/* 3-dot pulse loader */
 .spinner {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 22px;
-    border: 3px solid var(--border-light);
-    border-top: 3px solid var(--accent);
-    border-radius: 50%;
-    animation: spin 0.85s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 28px;
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    animation: none;
+    background: transparent;
 }
 
-@keyframes spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.spinner::before,
+.spinner::after,
+.spinner span {
+    content: '';
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: dotPulse 1.4s ease-in-out infinite both;
+    flex-shrink: 0;
+}
+
+.spinner::before { animation-delay: -0.32s; }
+.spinner span    { animation-delay: -0.16s; }
+.spinner::after  { animation-delay: 0s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% {
+        transform: scale(0.55);
+        opacity: 0.35;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 #loadingMessage {
     color: var(--text-muted-dark);
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     font-weight: 500;
+    transition: opacity 0.4s ease;
+    letter-spacing: 0.01em;
 }
 
 /* ============================================
@@ -1482,6 +1524,48 @@ footer {
 .card-enter {
     animation: cardEnter 0.38s ease both;
 }
+
+/* ============================================
+   SCROLL REVEAL  (IntersectionObserver)
+   ============================================ */
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.52s ease, transform 0.52s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger siblings inside grids automatically */
+.steps-grid     .scroll-reveal:nth-child(1),
+.benefits-grid  .scroll-reveal:nth-child(1),
+.use-cases-grid .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
+
+.steps-grid     .scroll-reveal:nth-child(2),
+.benefits-grid  .scroll-reveal:nth-child(2),
+.use-cases-grid .scroll-reveal:nth-child(2) { transition-delay: 80ms; }
+
+.steps-grid     .scroll-reveal:nth-child(3),
+.benefits-grid  .scroll-reveal:nth-child(3),
+.use-cases-grid .scroll-reveal:nth-child(3) { transition-delay: 160ms; }
+
+.benefits-grid  .scroll-reveal:nth-child(4),
+.use-cases-grid .scroll-reveal:nth-child(4) { transition-delay: 240ms; }
+
+.benefits-grid  .scroll-reveal:nth-child(5) { transition-delay: 320ms; }
+.benefits-grid  .scroll-reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* FAQ items stagger */
+.faq-section .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
+.faq-section .scroll-reveal:nth-child(2) { transition-delay: 60ms; }
+.faq-section .scroll-reveal:nth-child(3) { transition-delay: 120ms; }
+.faq-section .scroll-reveal:nth-child(4) { transition-delay: 180ms; }
+.faq-section .scroll-reveal:nth-child(5) { transition-delay: 240ms; }
+.faq-section .scroll-reveal:nth-child(6) { transition-delay: 300ms; }
 
 /* ============================================
    BUTTON RIPPLE
