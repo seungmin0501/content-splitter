@@ -37,6 +37,7 @@ export default async function handler(req, res) {
             attributes: {
               checkout_data: {
                 email: email || undefined,
+                redirect_url: 'https://content-splitter.vercel.app/api/activate',
                 custom: {
                   user_id: req.body.userId || 'anonymous'
                 }

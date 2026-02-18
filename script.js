@@ -35,6 +35,36 @@ languageSelect.addEventListener('change', (e) => {
 // 페이지 로드 시 UI 업데이트
 updateUI();
 
+// 결제 완료 후 리다이렉트 처리
+(function handlePostPaymentRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('premium') === 'activated') {
+        // URL 파라미터 제거 (히스토리에 남기지 않음)
+        history.replaceState({}, '', window.location.pathname);
+        updateUsageDisplay();
+        const messages = {
+            ko: '🎉 프리미엄 활성화 완료! 무제한으로 이용하세요.',
+            en: '🎉 Premium activated! Enjoy unlimited conversions.',
+            ja: '🎉 プレミアム有効化完了！無制限でご利用ください。',
+            es: '🎉 ¡Premium activado! Disfruta conversiones ilimitadas.',
+            zh: '🎉 高级版已激活！享受无限转换。',
+        };
+        alert(messages[window.currentLang] || messages.en);
+        return;
+    }
+    if (params.get('error')) {
+        history.replaceState({}, '', window.location.pathname);
+        const errMessages = {
+            ko: '⚠️ 결제 확인 중 문제가 발생했습니다. 지원팀에 문의해주세요.',
+            en: '⚠️ There was an issue verifying your payment. Please contact support.',
+            ja: '⚠️ 支払い確認中に問題が発生しました。サポートにお問い合わせください。',
+            es: '⚠️ Hubo un problema al verificar tu pago. Contacta soporte.',
+            zh: '⚠️ 验证付款时出现问题。请联系支持团队。',
+        };
+        alert(errMessages[window.currentLang] || errMessages.en);
+    }
+})();
+
 // 사용 횟수 표시 업데이트
 updateUsageDisplay();
 

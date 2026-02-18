@@ -45,17 +45,20 @@ function saveUsageData(data) {
     setCookie('usage_data', JSON.stringify(data), 1); // 1일 유효
 }
 
-// 프리미엄 상태 확인 (webhook에서 설정한 서명된 코드 검증)
+// 프리미엄 상태 확인 (서버 발급 서명 토큰의 만료 시간 검사)
+// 서명 자체는 서버(/api/convert)에서만 검증 - 클라이언트는 만료 여부만 확인
 function isPremium() {
-    const premiumCode = getCookie('premium_code');
-    if (!premiumCode || premiumCode.length < 20) return false;
-    // webhook에서 설정한 코드는 'ps_' 프리픽스로 시작
-    return premiumCode.startsWith('ps_');
-}
-
-// 프리미엄 코드 설정
-function setPremiumCode(code) {
-    setCookie('premium_code', code, 365); // 1년 유효
+    const token = getCookie('premium_code');
+    if (!token || !token.includes('.')) return false;
+    try {
+        const payload = token.split('.')[0];
+        // base64url 디코딩
+        const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+        const data = JSON.parse(json);
+        return typeof data.expiry === 'number' && Date.now() < data.expiry;
+    } catch {
+        return false;
+    }
 }
 
 // 사용 가능 여부 확인

@@ -1,17 +1,51 @@
 // Vercel Serverless Function
 import Anthropic from '@anthropic-ai/sdk';
+import crypto from 'crypto';
 
 // Anthropic 클라이언트 생성
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// 쿠키 헤더 파싱
+function parseCookies(cookieHeader = '') {
+  return Object.fromEntries(
+    cookieHeader.split(';').map(c => {
+      const [k, ...v] = c.trim().split('=');
+      return [k.trim(), v.join('=')];
+    }).filter(([k]) => k)
+  );
+}
+
+// 서버사이드 프리미엄 토큰 검증 (HMAC 서명 확인)
+function verifyPremiumToken(token) {
+  if (!token || !process.env.PREMIUM_TOKEN_SECRET) return false;
+  const parts = token.split('.');
+  if (parts.length !== 2) return false;
+  const [payload, signature] = parts;
+  try {
+    const data = JSON.parse(Buffer.from(payload, 'base64url').toString());
+    if (Date.now() > data.expiry) return false;
+    const expected = crypto
+      .createHmac('sha256', process.env.PREMIUM_TOKEN_SECRET)
+      .update(payload)
+      .digest('hex');
+    const sigBuf = Buffer.from(signature, 'hex');
+    const expBuf = Buffer.from(expected, 'hex');
+    if (sigBuf.length !== expBuf.length) return false;
+    return crypto.timingSafeEqual(sigBuf, expBuf);
+  } catch {
+    return false;
+  }
+}
+
 // IP 기반 Rate Limiting (메모리 기반 - serverless 인스턴스별)
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1분
 const RATE_LIMIT_MAX = 5; // 1분당 최대 5회
+const RATE_LIMIT_PREMIUM = 60; // 프리미엄: 1분당 60회
 
-function isRateLimited(ip) {
+function isRateLimited(ip, limit = RATE_LIMIT_MAX) {
   const now = Date.now();
   const record = rateLimitMap.get(ip);
 
@@ -21,10 +55,7 @@ function isRateLimited(ip) {
   }
 
   record.count++;
-  if (record.count > RATE_LIMIT_MAX) {
-    return true;
-  }
-  return false;
+  return record.count > limit;
 }
 
 // 오래된 레코드 정리 (메모리 누수 방지)
@@ -58,9 +89,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Rate Limiting 체크
+  // 서버사이드 프리미엄 검증
+  const cookies = parseCookies(req.headers.cookie);
+  const isPremium = verifyPremiumToken(cookies.premium_code);
+
+  // Rate Limiting 체크 (프리미엄은 더 높은 한도 적용)
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-  if (isRateLimited(clientIp)) {
+  const limit = isPremium ? RATE_LIMIT_PREMIUM : RATE_LIMIT_MAX;
+  if (isRateLimited(clientIp, limit)) {
     return res.status(429).json({
       success: false,
       error: 'TOO_MANY_REQUESTS'
