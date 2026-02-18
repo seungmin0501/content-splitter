@@ -128,6 +128,8 @@ function updateUsageDisplay() {
             message = `無料ベータ: 本日${FREE_DAILY_LIMIT - status.remaining}/${FREE_DAILY_LIMIT}回使用`;
         } else if (lang === 'es') {
             message = `Beta Gratis: ${FREE_DAILY_LIMIT - status.remaining}/${FREE_DAILY_LIMIT} usos hoy`;
+        } else if (lang === 'zh') {
+            message = `免费测试版: 今日已使用 ${FREE_DAILY_LIMIT - status.remaining}/${FREE_DAILY_LIMIT} 次`;
         }
         infoDiv.textContent = message;
     }

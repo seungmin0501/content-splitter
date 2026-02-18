@@ -65,7 +65,8 @@ function updateCharCount() {
         ko: '자',
         en: ' chars',
         es: ' caracteres',
-        ja: '文字'
+        ja: '文字',
+        zh: '字'
     };
     const unit = units[window.currentLang] || ' chars';
     charCount.textContent = count.toLocaleString() + unit;
@@ -79,7 +80,8 @@ hashtagSlider.addEventListener('input', (e) => {
         ko: '개',
         en: '',
         es: '',
-        ja: '個'
+        ja: '個',
+        zh: '个'
     };
     const unit = units[window.currentLang] || '';
     hashtagValue.textContent = `${e.target.value}${unit}`;
@@ -91,7 +93,8 @@ function updateHashtagDisplay() {
         ko: '개',
         en: '',
         es: '',
-        ja: '個'
+        ja: '個',
+        zh: '个'
     };
     const unit = units[window.currentLang] || '';
     hashtagValue.textContent = `${hashtagSlider.value}${unit}`;
@@ -142,7 +145,8 @@ convertBtn.addEventListener('click', async () => {
     }
     
     // 톤앤매너 선택 확인
-    const selectedTone = document.querySelector('input[name="tone"]:checked').value;
+    const toneInput = document.querySelector('input[name="tone"]:checked');
+    const selectedTone = toneInput ? toneInput.value : 'professional';
     
     // 해시태그 개수
     const hashtagCount = parseInt(hashtagSlider.value);
@@ -267,8 +271,20 @@ function displayResults(results) {
 
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-btn';
-        copyBtn.dataset.content = content;
         copyBtn.textContent = t('copyBtn');
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(content);
+                copyBtn.textContent = t('copiedBtn');
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = t('copyBtn');
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                alert(t('alerts.copyFailed'));
+            }
+        });
 
         card.appendChild(h3);
         card.appendChild(charInfo);
@@ -276,26 +292,6 @@ function displayResults(results) {
         card.appendChild(copyBtn);
         resultsContainer.appendChild(card);
     }
-    
-    // 복사 버튼 이벤트
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-            const content = e.target.dataset.content;
-
-            try {
-                await navigator.clipboard.writeText(content);
-                e.target.textContent = t('copiedBtn');
-                e.target.classList.add('copied');
-
-                setTimeout(() => {
-                    e.target.textContent = t('copyBtn');
-                    e.target.classList.remove('copied');
-                }, 2000);
-            } catch (err) {
-                alert(t('alerts.copyFailed'));
-            }
-        });
-    });
 }
 
 // 결과 공유 기능

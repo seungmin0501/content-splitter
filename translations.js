@@ -1,8 +1,9 @@
 const translations = {
   ko: {
     // Meta
-    metaDescription: "블로그 글을 인스타그램 캡션, 트위터 스레드, 링크드인 포스트, 페이스북 게시글로 30초 만에 자동 변환하는 무료 AI 도구. 해시태그 자동 생성, 톤앤매너 선택, 4개 언어 지원.",
+    metaDescription: "블로그 글을 인스타그램 캡션, 트위터 스레드, 링크드인 포스트, 페이스북 게시글로 30초 만에 자동 변환하는 무료 AI 도구. 해시태그 자동 생성, 톤앤매너 선택, 5개 언어 지원.",
     pageTitle: "ContentSplitter - AI SNS 포스트 자동 변환 | 블로그를 인스타그램, 트위터, 링크드인으로 무료 변환",
+    keywords: "SNS 자동 변환, 블로그 SNS 변환, AI 콘텐츠 변환, 인스타그램 캡션 생성기, 트위터 스레드 변환기, 링크드인 포스트 생성기, 콘텐츠 재활용 도구, 소셜미디어 포스트 생성기, 블로그 포스트 변환, AI SNS 도구",
 
     // 헤더
     title: "✨ ContentSplitter",
@@ -83,8 +84,9 @@ const translations = {
   },
   
   en: {
-    metaDescription: "Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 4 languages.",
+    metaDescription: "Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 5 languages.",
     pageTitle: "ContentSplitter - AI Social Media Post Generator | Blog to Instagram, Twitter, LinkedIn Free Tool",
+    keywords: "social media post generator, blog to social media, content repurposing tool, AI content converter, instagram caption generator, twitter thread generator, linkedin post generator, blog post converter, content automation, free AI tool",
 
     title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
@@ -154,8 +156,9 @@ const translations = {
   },
   
   ja: {
-    metaDescription: "ブログ記事をInstagramキャプション、Twitterスレッド、LinkedIn投稿、Facebook更新に30秒で自動変換する無料AIツール。ハッシュタグ自動生成、トーン選択、4言語対応。",
+    metaDescription: "ブログ記事をInstagramキャプション、Twitterスレッド、LinkedIn投稿、Facebook更新に30秒で自動変換する無料AIツール。ハッシュタグ自動生成、トーン選択、5言語対応。",
     pageTitle: "ContentSplitter - AI SNS投稿ジェネレーター | ブログをInstagram、Twitter、LinkedInに無料変換",
+    keywords: "SNS投稿自動変換, ブログSNS変換, AIコンテンツ変換, インスタグラムキャプション生成器, ツイッタースレッド変換器, リンクトイン投稿生成器, コンテンツ再利用ツール, ソーシャルメディア投稿生成器, ブログ変換ツール, AIソーシャルメディアツール",
 
     title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
@@ -225,8 +228,9 @@ const translations = {
   },
   
   es: {
-    metaDescription: "Herramienta gratuita de IA para convertir artículos de blog en publicaciones de Instagram, hilos de Twitter, posts de LinkedIn y actualizaciones de Facebook en 30 segundos. Generación automática de hashtags, múltiples tonos y soporte en 4 idiomas.",
+    metaDescription: "Herramienta gratuita de IA para convertir artículos de blog en publicaciones de Instagram, hilos de Twitter, posts de LinkedIn y actualizaciones de Facebook en 30 segundos. Generación automática de hashtags, múltiples tonos y soporte en 5 idiomas.",
     pageTitle: "ContentSplitter - Generador de Publicaciones con IA | Blog a Instagram, Twitter, LinkedIn Gratis",
+    keywords: "generador publicaciones redes sociales, convertir blog redes sociales, herramienta reutilización contenido, convertidor contenido IA, generador captions instagram, convertidor hilos twitter, generador posts linkedin, automatización contenido, herramienta social media IA, herramienta gratis IA",
 
     title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
@@ -293,31 +297,107 @@ const translations = {
     
     cookieMessage: "🍪 Este sitio utiliza cookies para rastrear el uso y mejorar la experiencia del usuario. No recopilamos información de identificación personal.",
     cookieAccept: "Aceptar"
+  },
+
+  zh: {
+    metaDescription: "免费AI工具，30秒内将博客文章自动转换为Instagram说明、Twitter话题、LinkedIn帖子和Facebook动态。自动生成话题标签，多种语气，支持5种语言。",
+    pageTitle: "ContentSplitter - AI社交媒体帖子生成器 | 博客免费转换为Instagram、Twitter、LinkedIn",
+    keywords: "社交媒体帖子生成器, 博客转社交媒体, 内容再利用工具, AI内容转换器, Instagram说明生成器, Twitter话题线生成器, LinkedIn帖子生成器, 博客转换工具, AI社交媒体工具, 免费AI工具",
+
+    title: "✨ ContentSplitter",
+    subtitle: "将长文自动转换为多个社交媒体帖子",
+
+    inputTitle: "输入原始内容",
+    exampleBtn: "💡 查看示例",
+    placeholder: "在此粘贴您的博客文章、YouTube脚本或任何长文内容...",
+    charCount: "字",
+
+    platformTitle: "选择转换平台:",
+    platforms: {
+      instagram: "📸 Instagram",
+      twitter: "🐦 Twitter",
+      linkedin: "💼 LinkedIn",
+      facebook: "👍 Facebook"
+    },
+
+    toneTitle: "选择语气:",
+    tones: {
+      professional: "🎩 专业",
+      friendly: "😊 友好",
+      casual: "✌️ 休闲",
+      enthusiastic: "🔥 热情"
+    },
+
+    hashtagTitle: "话题标签数量 (Instagram):",
+    hashtagCount: "个",
+
+    convertBtn: "🚀 转换为社交媒体帖子",
+    shareBtn: "🔗 分享结果",
+    copyBtn: "📋 复制",
+    copiedBtn: "✅ 已复制！",
+    upgradeBtn: "⭐ 升级到高级版",
+
+    loadingMessages: [
+      "AI正在分析您的内容...",
+      "正在创建完美的社交媒体帖子...",
+      "正在调整语气和风格...",
+      "正在优化话题标签...",
+      "正在为各平台转换内容...",
+      "正在进行最后的润色..."
+    ],
+
+    resultsTitle: "✅ 转换完成！",
+    charInfo: "字",
+    overLimit: "(⚠️ 超出限制！)",
+
+    alerts: {
+      noContent: "请输入您的内容！",
+      tooShort: "请输入至少50个字符以获得更好的结果！",
+      noPlatform: "请至少选择一个平台！",
+      error: "转换过程中发生错误。请重试。\n\n错误: ",
+      shareSuccess: "链接已复制！快分享给朋友们吧！🎉",
+      limitReached: "您今天的免费转换次数已用完。\n是否升级到高级版？",
+      usageCount: "免费转换: 今日已用 {current}/{total} 次",
+      checkoutError: "创建支付页面时发生错误。请重试。",
+      copyFailed: "复制失败。请手动复制。",
+      conversionFailed: "转换失败",
+      tooManyRequests: "请求过多。请稍后重试。"
+    },
+
+    footer: "由 Seungmin 用 ❤️ 制作",
+    version: "v2.0 - 全球测试版",
+
+    cookieMessage: "🍪 本网站使用Cookie来追踪使用情况并改善用户体验。我们不收集个人身份信息。",
+    cookieAccept: "同意"
   }
 };
 
 // 브라우저 언어 감지 함수
 function detectBrowserLanguage() {
-  // 이미 저장된 언어가 있으면 그것을 사용
+  const supportedLanguages = ['ko', 'en', 'ja', 'es', 'zh'];
+
+  // 1순위: URL 파라미터 (?lang=xx)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && supportedLanguages.includes(urlLang)) {
+    localStorage.setItem('language', urlLang);
+    return urlLang;
+  }
+
+  // 2순위: localStorage에 저장된 언어
   const savedLang = localStorage.getItem('language');
-  if (savedLang) {
+  if (savedLang && supportedLanguages.includes(savedLang)) {
     return savedLang;
   }
-  
-  // 브라우저 언어 가져오기
+
+  // 3순위: 브라우저 언어
   const browserLang = navigator.language || navigator.userLanguage;
-  
-  // 언어 코드 추출 (예: 'ko-KR' -> 'ko', 'en-US' -> 'en')
   const langCode = browserLang.split('-')[0].toLowerCase();
-  
-  // 지원하는 언어인지 확인
-  const supportedLanguages = ['ko', 'en', 'ja', 'es'];
-  
   if (supportedLanguages.includes(langCode)) {
     return langCode;
   }
-  
-  // 지원하지 않는 언어면 영어로 기본 설정
+
+  // 기본값: 영어
   return 'en';
 }
 
@@ -363,6 +443,8 @@ function updateUI() {
   document.getElementById('convertBtn').textContent = t('convertBtn');
   document.getElementById('shareBtn').textContent = t('shareBtn');
   document.getElementById('versionInfo').textContent = t('version');
+  const footerText = document.getElementById('footerText');
+  if (footerText) footerText.textContent = t('footer');
   
   // 쿠키 배너 텍스트
   const cookieText = document.getElementById('cookieText');
@@ -392,6 +474,8 @@ function updateUI() {
   document.title = t('pageTitle');
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute('content', t('metaDescription'));
+  const metaKeywords = document.querySelector('meta[name="keywords"]');
+  if (metaKeywords) metaKeywords.setAttribute('content', t('keywords'));
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) ogTitle.setAttribute('content', t('pageTitle'));
   const ogDesc = document.querySelector('meta[property="og:description"]');
@@ -401,8 +485,47 @@ function updateUI() {
   const twDesc = document.querySelector('meta[name="twitter:description"]');
   if (twDesc) twDesc.setAttribute('content', t('metaDescription'));
 
+  // canonical URL 업데이트 (언어별 URL 반영)
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    const base = 'https://content-splitter.vercel.app';
+    canonical.setAttribute('href', currentLang === 'en' ? base : `${base}/?lang=${currentLang}`);
+  }
+
   // html lang 속성 업데이트
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = currentLang === 'zh' ? 'zh-Hans' : currentLang;
+
+  // Schema.org FAQ 업데이트
+  updateSchemaFAQ();
+}
+
+// Schema.org FAQ 구조화 데이터 동적 업데이트
+function updateSchemaFAQ() {
+  if (typeof seoContent === 'undefined') return;
+  const faqItems = seoContent[currentLang]?.faq?.items;
+  if (!faqItems) return;
+
+  let schemaEl = document.getElementById('dynamic-faq-schema');
+  if (!schemaEl) {
+    schemaEl = document.createElement('script');
+    schemaEl.type = 'application/ld+json';
+    schemaEl.id = 'dynamic-faq-schema';
+    document.head.appendChild(schemaEl);
+  }
+
+  schemaEl.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'inLanguage': currentLang === 'zh' ? 'zh-Hans' : currentLang,
+    'mainEntity': faqItems.map(item => ({
+      '@type': 'Question',
+      'name': item.q,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.a
+      }
+    }))
+  });
 }
 
 // 예시 텍스트 (언어별)
@@ -445,7 +568,17 @@ Usando un editor de código con IA llamado Cursor, gané confianza por primera v
 
 Lo más importante no es la perfección, sino comenzar. Lanza con un 70% de completitud, recopila comentarios de los usuarios y mejora—ese es el verdadero crecimiento.
 
-No esperes. ¡Comienza hoy!`
+No esperes. ¡Comienza hoy!`,
+
+  zh: `今天，我开始了编程。
+
+就在一个月前，我还觉得编程跟我完全没有关系。但随着AI工具的发展，即使是完全没有编程经验的人，现在也能创建自己的网站或应用程序了。
+
+使用一个叫Cursor的AI代码编辑器，我第一次有了"我真的能做出些什么"的自信。我的目标是在一天之内完成我的第一个项目。
+
+最重要的不是完美，而是开始。以70%的完成度先上线，收集用户反馈，再逐步改进——这才是真正的成长。
+
+别再等了。今天就开始吧！`
 };
 
 function getExampleText() {

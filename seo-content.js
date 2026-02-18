@@ -15,7 +15,7 @@ const seoContent = {
           { icon: "⚡", title: "시간 절약", desc: "30초 만에 블로그 글 하나를 10개 이상의 SNS 포스트로 변환" },
           { icon: "🎯", title: "플랫폼 최적화", desc: "Twitter, LinkedIn, Instagram에 맞춤화된 각 포스트" },
           { icon: "🤖", title: "AI 기반 품질", desc: "목소리를 유지하는 자연스러운 포스트" },
-          { icon: "🌍", title: "다국어 지원", desc: "영어, 한국어, 스페인어, 일본어 지원" },
+          { icon: "🌍", title: "다국어 지원", desc: "영어, 한국어, 스페인어, 일본어, 중국어 지원" },
           { icon: "💰", title: "무료 시작", desc: "신용카드 없이 하루 3회 무료 변환" },
           { icon: "🎨", title: "다양한 톤", desc: "전문적, 캐주얼, 스토리텔링 스타일" }
         ]
@@ -74,7 +74,7 @@ const seoContent = {
           { icon: "⚡", title: "Save Time", desc: "Convert one blog post into 10+ social media posts in 30 seconds" },
           { icon: "🎯", title: "Platform Optimization", desc: "Each post tailored for Twitter, LinkedIn, or Instagram" },
           { icon: "🤖", title: "AI-Powered Quality", desc: "Natural-sounding posts that maintain your voice" },
-          { icon: "🌍", title: "Multi-Language", desc: "English, Korean, Spanish, and Japanese support" },
+          { icon: "🌍", title: "Multi-Language", desc: "English, Korean, Spanish, Japanese, and Chinese support" },
           { icon: "💰", title: "Free to Start", desc: "3 free conversions daily, no credit card required" },
           { icon: "🎨", title: "Multiple Tones", desc: "Professional, Casual, or Storytelling styles" }
         ]
@@ -133,7 +133,7 @@ const seoContent = {
           { icon: "⚡", title: "時間を節約", desc: "30秒でブログ記事を10以上のSNS投稿に変換" },
           { icon: "🎯", title: "プラットフォーム最適化", desc: "Twitter、LinkedIn、Instagram向けに最適化" },
           { icon: "🤖", title: "AI駆動の品質", desc: "あなたの声を保つ自然な投稿" },
-          { icon: "🌍", title: "多言語対応", desc: "英語、韓国語、スペイン語、日本語対応" },
+          { icon: "🌍", title: "多言語対応", desc: "英語、韓国語、スペイン語、日本語、中国語対応" },
           { icon: "💰", title: "無料で開始", desc: "クレジットカード不要で1日3回無料変換" },
           { icon: "🎨", title: "複数のトーン", desc: "プロフェッショナル、カジュアル、ストーリーテリングスタイル" }
         ]
@@ -192,7 +192,7 @@ const seoContent = {
           { icon: "⚡", title: "Ahorra Tiempo", desc: "Convierte una publicación de blog en más de 10 publicaciones de redes sociales en 30 segundos" },
           { icon: "🎯", title: "Optimización de Plataforma", desc: "Cada publicación adaptada para Twitter, LinkedIn o Instagram" },
           { icon: "🤖", title: "Calidad Impulsada por IA", desc: "Publicaciones que suenan naturales y mantienen tu voz" },
-          { icon: "🌍", title: "Multi-Idioma", desc: "Soporte para inglés, coreano, español y japonés" },
+          { icon: "🌍", title: "Multi-Idioma", desc: "Soporte para inglés, coreano, español, japonés y chino" },
           { icon: "💰", title: "Comienza Gratis", desc: "3 conversiones gratuitas diarias, sin tarjeta de crédito requerida" },
           { icon: "🎨", title: "Múltiples Tonos", desc: "Estilos profesional, casual o narrativo" }
         ]
@@ -232,6 +232,65 @@ const seoContent = {
           {
             q: "¿Puedo editar las publicaciones de redes sociales generadas?",
             a: "¡Sí! Después de la conversión, puedes revisar y editar todas las publicaciones generadas antes de copiarlas."
+          }
+        ]
+      }
+    },
+    zh: {
+      howItWorks: {
+        title: "使用方法",
+        steps: [
+          { icon: "📋", title: "粘贴内容", desc: "复制您的博客文章、文章或任何长文内容" },
+          { icon: "🎯", title: "选择设置", desc: "选择符合您品牌的平台和语气" },
+          { icon: "✨", title: "获取结果", desc: "几秒内获得优化的帖子。复制并发布！" }
+        ]
+      },
+      benefits: {
+        title: "为什么使用 ContentSplitter？",
+        items: [
+          { icon: "⚡", title: "节省时间", desc: "30秒内将一篇博客文章转换为10多个社交媒体帖子" },
+          { icon: "🎯", title: "平台优化", desc: "每篇帖子针对Twitter、LinkedIn或Instagram量身定制" },
+          { icon: "🤖", title: "AI驱动品质", desc: "保持您声音的自然帖子" },
+          { icon: "🌍", title: "多语言支持", desc: "支持英语、韩语、西班牙语、日语和中文" },
+          { icon: "💰", title: "免费开始", desc: "每天3次免费转换，无需信用卡" },
+          { icon: "🎨", title: "多种语气", desc: "专业、休闲或叙事风格" }
+        ]
+      },
+      useCases: {
+        title: "适用人群",
+        items: [
+          { icon: "📝", title: "内容创作者", desc: "将博客文章转换为Twitter话题、LinkedIn帖子和Instagram说明" },
+          { icon: "📊", title: "数字营销人员", desc: "在保持一致信息的同时跨平台重新利用内容" },
+          { icon: "🚀", title: "初创公司与SaaS", desc: "将公告和更新转换为平台优化的帖子" },
+          { icon: "✍️", title: "自由撰稿人", desc: "为客户提供内容再利用作为附加服务" }
+        ]
+      },
+      faq: {
+        title: "常见问题",
+        items: [
+          {
+            q: "如何将博客文章转换为社交媒体帖子？",
+            a: "只需将博客文章粘贴到ContentSplitter中，选择目标平台（Twitter、LinkedIn、Instagram），然后点击转换。我们的AI将在30秒内自动为每个平台优化您的内容。"
+          },
+          {
+            q: "可以将博客文章转换为Twitter话题吗？",
+            a: "可以！ContentSplitter将长篇博客文章转换为引人入胜的Twitter话题，自动将内容拆分为推文大小的片段（280字符以内），同时保持流畅性和可读性。"
+          },
+          {
+            q: "ContentSplitter免费吗？",
+            a: "是的！我们提供每天3次免费转换，无需信用卡。高级用户（$9.99/月）可获得无限转换以及多种语气、多语言支持等高级功能。"
+          },
+          {
+            q: "ContentSplitter支持哪些平台？",
+            a: "ContentSplitter为Twitter/X话题、LinkedIn帖子和Instagram说明优化内容。每个平台都有自定义格式、合适的语气和平台特定的最佳实践。"
+          },
+          {
+            q: "AI内容再利用是如何工作的？",
+            a: "ContentSplitter使用高级AI（Claude）来理解您内容的关键信息，并为每个社交媒体平台重新撰写。"
+          },
+          {
+            q: "可以编辑生成的社交媒体帖子吗？",
+            a: "可以！转换后，您可以在复制之前查看和编辑所有生成的帖子。"
           }
         ]
       }

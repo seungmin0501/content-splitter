@@ -30,10 +30,18 @@
     <link rel="stylesheet" href="style.css">
 
     <title>ContentSplitter - AI Social Media Post Generator | Blog to Instagram, Twitter, LinkedIn Free Tool</title>
-    <meta name="description" content="Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 4 languages.">
-    <meta name="keywords" content="social media post generator, blog to social media, content repurposing tool, AI content converter, instagram caption generator, twitter thread generator, linkedin post generator, SNS 자동 변환, 블로그 SNS 변환, AI 콘텐츠 변환, コンテンツ変換, generador de publicaciones">
+    <meta name="description" content="Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 5 languages.">
+    <meta name="keywords" content="social media post generator, blog to social media, content repurposing tool, AI content converter, instagram caption generator, twitter thread generator, linkedin post generator, SNS 자동 변환, 블로그 SNS 변환, AI 콘텐츠 변환, インスタグラムキャプション生成器, SNS投稿自動変換, generador publicaciones redes sociales, herramienta reutilización contenido, 社交媒体帖子生成器, 博客转社交媒体, AI内容转换器">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://content-splitter.vercel.app">
+
+    <!-- hreflang: 다국어 SEO - 검색엔진에 언어별 URL 알림 -->
+    <link rel="alternate" hreflang="ko" href="https://content-splitter.vercel.app/?lang=ko">
+    <link rel="alternate" hreflang="en" href="https://content-splitter.vercel.app/?lang=en">
+    <link rel="alternate" hreflang="ja" href="https://content-splitter.vercel.app/?lang=ja">
+    <link rel="alternate" hreflang="es" href="https://content-splitter.vercel.app/?lang=es">
+    <link rel="alternate" hreflang="zh-Hans" href="https://content-splitter.vercel.app/?lang=zh">
+    <link rel="alternate" hreflang="x-default" href="https://content-splitter.vercel.app">
 
     <meta name="google-site-verification" content="PwDIeNJxdnkempNJE7PBx5Is8ZpKzpuGwWYbKL7iWTw" />
 
@@ -97,8 +105,7 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <!-- apple-touch-icon requires PNG format; SVG not supported on iOS -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Note: apple-touch-icon requires PNG format; SVG not supported on iOS -->
 
 </head>
 <body>
@@ -115,6 +122,7 @@
                         <option value="en">🇺🇸 English</option>
                         <option value="ja">🇯🇵 日本語</option>
                         <option value="es">🇪🇸 Español</option>
+                        <option value="zh">🇨🇳 中文</option>
                     </select>
                 </div>
             </div>
@@ -312,7 +320,7 @@
       <div class="benefit-card">
         <span class="benefit-icon">🌍</span>
         <h3>Multi-Language</h3>
-        <p>English, Korean, Spanish, and Japanese support</p>
+        <p>English, Korean, Spanish, Japanese, and Chinese support</p>
       </div>
       
       <div class="benefit-card">
@@ -366,7 +374,7 @@
         </main>
 
         <footer>
-            <p>Made with ❤️ by 승민 | <span id="versionInfo">v2.0 - Full Featured</span></p>
+            <p><span id="footerText">Made with ❤️ by 승민</span> | <span id="versionInfo">v2.0 - Full Featured</span></p>
         </footer>
     </div>
 
@@ -501,6 +509,24 @@ const modalTranslations = {
     monthlyBtn: '🚀 Iniciar prueba gratis de 7 días',
     annualBtn: '🎯 Comenzar con Anual',
     note: 'Cancela cuando quieras'
+  },
+  zh: {
+    title: '⭐ ContentSplitter 高级版',
+    subtitle: '无限转换内容！',
+    monthlyTitle: '月度订阅',
+    monthlyPeriod: '/月',
+    annualTitle: '年度订阅',
+    annualPeriod: '/年',
+    bestValue: '💰 最超值',
+    savings: '每月$8.25 - 免费2个月！🎉',
+    feature1: '✓ 无限AI转换',
+    feature2: '✓ 支持4个平台',
+    feature3: '✓ 多语言支持',
+    feature4: '✓ 优先客服支持',
+    feature5: '✓ 7天免费试用',
+    monthlyBtn: '🚀 开始7天免费试用',
+    annualBtn: '🎯 选择年度订阅',
+    note: '随时可以取消'
   }
 };
 

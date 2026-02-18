@@ -24,9 +24,19 @@ export default async function handler(req, res) {
     const hmac = crypto.createHmac('sha256', secret);
     const digest = hmac.update(JSON.stringify(req.body)).digest('hex');
 
-    if (digest !== signature) {
+    if (!crypto.timingSafeEqual(Buffer.from(digest, 'hex'), Buffer.from(signature, 'hex'))) {
       console.error('Invalid webhook signature');
       return res.status(401).json({ error: '유효하지 않은 요청입니다.' });
+    }
+
+    // Replay attack 방지: 5분 이내 요청만 허용
+    const eventCreatedAt = req.body?.meta?.custom_data?.created_at || req.body?.data?.attributes?.created_at;
+    if (eventCreatedAt) {
+      const age = Date.now() - new Date(eventCreatedAt).getTime();
+      if (age > 5 * 60 * 1000) {
+        console.error('Webhook replay attack detected, event too old:', age);
+        return res.status(401).json({ error: '만료된 요청입니다.' });
+      }
     }
 
     const event = req.body;

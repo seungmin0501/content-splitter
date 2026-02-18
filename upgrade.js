@@ -18,7 +18,8 @@
       // 로딩 표시
       if (button) {
         originalText = button.textContent;
-        button.textContent = 'Loading...';
+        const loadingTexts = { ko: '처리 중...', en: 'Loading...', ja: '処理中...', es: 'Cargando...', zh: '加载中...' };
+        button.textContent = loadingTexts[window.currentLang] || 'Loading...';
         button.disabled = true;
       }
 
@@ -60,7 +61,10 @@
     let userId = getCookie('user_id');
     
     if (!userId) {
-      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      const uuid = (typeof crypto !== 'undefined' && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+      userId = 'user_' + uuid;
       setCookie('user_id', userId, 365);
     }
     
