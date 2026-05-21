@@ -312,14 +312,14 @@ const seoContent = {
     function createCard(className, iconClass, item) {
       const card = document.createElement('div');
       card.className = className;
-      const icon = document.createElement('span');
-      icon.className = iconClass;
-      icon.textContent = item.icon;
+      const badge = document.createElement('div');
+      badge.className = 'icon-badge';
+      badge.textContent = item.icon;
       const h3 = document.createElement('h3');
       h3.textContent = item.title;
       const p = document.createElement('p');
       p.textContent = item.desc;
-      card.appendChild(icon);
+      card.appendChild(badge);
       card.appendChild(h3);
       card.appendChild(p);
       return card;

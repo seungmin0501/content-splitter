@@ -8,6 +8,13 @@ const translations = {
     // 헤더
     title: "✨ ContentSplitter",
     subtitle: "긴 글 하나를 여러 SNS 포스트로 자동 변환",
+
+    // 히어로
+    heroHeadline: "글 하나로, <em>4개 플랫폼.</em>",
+    heroDesc: "블로그 글이나 긴 글을 붙여넣으면 AI가 각 플랫폼에 최적화된 포스트로 30초 만에 변환해드립니다.",
+    heroStat1: "⚡ 30초 이내",
+    heroStat2: "🎯 4개 플랫폼",
+    heroStat3: "🆓 무료 시작",
     
     // 입력 섹션
     inputTitle: "원본 콘텐츠 입력",
@@ -90,7 +97,14 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
-    
+
+    // Hero
+    heroHeadline: "Write once. <em>Post everywhere.</em>",
+    heroDesc: "Paste any article and our AI converts it into platform-optimized posts for Instagram, Twitter, LinkedIn, and Facebook in seconds.",
+    heroStat1: "⚡ Under 30s",
+    heroStat2: "🎯 4 Platforms",
+    heroStat3: "🆓 Free to Start",
+
     inputTitle: "Enter Your Content",
     exampleBtn: "💡 See Example",
     placeholder: "Paste your blog post, YouTube script, or any long-form content here...",
@@ -162,7 +176,14 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
-    
+
+    // Hero
+    heroHeadline: "一度書いて、<em>4つに投稿。</em>",
+    heroDesc: "記事を貼り付けるだけで、AIが各SNSプラットフォームに最適化した投稿を30秒で生成します。",
+    heroStat1: "⚡ 30秒以内",
+    heroStat2: "🎯 4プラットフォーム",
+    heroStat3: "🆓 無料で開始",
+
     inputTitle: "コンテンツを入力",
     exampleBtn: "💡 例を見る",
     placeholder: "ブログ投稿、YouTubeスクリプトなど、長文コンテンツをここに貼り付けてください...",
@@ -234,7 +255,14 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
-    
+
+    // Hero
+    heroHeadline: "Escribe una vez. <em>Publica en todas partes.</em>",
+    heroDesc: "Pega cualquier artículo y la IA lo convierte en publicaciones optimizadas para Instagram, Twitter, LinkedIn y Facebook en segundos.",
+    heroStat1: "⚡ Menos de 30s",
+    heroStat2: "🎯 4 Plataformas",
+    heroStat3: "🆓 Gratis para empezar",
+
     inputTitle: "Ingresa tu Contenido",
     exampleBtn: "💡 Ver Ejemplo",
     placeholder: "Pega tu artículo de blog, guión de YouTube o cualquier contenido largo aquí...",
@@ -306,6 +334,13 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "将长文自动转换为多个社交媒体帖子",
+
+    // Hero
+    heroHeadline: "写一次，<em>发布到所有平台。</em>",
+    heroDesc: "粘贴任意文章，AI将在30秒内为Instagram、Twitter、LinkedIn和Facebook生成专属帖子。",
+    heroStat1: "⚡ 30秒内完成",
+    heroStat2: "🎯 4个平台",
+    heroStat3: "🆓 免费开始",
 
     inputTitle: "输入原始内容",
     exampleBtn: "💡 查看示例",
@@ -432,6 +467,18 @@ function updateUI() {
   // 텍스트 업데이트
   document.querySelector('header h1').textContent = t('title');
   document.querySelector('header p').textContent = t('subtitle');
+
+  // 히어로 섹션
+  const heroHeadline = document.getElementById('heroHeadline');
+  if (heroHeadline) heroHeadline.innerHTML = t('heroHeadline');
+  const heroDesc = document.getElementById('heroDesc');
+  if (heroDesc) heroDesc.textContent = t('heroDesc');
+  const heroStat1 = document.getElementById('heroStat1');
+  if (heroStat1) heroStat1.textContent = t('heroStat1');
+  const heroStat2 = document.getElementById('heroStat2');
+  if (heroStat2) heroStat2.textContent = t('heroStat2');
+  const heroStat3 = document.getElementById('heroStat3');
+  if (heroStat3) heroStat3.textContent = t('heroStat3');
   document.querySelector('.input-section h2').textContent = t('inputTitle');
   document.getElementById('exampleBtn').textContent = t('exampleBtn');
   document.getElementById('contentInput').placeholder = t('placeholder');

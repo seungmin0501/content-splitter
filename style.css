@@ -93,7 +93,7 @@ body::before {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -149,8 +149,6 @@ header::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
     position: relative;
     z-index: 1;
 }
@@ -277,6 +275,65 @@ header p {
     color: var(--text-light-muted);
     font-weight: 400;
     letter-spacing: 0.01em;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero-section {
+    text-align: center;
+    padding: 52px 24px 44px;
+    animation: fadeSlideUp 0.5s 0.08s ease both;
+}
+
+.hero-headline {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    color: var(--text-dark);
+    line-height: 1.12;
+    margin-bottom: 16px;
+}
+
+.hero-headline em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-desc {
+    font-size: 1.08rem;
+    color: var(--text-muted-dark);
+    max-width: 580px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+    word-break: keep-all;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: var(--card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 100px;
+    box-shadow: var(--shadow-card);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    white-space: nowrap;
 }
 
 /* ============================================
@@ -1278,6 +1335,21 @@ footer {
     color: var(--text-dark);
 }
 
+/* Icon badge */
+.icon-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ede9ff 0%, #ddd6fe 100%);
+    border: 1.5px solid rgba(79, 70, 229, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin: 0 auto 20px;
+    flex-shrink: 0;
+}
+
 /* Step cards */
 .steps-grid {
     display: grid;
@@ -1610,6 +1682,29 @@ footer {
 
     .cookie-accept {
         width: 100%;
+    }
+
+    .hero-section {
+        padding: 36px 16px 28px;
+    }
+
+    .hero-headline {
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-desc {
+        font-size: 0.97rem;
+        margin-bottom: 24px;
+    }
+
+    .hero-stats {
+        gap: 8px;
+    }
+
+    .hero-stat {
+        font-size: 0.82rem;
+        padding: 8px 14px;
     }
 
     .seo-section {
