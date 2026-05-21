@@ -63,8 +63,13 @@ export default async function handler(req, res) {
   
       if (!response.ok) {
         const error = await response.json();
-        console.error('LemonSqueezy Error:', error);
-        throw new Error('Failed to create checkout');
+        console.error('LemonSqueezy Error:', JSON.stringify(error));
+        return res.status(500).json({
+          success: false,
+          error: 'LemonSqueezy API error',
+          details: error,
+          status: response.status
+        });
       }
   
       const data = await response.json();
