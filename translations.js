@@ -9,6 +9,10 @@ const translations = {
     title: "✨ ContentSplitter",
     subtitle: "긴 글 하나를 여러 SNS 포스트로 자동 변환",
 
+    // 인증
+    loginBtn: "Google로 로그인",
+    logoutBtn: "로그아웃",
+
     // 히어로
     heroHeadline: "글 하나로, <em>4개 플랫폼.</em>",
     heroDesc: "블로그 글을 붙여넣으면 AI가 30초 만에 각 플랫폼에 최적화된 포스트로 변환해드립니다.",
@@ -98,6 +102,10 @@ const translations = {
     title: "✨ ContentSplitter",
     subtitle: "Transform long content into social media posts automatically",
 
+    // Auth
+    loginBtn: "Sign in with Google",
+    logoutBtn: "Sign out",
+
     // Hero
     heroHeadline: "Write once. <em>Post everywhere.</em>",
     heroDesc: "Paste any article and our AI converts it into platform-optimized posts for Instagram, Twitter, LinkedIn, and Facebook in seconds.",
@@ -176,6 +184,10 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "長文を自動的にSNS投稿に変換",
+
+    // Auth
+    loginBtn: "Googleでログイン",
+    logoutBtn: "ログアウト",
 
     // Hero
     heroHeadline: "一度書いて、<em>4つに投稿。</em>",
@@ -256,6 +268,10 @@ const translations = {
     title: "✨ ContentSplitter",
     subtitle: "Transforma contenido largo en publicaciones de redes sociales automáticamente",
 
+    // Auth
+    loginBtn: "Iniciar con Google",
+    logoutBtn: "Cerrar sesión",
+
     // Hero
     heroHeadline: "Escribe una vez. <em>Publica en todas partes.</em>",
     heroDesc: "Pega cualquier artículo y la IA lo convierte en publicaciones optimizadas para Instagram, Twitter, LinkedIn y Facebook en segundos.",
@@ -334,6 +350,10 @@ const translations = {
 
     title: "✨ ContentSplitter",
     subtitle: "将长文自动转换为多个社交媒体帖子",
+
+    // Auth
+    loginBtn: "用Google登录",
+    logoutBtn: "退出登录",
 
     // Hero
     heroHeadline: "写一次，<em>发布到所有平台。</em>",
@@ -467,6 +487,12 @@ function updateUI() {
   // 텍스트 업데이트
   document.querySelector('header h1').textContent = t('title');
   document.querySelector('header p').textContent = t('subtitle');
+
+  // 인증 버튼
+  const loginSpan = document.querySelector('#loginBtn span');
+  if (loginSpan) loginSpan.textContent = t('loginBtn');
+  const logoutBtn = document.querySelector('.auth-logout-btn');
+  if (logoutBtn) logoutBtn.textContent = t('logoutBtn');
 
   // 히어로 섹션
   const heroHeadline = document.getElementById('heroHeadline');
