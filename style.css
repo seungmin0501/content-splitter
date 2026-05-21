@@ -1,5 +1,5 @@
 /* ============================================
-   CONTENTERSPLITTER — Ink Studio Design System
+   CONTENTSPLITTER — Creator Studio v3
    ============================================ */
 
 * {
@@ -9,55 +9,48 @@
 }
 
 :root {
-    /*
-     * 60-30-10 Color Rule
-     * 60% — Warm cream / white  (body bg, main card)
-     * 30% — Warm sand / beige   (SEO sections, secondary areas)
-     * 10% — Terracotta orange   (accent: buttons, borders, highlights)
-     */
+    /* Backgrounds */
+    --bg:       #f5f4ff;
+    --card:     #ffffff;
+    --card-alt: #f0eeff;
 
-    /* 60% dominant */
-    --bg:           #fdf7f0;
-    --card:         #ffffff;
-    --card-alt:     #fdf2e8;
+    /* Surfaces */
+    --surface:   #eceaff;
+    --surface-2: #e3e0ff;
 
-    /* 30% secondary */
-    --surface:      #faeede;
-    --surface-2:    #f5e6d2;
+    /* Header (CSS var kept for cookie banner) */
+    --header-bg: #1e1b4b;
 
-    /* Header — single dark anchor at the top */
-    --header-bg:    #7a3018;
-
-    /* 10% accent — terracotta */
-    --accent:       #c94718;
-    --accent-light: #e06030;
-    --accent-hover: #a83610;
-    --accent-warm:  #e8903a;
+    /* Accent — electric indigo */
+    --accent:       #4f46e5;
+    --accent-light: #6366f1;
+    --accent-hover: #4338ca;
+    --accent-warm:  #818cf8;
 
     /* Text */
-    --text-dark:        #1e140a;
-    --text-muted-dark:  #8a6c52;
-    --text-light:       #f5ede0;
-    --text-light-muted: rgba(245, 237, 224, 0.6);
+    --text-dark:        #0c0a1e;
+    --text-muted-dark:  #6b687f;
+    --text-light:       #eeeeff;
+    --text-light-muted: rgba(238, 238, 255, 0.58);
 
     /* Borders */
-    --border-dark:  rgba(255, 255, 255, 0.1);
-    --border-light: #e8d8c4;
+    --border-dark:  rgba(255, 255, 255, 0.10);
+    --border-light: #dbd8f5;
 
     /* Shadows */
-    --shadow-deep:  0 24px 64px rgba(180, 120, 60, 0.12);
-    --shadow-card:  0 2px 12px rgba(0, 0, 0, 0.06);
+    --shadow-deep: 0 20px 60px rgba(79, 70, 229, 0.11), 0 0 0 1px rgba(79, 70, 229, 0.04);
+    --shadow-card: 0 2px 12px rgba(79, 70, 229, 0.07);
 
     /* Geometry */
-    --radius:    16px;
-    --radius-sm: 8px;
+    --radius:    18px;
+    --radius-sm: 10px;
 
     /* Typography */
-    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-display: 'Syne', 'DM Sans', system-ui, sans-serif;
     --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
 
-    /* Legacy compat — keeps JS-driven dynamic styles working */
-    --primary-gradient: linear-gradient(135deg, #c94718 0%, #a83610 100%);
+    /* JS compat aliases */
+    --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
     --bg-color:       var(--bg);
     --card-bg:        var(--card);
     --text-color:     var(--text-dark);
@@ -65,7 +58,7 @@
     --border-color:   var(--border-light);
     --input-bg:       var(--card);
     --result-bg:      var(--card-alt);
-    --button-hover:   rgba(201, 71, 24, 0.25);
+    --button-hover:   rgba(79, 70, 229, 0.12);
 }
 
 /* ============================================
@@ -81,16 +74,16 @@ body {
     color: var(--text-dark);
 }
 
-/* Subtle grain texture overlay */
+/* Ambient background glow */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.032;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    background-repeat: repeat;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 100% 100%, rgba(79, 70, 229, 0.05) 0%, transparent 60%);
 }
 
 .container {
@@ -101,16 +94,49 @@ body::before {
 }
 
 /* ============================================
-   HEADER  (single dark anchor — warm espresso)
+   HEADER
    ============================================ */
 
 header {
-    background: var(--header-bg);
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #3730a3 100%);
     border-radius: var(--radius);
     margin-bottom: 24px;
     padding: 32px 40px;
     color: var(--text-light);
     animation: fadeSlideDown 0.5s ease both;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dot grid pattern */
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating glow orb */
+header::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.30) 0%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: orb-float 9s ease-in-out infinite alternate;
+}
+
+@keyframes orb-float {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-16px, 12px) scale(1.12); }
 }
 
 .header-content {
@@ -119,11 +145,13 @@ header {
     align-items: center;
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .header-controls {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -142,10 +170,11 @@ header {
 
 .language-select:hover {
     background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .language-select option {
-    background: #2c1a0a;
+    background: #1e1b4b;
     color: var(--text-light);
 }
 
@@ -172,7 +201,7 @@ header {
 
 .auth-login-btn:hover {
     background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.30);
+    border-color: rgba(255, 255, 255, 0.32);
 }
 
 .auth-user-info {
@@ -186,7 +215,7 @@ header {
     height: 28px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border: 1.5px solid rgba(255, 255, 255, 0.30);
 }
 
 .auth-username {
@@ -224,18 +253,21 @@ header {
 
 header h1 {
     font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 400;
-    letter-spacing: -0.5px;
-    color: var(--text-light);
+    font-size: 2.9rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1.1;
     margin-bottom: 8px;
 }
 
 header p {
-    font-size: 1rem;
+    font-size: 0.97rem;
     color: var(--text-light-muted);
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.01em;
 }
 
@@ -245,7 +277,7 @@ header p {
 
 main {
     background: var(--card);
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 48px;
     box-shadow: var(--shadow-deep);
     animation: fadeSlideUp 0.5s 0.12s ease both;
@@ -270,9 +302,9 @@ main {
 }
 
 .usage-info.free {
-    background: #fff8e6;
-    color: #7a5c10;
-    border: 1.5px solid #f0d080;
+    background: #ede9ff;
+    color: #4338ca;
+    border: 1.5px solid #c4bfff;
 }
 
 .usage-info.premium {
@@ -295,7 +327,7 @@ main {
 
 .upgrade-mini-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* ============================================
@@ -311,9 +343,9 @@ main {
 
 .input-section h2 {
     font-family: var(--font-display);
-    font-size: 1.55rem;
-    font-weight: 400;
-    letter-spacing: -0.2px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
     color: var(--text-dark);
 }
 
@@ -334,7 +366,7 @@ main {
     background: var(--accent);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(217, 78, 22, 0.28);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.30);
 }
 
 /* ============================================
@@ -362,7 +394,7 @@ main {
 #contentInput:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(217, 78, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
 }
 
 #contentInput::placeholder {
@@ -395,9 +427,9 @@ main {
     margin-bottom: 13px;
     color: var(--text-muted-dark);
     font-weight: 600;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.08em;
 }
 
 .checkboxes {
@@ -427,7 +459,7 @@ main {
 }
 
 .checkboxes label:has(input[type="checkbox"]:checked) {
-    background: rgba(217, 78, 22, 0.08);
+    background: rgba(79, 70, 229, 0.08);
     border-color: var(--accent);
     color: var(--accent);
 }
@@ -468,9 +500,9 @@ main {
     margin-bottom: 13px;
     color: var(--text-muted-dark);
     font-weight: 600;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.08em;
 }
 
 .radio-group {
@@ -523,7 +555,7 @@ main {
 }
 
 .radio-label:has(input[type="radio"]:checked) {
-    background: rgba(217, 78, 22, 0.08);
+    background: rgba(79, 70, 229, 0.08);
     border-color: var(--accent);
     color: var(--accent);
 }
@@ -545,14 +577,14 @@ main {
     margin-bottom: 13px;
     color: var(--text-muted-dark);
     font-weight: 600;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.08em;
 }
 
 .slider {
     width: calc(100% - 56px);
-    height: 6px;
+    height: 5px;
     border-radius: 3px;
     background: var(--border-light);
     outline: none;
@@ -565,17 +597,17 @@ main {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: var(--accent);
     cursor: grab;
-    box-shadow: 0 2px 8px rgba(217, 78, 22, 0.4);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
     transition: all 0.2s;
 }
 
 .slider::-webkit-slider-thumb:hover {
-    transform: scale(1.15);
+    transform: scale(1.18);
     background: var(--accent-hover);
 }
 
@@ -585,18 +617,18 @@ main {
 }
 
 .slider::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: var(--accent);
     cursor: grab;
     border: none;
-    box-shadow: 0 2px 8px rgba(217, 78, 22, 0.4);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
     transition: all 0.2s;
 }
 
 .slider::-moz-range-thumb:hover {
-    transform: scale(1.15);
+    transform: scale(1.18);
     background: var(--accent-hover);
 }
 
@@ -607,14 +639,14 @@ main {
 
 .slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 6px;
+    height: 5px;
     background: var(--border-light);
     border-radius: 3px;
 }
 
 .slider::-moz-range-track {
     width: 100%;
-    height: 6px;
+    height: 5px;
     background: var(--border-light);
     border-radius: 3px;
 }
@@ -636,7 +668,7 @@ main {
 .convert-btn {
     width: 100%;
     padding: 18px;
-    background: var(--accent);
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
     color: white;
     border: none;
     border-radius: var(--radius-sm);
@@ -651,18 +683,28 @@ main {
     overflow: hidden;
 }
 
+/* Shimmer sweep */
 .convert-btn::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 55%);
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    animation: shimmer 3s infinite;
     pointer-events: none;
 }
 
+@keyframes shimmer {
+    0%      { left: -100%; }
+    55%, 100% { left: 100%; }
+}
+
 .convert-btn:hover {
-    background: var(--accent-hover);
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(217, 78, 22, 0.35);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.38);
 }
 
 .convert-btn:active {
@@ -706,8 +748,8 @@ main {
 .spinner span {
     content: '';
     display: block;
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--accent);
     animation: dotPulse 1.4s ease-in-out infinite both;
@@ -754,17 +796,17 @@ main {
 
 .results-section h2 {
     font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: -0.3px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
     color: var(--text-dark);
 }
 
 .share-btn {
     padding: 8px 16px;
     background: transparent;
-    color: #2e7d32;
-    border: 1.5px solid #2e7d32;
+    color: #059669;
+    border: 1.5px solid #059669;
     border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: 0.83rem;
@@ -774,24 +816,25 @@ main {
 }
 
 .share-btn:hover {
-    background: #2e7d32;
+    background: #059669;
     color: white;
     transform: translateY(-1px);
 }
 
 .result-card {
-    background: var(--card-alt);
+    background: #fafafe;
     border-radius: var(--radius-sm);
     padding: 24px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     border: 1.5px solid var(--border-light);
-    border-left: 4px solid var(--accent);
+    border-left: 3px solid var(--accent);
+    box-shadow: var(--shadow-card);
 }
 
 .result-card h3 {
     color: var(--accent);
     margin-bottom: 14px;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -801,7 +844,7 @@ main {
 .result-card .content {
     background: var(--card);
     padding: 18px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 13px;
     line-height: 1.68;
     color: var(--text-dark);
@@ -821,7 +864,7 @@ main {
     background: var(--accent);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     cursor: pointer;
     font-size: 0.83rem;
     font-family: var(--font-body);
@@ -835,7 +878,7 @@ main {
 }
 
 .copy-btn.copied {
-    background: #2e7d32;
+    background: #059669;
 }
 
 /* ============================================
@@ -861,7 +904,7 @@ main {
 }
 
 /* ============================================
-   UPGRADE / CHECKOUT BUTTONS (generic)
+   UPGRADE / CHECKOUT BUTTONS
    ============================================ */
 
 .features-list {
@@ -899,7 +942,7 @@ main {
 .upgrade-btn:hover,
 .checkout-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(217, 78, 22, 0.3);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.30);
     background: var(--accent-hover);
 }
 
@@ -952,7 +995,7 @@ footer {
 }
 
 .cookie-content p {
-    color: rgba(245, 237, 224, 0.7);
+    color: rgba(238, 238, 255, 0.7);
     margin: 0;
     font-size: 0.86rem;
     flex: 1;
@@ -968,7 +1011,7 @@ footer {
     background: var(--accent);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     font-size: 0.88rem;
     font-family: var(--font-body);
     font-weight: 600;
@@ -994,8 +1037,8 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.78);
-    backdrop-filter: blur(6px);
+    background-color: rgba(12, 10, 30, 0.80);
+    backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
     animation: fadeIn 0.3s;
@@ -1013,14 +1056,14 @@ footer {
 
 .modal-content-wide {
     background: var(--card);
-    border-radius: 20px;
+    border-radius: 22px;
     padding: 44px;
     max-width: 860px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 32px 80px rgba(12, 10, 30, 0.45);
     animation: modalSlideUp 0.3s;
 }
 
@@ -1028,8 +1071,8 @@ footer {
     text-align: center;
     font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: -0.3px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     margin-bottom: 8px;
     color: var(--text-dark);
 }
@@ -1060,20 +1103,20 @@ footer {
 
 .pricing-card-option:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 36px rgba(79, 70, 229, 0.12);
     border-color: var(--accent);
 }
 
 .pricing-card-option.featured {
-    background: var(--accent);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     color: white;
-    border-color: var(--accent);
+    border-color: transparent;
     transform: scale(1.04);
 }
 
 .pricing-card-option.featured:hover {
     transform: scale(1.07) translateY(-4px);
-    background: var(--accent-hover);
+    box-shadow: 0 16px 48px rgba(79, 70, 229, 0.40);
 }
 
 .badge {
@@ -1081,8 +1124,8 @@ footer {
     top: -13px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--accent-warm);
-    color: #1a1008;
+    background: #fbbf24;
+    color: #1c1a0a;
     padding: 4px 18px;
     border-radius: 20px;
     font-size: 10px;
@@ -1113,7 +1156,7 @@ footer {
 .pricing-card-option .price {
     font-family: var(--font-display);
     font-size: 52px;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 1;
     color: var(--text-dark);
 }
@@ -1138,6 +1181,10 @@ footer {
     font-weight: 600;
     margin-bottom: 18px;
     font-size: 0.88rem;
+}
+
+.pricing-card-option.featured .savings {
+    color: #c7d2fe;
 }
 
 .pricing-card-option .features-list {
@@ -1170,7 +1217,7 @@ footer {
     background: var(--accent);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 9px;
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 18px;
@@ -1179,16 +1226,17 @@ footer {
 .pricing-card-option .checkout-btn:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(217, 78, 22, 0.3);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.30);
 }
 
 .pricing-card-option.featured .checkout-btn.primary {
-    background: var(--accent-warm);
-    color: #1a1008;
+    background: white;
+    color: #4f46e5;
 }
 
 .pricing-card-option.featured .checkout-btn.primary:hover {
-    background: #d88c30;
+    background: #f0f0ff;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.20);
 }
 
 .modal-content-wide .modal-note {
@@ -1199,24 +1247,24 @@ footer {
 }
 
 /* ============================================
-   SEO SECTIONS  (warm sand — 30% secondary color)
+   SEO SECTIONS
    ============================================ */
 
 .seo-section {
     background: var(--surface);
     padding: 64px 32px;
-    margin: 24px auto;
+    margin: 20px auto;
     max-width: 1200px;
     border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(180, 120, 60, 0.08);
+    box-shadow: 0 4px 24px rgba(79, 70, 229, 0.06);
     border: 1px solid var(--border-light);
 }
 
 .seo-section h2 {
     font-family: var(--font-display);
-    font-size: 2.1rem;
-    font-weight: 400;
-    letter-spacing: -0.4px;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     text-align: center;
     margin-bottom: 48px;
     color: var(--text-dark);
@@ -1243,7 +1291,7 @@ footer {
 .step-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(201, 71, 24, 0.1);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.12);
 }
 
 .step-icon {
@@ -1290,7 +1338,7 @@ footer {
 .benefit-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(201, 71, 24, 0.1);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.12);
 }
 
 .benefit-icon {
@@ -1333,7 +1381,7 @@ footer {
 .use-case-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(201, 71, 24, 0.1);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.12);
 }
 
 .use-case-icon {
@@ -1361,8 +1409,8 @@ footer {
     border: 1.5px solid var(--border-light);
     border-left: 3px solid var(--accent);
     padding: 20px 22px;
-    margin-bottom: 12px;
-    border-radius: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.25s ease;
 }
@@ -1370,7 +1418,7 @@ footer {
 .faq-item:hover {
     border-left-color: var(--accent-light);
     transform: translateX(4px);
-    box-shadow: 0 4px 16px rgba(201, 71, 24, 0.08);
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.09);
 }
 
 .faq-item h3 {
@@ -1426,11 +1474,11 @@ footer {
 
 @media (max-width: 768px) {
     body {
-        padding: 24px 16px 60px;
+        padding: 20px 16px 60px;
     }
 
     header h1 {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
     }
 
     header {
@@ -1516,11 +1564,11 @@ footer {
 
     .seo-section {
         padding: 48px 20px;
-        margin: 28px auto;
+        margin: 20px auto;
     }
 
     .seo-section h2 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         margin-bottom: 36px;
     }
 
@@ -1528,7 +1576,7 @@ footer {
     .benefits-grid,
     .use-cases-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
     }
 
     .step-icon,
@@ -1591,7 +1639,7 @@ footer {
    ============================================ */
 
 .result-card {
-    opacity: 0; /* default hidden; JS adds card-enter */
+    opacity: 0;
 }
 
 .card-enter {
@@ -1599,7 +1647,7 @@ footer {
 }
 
 /* ============================================
-   SCROLL REVEAL  (IntersectionObserver)
+   SCROLL REVEAL
    ============================================ */
 
 .scroll-reveal {
@@ -1613,7 +1661,6 @@ footer {
     transform: translateY(0);
 }
 
-/* Stagger siblings inside grids automatically */
 .steps-grid     .scroll-reveal:nth-child(1),
 .benefits-grid  .scroll-reveal:nth-child(1),
 .use-cases-grid .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
@@ -1632,7 +1679,6 @@ footer {
 .benefits-grid  .scroll-reveal:nth-child(5) { transition-delay: 320ms; }
 .benefits-grid  .scroll-reveal:nth-child(6) { transition-delay: 400ms; }
 
-/* FAQ items stagger */
 .faq-section .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
 .faq-section .scroll-reveal:nth-child(2) { transition-delay: 60ms; }
 .faq-section .scroll-reveal:nth-child(3) { transition-delay: 120ms; }
