@@ -11,7 +11,7 @@ const translations = {
 
     // 히어로
     heroHeadline: "글 하나로, <em>4개 플랫폼.</em>",
-    heroDesc: "블로그 글이나 긴 글을 붙여넣으면 AI가 각 플랫폼에 최적화된 포스트로 30초 만에 변환해드립니다.",
+    heroDesc: "블로그 글을 붙여넣으면 AI가 30초 만에 각 플랫폼에 최적화된 포스트로 변환해드립니다.",
     heroStat1: "⚡ 30초 이내",
     heroStat2: "🎯 4개 플랫폼",
     heroStat3: "🆓 무료 시작",
