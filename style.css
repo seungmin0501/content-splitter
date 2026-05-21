@@ -149,6 +149,79 @@ header {
     color: var(--text-light);
 }
 
+/* ============================================
+   AUTH UI
+   ============================================ */
+
+.auth-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    color: var(--text-light);
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+}
+
+.auth-login-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.30);
+}
+
+.auth-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.auth-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.auth-username {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-weight: 500;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.auth-logout-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-light-muted);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.auth-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--text-light);
+}
+
+@media (max-width: 600px) {
+    .auth-username { display: none; }
+    .auth-login-btn span { display: none; }
+    .auth-login-btn { padding: 9px 11px; }
+}
+
 header h1 {
     font-family: var(--font-display);
     font-size: 3rem;

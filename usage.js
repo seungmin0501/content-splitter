@@ -105,9 +105,26 @@ function incrementUsage() {
 function updateUsageDisplay() {
     const statusEl = document.getElementById('usageStatus');
     if (!statusEl) return;
-    
+
     statusEl.textContent = '';
     const infoDiv = document.createElement('div');
+
+    // 구글 로그인 사용자
+    if (typeof currentUser !== 'undefined' && currentUser) {
+        infoDiv.className = 'usage-info free';
+        const lang = window.currentLang || 'ko';
+        const messages = {
+            ko: '✓ 로그인됨 — 서버에서 사용 횟수 관리',
+            en: '✓ Signed in — usage tracked server-side',
+            ja: '✓ ログイン中 — サーバーで使用回数を管理',
+            es: '✓ Sesión iniciada — uso gestionado en servidor',
+            zh: '✓ 已登录 — 服务器端管理使用次数'
+        };
+        infoDiv.textContent = messages[lang] || messages.en;
+        statusEl.appendChild(infoDiv);
+        statusEl.style.display = 'block';
+        return;
+    }
 
     if (isPremium()) {
         infoDiv.className = 'usage-info premium';
@@ -120,7 +137,7 @@ function updateUsageDisplay() {
     } else {
         infoDiv.className = 'usage-info free';
         const status = canUseService();
-        const lang = currentLang || 'ko';
+        const lang = window.currentLang || 'ko';
 
         let message = '';
         if (lang === 'ko') {

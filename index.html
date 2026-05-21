@@ -31,6 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <title>ContentSplitter - AI Social Media Post Generator | Blog to Instagram, Twitter, LinkedIn Free Tool</title>
     <meta name="description" content="Free AI tool to convert one blog post into Instagram captions, Twitter threads, LinkedIn posts, and Facebook updates in 30 seconds. Supports hashtag generation, multiple tones, and 5 languages.">
@@ -120,6 +121,24 @@
                     <p>긴 글 하나를 여러 SNS 포스트로 자동 변환</p>
                 </div>
                 <div class="header-controls">
+                    <!-- 구글 로그인 버튼 (비로그인 시) -->
+                    <button id="loginBtn" class="auth-login-btn" onclick="signInWithGoogle()">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+                            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+                            <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+                        </svg>
+                        <span>Google로 로그인</span>
+                    </button>
+
+                    <!-- 사용자 정보 (로그인 시) -->
+                    <div id="userInfo" class="auth-user-info" style="display:none;">
+                        <img id="userAvatar" class="auth-avatar" src="" alt="프로필" />
+                        <span id="userName" class="auth-username"></span>
+                        <button class="auth-logout-btn" onclick="signOut()">로그아웃</button>
+                    </div>
+
                     <select id="languageSelect" class="language-select">
                         <option value="ko">🇰🇷 한국어</option>
                         <option value="en">🇺🇸 English</option>
@@ -589,6 +608,7 @@ document.addEventListener('DOMContentLoaded', updateModalLanguage);
     <script src="upgrade.js"></script>
     <script src="translations.js"></script>
     <script src="usage.js"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 
 </body>

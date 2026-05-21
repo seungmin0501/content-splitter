@@ -229,12 +229,16 @@ async function convertContent(content, platforms, tone, hashtagCount) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 60000); // 60초 타임아웃
 
+    const headers = { 'Content-Type': 'application/json' };
+    if (typeof getAuthToken === 'function') {
+        const token = await getAuthToken();
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+    }
+
     try {
     const response = await fetch(apiUrl, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({
             content: content,
             platforms: platforms,

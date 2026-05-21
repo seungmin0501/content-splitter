@@ -1,11 +1,47 @@
 // Vercel Serverless Function
 import Anthropic from '@anthropic-ai/sdk';
 import crypto from 'crypto';
+import { createClient } from '@supabase/supabase-js';
 
 // Anthropic 클라이언트 생성
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
+
+// Supabase 어드민 클라이언트 (서비스 롤 키 사용)
+const supabaseAdmin = (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY)
+  ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+  : null;
+
+// Supabase JWT 검증 → user 반환, 실패 시 null
+async function verifySupabaseToken(authHeader) {
+  if (!supabaseAdmin || !authHeader?.startsWith('Bearer ')) return null;
+  const token = authHeader.split(' ')[1];
+  const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+  return error ? null : user;
+}
+
+// DB 일일 사용 횟수 조회
+async function getDbDailyCount(userId) {
+  const today = getTodayUTC();
+  const { data } = await supabaseAdmin
+    .from('usage_tracking')
+    .select('count')
+    .eq('user_id', userId)
+    .eq('usage_date', today)
+    .maybeSingle();
+  return data?.count ?? 0;
+}
+
+// DB 일일 사용 횟수 증가 (원자적 RPC)
+async function incrementDbDailyCount(userId) {
+  const today = getTodayUTC();
+  const { data } = await supabaseAdmin.rpc('increment_usage', {
+    p_user_id: userId,
+    p_date: today
+  });
+  return data ?? 1;
+}
 
 // 쿠키 헤더 파싱
 function parseCookies(cookieHeader = '') {
@@ -157,28 +193,31 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // 서버사이드 프리미엄 검증
+  // 인증: Supabase JWT 우선, 없으면 기존 쿠키 방식
+  const authUser = await verifySupabaseToken(req.headers.authorization);
   const cookies = parseCookies(req.headers.cookie);
-  const isPremium = verifyPremiumToken(cookies.premium_code);
+  const isPremium = !authUser && verifyPremiumToken(cookies.premium_code);
 
-  // Rate Limiting 체크 (프리미엄은 더 높은 한도 적용)
+  // Rate Limiting 체크
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-  const limit = isPremium ? RATE_LIMIT_PREMIUM : RATE_LIMIT_MAX;
+  const limit = (authUser || isPremium) ? RATE_LIMIT_PREMIUM : RATE_LIMIT_MAX;
   if (isRateLimited(clientIp, limit)) {
-    return res.status(429).json({
-      success: false,
-      error: 'TOO_MANY_REQUESTS'
-    });
+    return res.status(429).json({ success: false, error: 'TOO_MANY_REQUESTS' });
   }
 
-  // 서버사이드 일일 한도 체크 (무료 사용자만)
-  if (!isPremium) {
+  // 일일 한도 체크 (무료 익명 사용자만)
+  if (!authUser && !isPremium) {
     const dailyCount = getDailyCount(clientIp, cookies.daily_usage);
     if (dailyCount >= FREE_DAILY_LIMIT) {
-      return res.status(429).json({
-        success: false,
-        error: 'DAILY_LIMIT_REACHED'
-      });
+      return res.status(429).json({ success: false, error: 'DAILY_LIMIT_REACHED' });
+    }
+  }
+
+  // 로그인 사용자 일일 한도 체크 (DB)
+  if (authUser && !isPremium) {
+    const dbCount = await getDbDailyCount(authUser.id);
+    if (dbCount >= FREE_DAILY_LIMIT) {
+      return res.status(429).json({ success: false, error: 'DAILY_LIMIT_REACHED' });
     }
   }
 
@@ -281,8 +320,11 @@ Only include selected platforms. Return JSON only, no explanations.`
 
     const results = JSON.parse(cleanedText);
 
-    // 무료 사용자: 일일 카운트 증가 + 서명된 HttpOnly 쿠키 발급
-    if (!isPremium) {
+    if (authUser) {
+      // 로그인 사용자: DB 카운트 증가
+      await incrementDbDailyCount(authUser.id);
+    } else if (!isPremium) {
+      // 익명 무료 사용자: 메모리 + 서명 쿠키
       const newCount = incrementDailyCount(clientIp);
       const usageToken = signUsageToken(getTodayUTC(), newCount);
       res.setHeader(
