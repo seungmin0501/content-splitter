@@ -62,9 +62,7 @@ export default async function handler(req, res) {
         console.error('LemonSqueezy Error:', JSON.stringify(error));
         return res.status(500).json({
           success: false,
-          error: 'LemonSqueezy API error',
-          details: error,
-          status: response.status
+          error: 'Failed to create checkout'
         });
       }
   
