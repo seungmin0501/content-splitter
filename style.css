@@ -78,6 +78,8 @@ body {
     position: relative;
     color: var(--text-dark);
     line-height: 1.6;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 /* Ambient background glow */
