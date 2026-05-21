@@ -34,17 +34,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           data: {
             type: 'checkouts',
-            attributes: {
-              checkout_data: {
-                email: email || undefined,
-                custom: {
-                  user_id: req.body.userId || 'anonymous'
-                }
-              },
-              product_options: {
-                redirect_url: 'https://content-splitter.vercel.app'
-              }
-            },
+            attributes: {},
             relationships: {
               store: {
                 data: {
