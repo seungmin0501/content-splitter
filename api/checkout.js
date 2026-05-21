@@ -34,7 +34,11 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           data: {
             type: 'checkouts',
-            attributes: {},
+            attributes: {
+              product_options: {
+                redirect_url: 'https://content-splitter.vercel.app'
+              }
+            },
             relationships: {
               store: {
                 data: {
