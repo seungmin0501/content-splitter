@@ -734,20 +734,21 @@ main {
 
 .convert-btn {
     width: 100%;
-    padding: 18px;
+    padding: 20px 24px;
     background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
     color: white;
     border: none;
     border-radius: var(--radius-sm);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-family: var(--font-body);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.25s;
-    margin-top: 24px;
-    letter-spacing: 0.015em;
+    margin-top: 28px;
+    letter-spacing: 0.02em;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
 }
 
 /* Shimmer sweep */
@@ -771,7 +772,7 @@ main {
 .convert-btn:hover {
     background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.38);
+    box-shadow: 0 12px 32px rgba(79, 70, 229, 0.5);
 }
 
 .convert-btn:active {
@@ -1325,6 +1326,10 @@ footer {
     border-radius: 20px;
     box-shadow: 0 4px 24px rgba(79, 70, 229, 0.06);
     border: 1px solid var(--border-light);
+}
+
+.faq-section {
+    margin-top: 56px;
 }
 
 .seo-section h2 {
