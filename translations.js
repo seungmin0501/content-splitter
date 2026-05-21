@@ -261,7 +261,7 @@ const translations = {
     heroDesc: "Pega cualquier artículo y la IA lo convierte en publicaciones optimizadas para Instagram, Twitter, LinkedIn y Facebook en segundos.",
     heroStat1: "⚡ Menos de 30s",
     heroStat2: "🎯 4 Plataformas",
-    heroStat3: "🆓 Gratis para empezar",
+    heroStat3: "🆓 Gratis",
 
     inputTitle: "Ingresa tu Contenido",
     exampleBtn: "💡 Ver Ejemplo",
