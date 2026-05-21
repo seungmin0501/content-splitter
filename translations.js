@@ -86,7 +86,7 @@ const translations = {
     },
     
     // 푸터
-    footer: "Made with ❤️ by 승민",
+    footer: "Made by SEUNGMIN",
     version: "v2.0 - 글로벌 베타",
     
     // 쿠키 배너
@@ -170,7 +170,7 @@ const translations = {
       tooManyRequests: "Too many requests. Please try again later."
     },
     
-    footer: "Made with ❤️ by Seungmin",
+    footer: "Made by SEUNGMIN",
     version: "v2.0 - Global Beta",
     
     cookieMessage: "🍪 This site uses cookies to track usage and improve user experience. We don't collect personal identification information.",
@@ -253,7 +253,7 @@ const translations = {
       tooManyRequests: "リクエストが多すぎます。しばらくしてからもう一度お試しください。"
     },
     
-    footer: "Made with ❤️ by Seungmin",
+    footer: "Made by SEUNGMIN",
     version: "v2.0 - グローバルベータ",
     
     cookieMessage: "🍪 このサイトは使用状況を追跡し、ユーザーエクスペリエンスを向上させるためにCookieを使用します。個人識別情報は収集しません。",
@@ -336,7 +336,7 @@ const translations = {
       tooManyRequests: "Demasiadas solicitudes. Por favor, inténtelo de nuevo más tarde."
     },
     
-    footer: "Hecho con ❤️ por Seungmin",
+    footer: "Made by SEUNGMIN",
     version: "v2.0 - Beta Global",
     
     cookieMessage: "🍪 Este sitio utiliza cookies para rastrear el uso y mejorar la experiencia del usuario. No recopilamos información de identificación personal.",
@@ -419,7 +419,7 @@ const translations = {
       tooManyRequests: "请求过多。请稍后重试。"
     },
 
-    footer: "由 Seungmin 用 ❤️ 制作",
+    footer: "Made by SEUNGMIN",
     version: "v2.0 - 全球测试版",
 
     cookieMessage: "🍪 本网站使用Cookie来追踪使用情况并改善用户体验。我们不收集个人身份信息。",
